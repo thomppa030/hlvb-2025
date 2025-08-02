@@ -1,0 +1,42 @@
+{
+  "tasks": {
+    "install": "deno install",
+    "sync": "deno run --allow-net --allow-read --allow-env --allow-write npm:@sveltejs/kit sync",
+    "dev": "deno run --allow-net --allow-read --allow-env --allow-write npm:vite dev",
+    "build": "deno run --allow-net --allow-read --allow-env --allow-write npm:vite build",
+    "preview": "deno run --allow-net --allow-read --allow-env npm:vite preview",
+    "check": "deno run --allow-net --allow-read --allow-env npm:svelte-check --tsconfig ./tsconfig.json",
+    "setup": "deno install && deno task sync"
+  },
+  "imports": {
+    "@/": "./src/",
+    "$lib/": "./src/lib/",
+    "$app/": "./.svelte-kit/runtime/app/",
+    "$service-worker": "./.svelte-kit/runtime/service-worker"
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".svelte-kit",
+    "build",
+    "dist"
+  ]
+}
