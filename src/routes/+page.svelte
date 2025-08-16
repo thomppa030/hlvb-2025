@@ -14,8 +14,8 @@
       <h1>Welcome to Luxury Hotel</h1>
       <p>Experience unparalleled comfort and elegance</p>
       <div class="hero-actions">
-        <a href="/test" class="btn btn--primary btn--large">View Test Page</a>
-        <a href="/rooms" class="btn btn--outline btn--large">Explore Rooms</a>
+        <a href="/reviews" class="btn btn--primary btn--large">Guest Reviews</a>
+        <a href="/test" class="btn btn--outline btn--large">View Test Page</a>
       </div>
     </section>
 

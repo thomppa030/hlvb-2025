@@ -2,8 +2,8 @@
   "tasks": {
     "install": "deno install",
     "sync": "deno run --allow-net --allow-read --allow-env --allow-write npm:@sveltejs/kit sync",
-    "dev": "deno run --allow-net --allow-read --allow-env --allow-write npm:vite dev",
-    "build": "deno run --allow-net --allow-read --allow-env --allow-write npm:vite build",
+    "dev": "deno run --allow-net --allow-read --allow-env --allow-write --allow-sys --allow-ffi npm:vite dev",
+    "build": "deno run --allow-net --allow-read --allow-env --allow-write --allow-sys --allow-ffi npm:vite build",
     "preview": "deno run --allow-net --allow-read --allow-env npm:vite preview",
     "check": "deno run --allow-net --allow-read --allow-env npm:svelte-check --tsconfig ./tsconfig.json",
     "setup": "deno install && deno task sync"

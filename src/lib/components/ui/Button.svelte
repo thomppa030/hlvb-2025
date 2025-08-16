@@ -27,6 +27,8 @@
   {href}
   {target}
   {disabled}
+  role={href ? undefined : 'button'}
+  tabindex={disabled ? -1 : 0}
   on:click
   on:keydown
   on:mouseenter
@@ -157,13 +159,41 @@
   }
 
   /* Dark theme adjustments */
-  [data-theme="dark"] .btn--outline {
+  :global([data-theme="dark"]) .btn--primary {
+    background-color: var(--color-text);
+    color: var(--color-background);
+  }
+
+  :global([data-theme="dark"]) .btn--primary:hover:not(:disabled) {
+    background-color: var(--color-text-light);
+  }
+
+  :global([data-theme="dark"]) .btn--secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+  }
+
+  :global([data-theme="dark"]) .btn--secondary:hover:not(:disabled) {
+    background-color: var(--color-secondary-light);
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
+  }
+
+  :global([data-theme="dark"]) .btn--outline {
     border-color: var(--color-text);
     color: var(--color-text);
   }
 
-  [data-theme="dark"] .btn--outline:hover:not(:disabled) {
+  :global([data-theme="dark"]) .btn--outline:hover:not(:disabled) {
     background-color: var(--color-text);
     color: var(--color-background);
+  }
+
+  :global([data-theme="dark"]) .btn--ghost {
+    color: var(--color-text-light);
+  }
+
+  :global([data-theme="dark"]) .btn--ghost:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
   }
 </style>

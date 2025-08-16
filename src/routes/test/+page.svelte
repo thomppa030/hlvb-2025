@@ -304,7 +304,7 @@
 
   .test-title {
     font-size: var(--font-size-2xl);
-    color: var(--color-primary);
+    color: var(--color-text);
     margin: 0;
   }
 
@@ -329,7 +329,7 @@
   .nav-link:hover,
   .nav-link.active {
     background-color: var(--color-secondary);
-    color: var(--color-text-inverse);
+    color: white;
   }
 
   .theme-toggle {
@@ -344,6 +344,15 @@
     background-color: var(--color-primary-light);
   }
 
+  :global([data-theme="dark"]) .theme-toggle {
+    background-color: var(--color-text);
+    color: var(--color-background);
+  }
+
+  :global([data-theme="dark"]) .theme-toggle:hover {
+    background-color: var(--color-text-light);
+  }
+
   .test-section {
     padding: var(--space-4xl) 0;
     border-bottom: 1px solid var(--color-border-light);
@@ -351,7 +360,7 @@
 
   .section-title {
     margin-bottom: var(--space-2xl);
-    color: var(--color-primary);
+    color: var(--color-text);
   }
 
   /* Typography Styles */
