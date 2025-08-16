@@ -1,24 +1,29 @@
 /* src/lib/styles/variables.css */
 
 :root {
-  /* Colors */
-  --color-primary: #1a1a1a;
-  --color-primary-light: #2d2d2d;
-  --color-secondary: #4a90a4;
-  --color-secondary-light: #5ba3b8;
-  --color-accent: #2c3e50;
+  /* Colors - Enhanced Client Brand Palette */
+  --color-primary: #5a4e47; /* Darker taupe for better contrast (from original #7c6b65) */
+  --color-primary-light: #7c6b65; /* Original taupe as lighter variant */
+  --color-secondary: #1a4a6b; /* Softened berlin-blau for better usability */
+  --color-secondary-light: #4a7a9e; /* Lighter berlin-blau for hover states */
+  --color-accent: #003153; /* Original berlin-blau for high-impact elements */
   
-  --color-background: #ffffff;
-  --color-background-alt: #f8f8f8;
-  --color-background-dark: #0a0a0a;
+  --color-background: #f6f4f3; /* 10% Sättigung Taupe hell (RGB 246/244/243) */
+  --color-background-alt: #eeeae7; /* 15% Sättigung Taupe hell (RGB 238/234/231) */
+  --color-background-elevated: #ffffff; /* Pure white for cards/modals */
   
-  --color-text: #1a1a1a;
-  --color-text-light: #666666;
-  --color-text-lighter: #999999;
-  --color-text-inverse: #ffffff;
+  --color-text: #5a4e47; /* Darker taupe for better readability */
+  --color-text-light: #7c6b65; /* Original taupe for secondary text */
+  --color-text-lighter: #958579; /* Lighter taupe for muted text */
+  --color-text-inverse: #f6f4f3; /* Light background color for dark surfaces */
   
-  --color-border: #e0e0e0;
-  --color-border-light: #f0f0f0;
+  --color-border: #d8cfc8; /* More defined borders */
+  --color-border-light: #e4ddd8; /* Subtle borders */
+  
+  /* Success/Error states using palette-harmonious colors */
+  --color-success: #2d5a3d; /* Deep green that works with taupe */
+  --color-warning: #8b6914; /* Warm amber */
+  --color-error: #7a2e2e; /* Muted red that doesn't clash */
   
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -36,6 +41,7 @@
   --font-size-5xl: 3rem;      /* 48px */
   --font-size-6xl: 3.75rem;   /* 60px */
   
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -44,6 +50,7 @@
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
   
   /* Spacing */
   --space-xs: 0.25rem;    /* 4px */
@@ -107,17 +114,22 @@
 
 /* Theme variants */
 [data-theme="dark"] {
-  --color-background: #0a0a0a;
-  --color-background-alt: #1a1a1a;
-  --color-background-dark: #ffffff;
+  --color-background: #1a1611; /* Dark taupe background */
+  --color-background-alt: #252018; /* Slightly lighter dark taupe */
+  --color-background-dark: #f6f4f3;
   
-  --color-text: #ffffff;
-  --color-text-light: #cccccc;
-  --color-text-lighter: #999999;
-  --color-text-inverse: #1a1a1a;
+  --color-text: #eeeae7; /* 15% Sättigung Taupe hell for text */
+  --color-text-light: #d4cfc8; /* Muted light text */
+  --color-text-lighter: #b8b2aa; /* Darker muted text */
+  --color-text-inverse: #7c6b65; /* Taupe for light backgrounds */
   
-  --color-border: #2d2d2d;
-  --color-border-light: #1a1a1a;
+  --color-border: #2d2620; /* Dark border */
+  --color-border-light: #252018; /* Darker border */
+  
+  /* Berlin-blau with better contrast for dark mode */
+  --color-secondary: #4a7a9e; /* Lighter berlin-blau for better dark mode contrast */
+  --color-secondary-light: #5a8aae;
+  --color-accent: #4a7a9e;
 }
 
 /* High contrast mode */

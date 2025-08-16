@@ -1,6 +1,7 @@
 <!-- src/routes/+layout.svelte -->
 <script>
   import "../app.css";
+  import Header from "$lib/components/ui/Header.svelte";
   import { onMount } from "svelte";
 
   let mounted = false;
@@ -8,26 +9,14 @@
   onMount(() => {
     mounted = true;
 
-    // Set initial theme
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-
-    // Handle system theme preference
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    function handleThemeChange(e) {
-      if (!localStorage.getItem("theme")) {
-        document.documentElement.setAttribute(
-          "data-theme",
-          e.matches ? "dark" : "light",
-        );
-      }
+    // Set initial theme - simplified since Header now handles theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
     }
-
-    mediaQuery.addEventListener("change", handleThemeChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleThemeChange);
-    };
   });
 </script>
 
@@ -44,6 +33,7 @@
 </svelte:head>
 
 <div class="app" class:mounted>
+  <Header />
   <main>
     <slot />
   </main>
@@ -61,15 +51,15 @@
   }
 
   main {
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
   }
 
   /* Prevent flash of unstyled content */
   :global(html) {
-    background-color: #ffffff;
+    background-color: #f6f4f3; /* 10% Sättigung Taupe hell */
   }
 
   :global([data-theme="dark"] html) {
-    background-color: #0a0a0a;
+    background-color: #1a1611; /* Dark taupe */
   }
 </style>
