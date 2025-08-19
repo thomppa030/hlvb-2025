@@ -2,9 +2,20 @@
 <script>
   import "../app.css";
   import Header from "$lib/components/ui/Header.svelte";
+  import Footer from "$lib/components/ui/Footer.svelte";
+  import StickyBookingForm from "$lib/components/ui/StickyBookingForm.svelte";
   import { onMount } from "svelte";
+  import { page } from "$app/stores";
 
   let mounted = false;
+
+  // Define which pages should show the sticky booking form
+  const pagesWithStickyForm = [
+    '/' // Only show on home page
+  ];
+
+  // Check if current page should show sticky form
+  $: showStickyForm = pagesWithStickyForm.includes($page.url.pathname);
 
   onMount(() => {
     mounted = true;
@@ -27,16 +38,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet"
   />
 </svelte:head>
 
 <div class="app" class:mounted>
   <Header />
+  {#if showStickyForm}
+    <StickyBookingForm />
+  {/if}
   <main>
     <slot />
   </main>
+  <Footer />
 </div>
 
 <style>
@@ -51,7 +66,7 @@
   }
 
   main {
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 80px);
   }
 
   /* Prevent flash of unstyled content */
@@ -60,6 +75,6 @@
   }
 
   :global([data-theme="dark"] html) {
-    background-color: #1a1611; /* Dark taupe */
+    background-color: #2a251f; /* Lighter dark taupe */
   }
 </style>

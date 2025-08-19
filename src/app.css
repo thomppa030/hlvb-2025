@@ -12,7 +12,7 @@
 }
 
 html {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary); /* Montserrat */
   font-size: 16px;
   line-height: var(--line-height-normal);
   scroll-behavior: smooth;
@@ -22,47 +22,74 @@ html {
 }
 
 body {
+  font-family: var(--font-primary); /* Montserrat */
+  font-weight: var(--font-weight-medium); /* Default Medium weight for body text */
   background-color: var(--color-background);
   color: var(--color-text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Typography */
+/* Typography - Brand Guidelines Implementation */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
+  font-family: var(--font-display); /* Crimson Text */
   line-height: var(--line-height-tight);
-  letter-spacing: -0.025em;
   color: var(--color-text);
+  margin: 0;
 }
 
+/* H1 - Majuskeln (uppercase) with extended letter spacing */
 h1 {
   font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-semibold); /* Semibold on light backgrounds */
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* Extended letter spacing */
 }
 
+/* Dark theme: Bold weight for better readability on dark surfaces */
+:global([data-theme="dark"]) h1 {
+  font-weight: var(--font-weight-bold);
+}
+
+/* H2-H6 - Semibold for subheadings and further emphasis */
 h2 {
   font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+:global([data-theme="dark"]) h2 {
+  font-weight: var(--font-weight-bold);
 }
 
 h3 {
   font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+:global([data-theme="dark"]) h3 {
+  font-weight: var(--font-weight-bold);
 }
 
 h4 {
   font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
 }
 
 h5 {
   font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
 }
 
 h6 {
   font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
 }
 
+/* Body text - Montserrat Medium for primary content */
 p {
+  font-family: var(--font-primary); /* Montserrat */
   font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium); /* Medium weight as specified */
   line-height: var(--line-height-relaxed);
   color: var(--color-text-light);
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage (with language alternatives) -->
+  <url>
+    <loc>https://hotellvb.de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en"/>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- English Homepage -->
+  <url>
+    <loc>https://hotellvb.de/en</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en"/>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Reviews Page -->
+  <url>
+    <loc>https://hotellvb.de/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/reviews"/>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- English Reviews Page -->
+  <url>
+    <loc>https://hotellvb.de/en/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/reviews"/>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Impressum (Legal) -->
+  <url>
+    <loc>https://hotellvb.de/impressum</loc>
+    <lastmod>2024-01-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

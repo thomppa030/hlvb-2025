@@ -86,16 +86,6 @@
     overflow: hidden;
   }
   
-  .review-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
-    opacity: 0.6;
-  }
   
   .review-card:hover {
     transform: translateY(-4px);

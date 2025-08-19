@@ -8,10 +8,18 @@
   let displayCount = 6;
   let selectedRating = 'all';
   
-  // Filter reviews based on selected rating
-  $: filteredReviews = selectedRating === 'all' 
+  // Filter reviews based on selected rating, minimum word count, and minimum star rating
+  $: filteredReviews = (selectedRating === 'all' 
     ? data.reviews 
-    : data.reviews.filter(review => review.rating === parseInt(selectedRating));
+    : data.reviews.filter(review => review.rating === parseInt(selectedRating)))
+    .filter(review => {
+      // Filter out reviews with less than 10 words
+      const wordCount = review.comment ? review.comment.trim().split(/\s+/).length : 0;
+      // For "all" ratings, only show 3+ stars. For explicit selection, show any rating.
+      const rating = review.rating || 0;
+      const meetsRatingCriteria = selectedRating === 'all' ? rating >= 3 : true;
+      return wordCount >= 10 && meetsRatingCriteria;
+    });
   
   // Paginate reviews
   $: displayedReviews = filteredReviews.slice(0, displayCount);
@@ -76,7 +84,7 @@
               bind:value={selectedRating}
               on:change={() => displayCount = 6}
             >
-              <option value="all">All Ratings</option>
+              <option value="all">All Ratings (3+ stars)</option>
               <option value="5">5 Stars ({ratingDistribution[5] || 0})</option>
               <option value="4">4 Stars ({ratingDistribution[4] || 0})</option>
               <option value="3">3 Stars ({ratingDistribution[3] || 0})</option>
@@ -158,19 +166,19 @@
     font-family: var(--font-display);
     margin-bottom: var(--space-lg);
     color: var(--color-text);
-    font-weight: var(--font-weight-light);
-    letter-spacing: -0.02em;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
   }
   
   .hero-subtitle {
-    font-size: var(--font-size-base);
-    opacity: 0.7;
+    font-size: var(--font-size-lg);
     margin-bottom: var(--space-3xl);
-    color: var(--color-text-light);
-    font-weight: var(--font-weight-light);
-    max-width: 500px;
+    color: var(--color-text);
+    font-weight: var(--font-weight-normal);
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    line-height: var(--line-height-normal);
   }
   
   .rating-summary {
@@ -180,7 +188,7 @@
   
   .average-rating {
     background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--color-secondary);
     border-radius: var(--radius-2xl);
     padding: var(--space-xl) var(--space-2xl);
     display: flex;
@@ -192,7 +200,7 @@
   
   .rating-number {
     font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-bold);
     color: var(--color-text);
     letter-spacing: -0.01em;
   }
@@ -213,10 +221,9 @@
   }
   
   .review-count {
-    font-size: var(--font-size-sm);
-    opacity: 0.6;
-    color: var(--color-text-light);
-    font-weight: var(--font-weight-light);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
   }
   
   /* Filters Section */
@@ -320,7 +327,7 @@
   
   :global([data-theme="dark"]) .average-rating {
     background: transparent;
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-secondary);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   

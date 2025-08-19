@@ -1,40 +1,50 @@
 <!-- src/lib/components/ui/Header.svelte -->
 <script>
-  import { page } from '$app/stores';
-  import { browser } from '$app/environment';
-  import { onMount } from 'svelte';
+  import { page } from "$app/stores";
+  import { browser } from "$app/environment";
+  import { onMount } from "svelte";
+  import Button from "./Button.svelte";
+  import LanguageSwitcher from "./LanguageSwitcher.svelte";
+  import { t } from "$lib/stores/i18n.js";
 
-  let theme = 'light';
+  let theme = "light";
   let mounted = false;
 
   onMount(() => {
     mounted = true;
     // Get initial theme from localStorage or system preference
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       theme = savedTheme;
     } else {
-      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
     }
     updateTheme();
   });
 
   function updateTheme() {
     if (!browser) return;
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }
 
   function toggleTheme() {
-    theme = theme === 'light' ? 'dark' : 'light';
+    theme = theme === "light" ? "dark" : "light";
     updateTheme();
   }
 
-  // Check if current route is active
-  function isActive(route) {
-    if (route === '/' && $page.url.pathname === '/') return true;
-    if (route !== '/' && $page.url.pathname.startsWith(route)) return true;
+  // Check if current route is active - reactive to page changes
+  $: isActive = (route) => {
+    const currentPath = $page.url.pathname;
+    if (route === "/" && currentPath === "/") return true;
+    if (route !== "/" && currentPath.startsWith(route)) return true;
     return false;
+  };
+
+  function handleBooking() {
+    window.open("https://onepagebooking.com/beethoven", "_blank");
   }
 </script>
 
@@ -42,64 +52,132 @@
   <div class="container">
     <nav class="nav">
       <!-- Logo/Brand -->
-      <a href="/" class="brand" class:active={isActive('/')}>
-        <span class="brand-text">Ludwig van Beethoven</span>
+      <a href="/" class="brand" class:active={isActive("/")}>
+        <span class="brand-text">Hotel Ludwig van Beethoven</span>
       </a>
 
       <!-- Navigation Links -->
       <div class="nav-links">
-        <a 
-          href="/" 
-          class="nav-link" 
-          class:active={isActive('/')}
-        >
-          Home
+        <a href="/" class="nav-link" class:active={isActive("/")}> 
+          {$t('nav.home')}
         </a>
-        <a 
-          href="/reviews" 
-          class="nav-link" 
-          class:active={isActive('/reviews')}
-        >
-          Reviews
+        <a href="/reviews" class="nav-link" class:active={isActive("/reviews")}>
+          {$t('nav.reviews')}
         </a>
-        <a 
-          href="/test" 
-          class="nav-link" 
-          class:active={isActive('/test')}
-        >
-          Style
+        <a href="/test" class="nav-link" class:active={isActive("/test")}>
+          {$t('nav.style')}
         </a>
       </div>
 
-      <!-- Theme Toggle -->
-      <button 
-        class="theme-toggle" 
-        on:click={toggleTheme}
-        aria-label="Toggle theme"
-        title="Toggle theme"
-      >
-        {#if mounted}
-          {#if theme === 'light'}
-            <!-- Moon icon for dark mode -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          {:else}
-            <!-- Sun icon for light mode -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
-              <path d="m12 2 0 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m12 20 0 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m4.93 4.93 1.41 1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m17.66 17.66 1.41 1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m2 12 2 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m20 12 2 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m6.34 17.66-1.41 1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="m19.07 4.93-1.41 1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Book Now Button -->
+        <Button
+          variant="accent"
+          size="medium"
+          on:click={handleBooking}
+          class="book-cta"
+        >
+          {$t('nav.book_now')}
+        </Button>
+
+        <!-- Language Switcher -->
+        <LanguageSwitcher />
+
+        <!-- Theme Toggle -->
+        <button
+          class="theme-toggle"
+          on:click={toggleTheme}
+          aria-label="Toggle theme"
+          title="Toggle theme"
+        >
+          {#if mounted}
+            {#if theme === "light"}
+              <!-- Moon icon for dark mode -->
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            {:else}
+              <!-- Sun icon for light mode -->
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="m12 2 0 2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m12 20 0 2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m4.93 4.93 1.41 1.41"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m17.66 17.66 1.41 1.41"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m2 12 2 0"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m20 12 2 0"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m6.34 17.66-1.41 1.41"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="m19.07 4.93-1.41 1.41"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            {/if}
           {/if}
-        {/if}
-      </button>
+        </button>
+      </div>
     </nav>
   </div>
 </header>
@@ -125,17 +203,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 80px;
     gap: var(--space-lg);
+    padding: var(--space-sm) 0;
   }
 
   .brand {
     text-decoration: none;
     color: var(--color-text);
-    font-family: var(--font-display);
+    font-family: var(--font-display); /* Crimson Text */
     font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: -0.01em;
+    font-weight: var(
+      --font-weight-semibold
+    ); /* Semibold as per brand guidelines */
+    letter-spacing: 0.02em; /* Slight letter spacing for brand name */
     transition: color var(--transition-fast);
   }
 
@@ -155,11 +236,56 @@
     justify-content: center;
   }
 
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  /* Make the booking CTA more prominent */
+  :global(.book-cta) {
+    font-weight: var(--font-weight-bold) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    color: var(--color-text) !important; /* Dark text for light mode */
+  }
+
+  /* Light text in dark mode */
+  /* svelte-ignore unused-css-selector */
+  :global([data-theme="dark"]) .book-cta {
+    color: white !important;
+  }
+
+  :global(.book-cta):before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  :global(.book-cta):hover:before {
+    left: 100%;
+  }
+
   .nav-link {
     text-decoration: none;
     color: var(--color-text-light);
+    font-family: var(--font-primary); /* Montserrat */
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
+    font-weight: var(
+      --font-weight-medium
+    ); /* Medium weight as per brand guidelines */
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-lg);
     transition: all var(--transition-fast);
@@ -173,7 +299,8 @@
 
   .nav-link.active {
     color: var(--color-secondary);
-    background-color: rgba(74, 144, 164, 0.08);
+    background-color: rgba(26, 74, 107, 0.1);
+    font-weight: var(--font-weight-semibold);
   }
 
   .theme-toggle {
@@ -208,12 +335,17 @@
     border-bottom-color: rgba(255, 255, 255, 0.06);
   }
 
+  :global([data-theme="dark"]) .brand {
+    font-weight: var(--font-weight-bold); /* Bold on dark surfaces */
+  }
+
   :global([data-theme="dark"]) .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.04);
   }
 
   :global([data-theme="dark"]) .nav-link.active {
-    background-color: rgba(74, 144, 164, 0.15);
+    background-color: rgba(74, 122, 158, 0.15);
+    color: var(--color-secondary-light);
   }
 
   :global([data-theme="dark"]) .theme-toggle {
@@ -232,8 +364,9 @@
   /* Mobile responsive */
   @media (max-width: 768px) {
     .nav {
-      height: 60px;
+      height: 70px;
       gap: var(--space-md);
+      padding: var(--space-xs) 0;
     }
 
     .brand {
@@ -274,3 +407,4 @@
     }
   }
 </style>
+

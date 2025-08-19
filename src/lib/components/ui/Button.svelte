@@ -117,6 +117,23 @@
     background-color: var(--color-background-alt);
   }
 
+  .btn--accent {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+    color: white;
+    font-weight: var(--font-weight-semibold);
+    border: 2px solid var(--color-accent);
+    outline: 2px solid rgba(0, 49, 83, 0.3);
+    outline-offset: 1px;
+  }
+
+  .btn--accent:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    transform: translateY(-1px);
+    border-color: var(--color-secondary);
+    outline: 2px solid rgba(0, 49, 83, 0.5);
+    outline-offset: 2px;
+  }
+
   /* Sizes */
   .btn--small {
     padding: var(--space-xs) var(--space-md);
@@ -195,5 +212,20 @@
   :global([data-theme="dark"]) .btn--ghost:hover:not(:disabled) {
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--color-text);
+  }
+
+  :global([data-theme="dark"]) .btn--accent {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+    color: white;
+    border: 2px solid var(--color-accent);
+    outline: 2px solid rgba(90, 138, 174, 0.3);
+    outline-offset: 1px;
+  }
+
+  :global([data-theme="dark"]) .btn--accent:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    border-color: var(--color-secondary);
+    outline: 2px solid rgba(90, 138, 174, 0.5);
+    outline-offset: 2px;
   }
 </style>

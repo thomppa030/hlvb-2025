@@ -288,10 +288,10 @@
 
   .test-nav {
     position: sticky;
-    top: 0;
+    top: 80px; /* Position below the main header */
     background-color: var(--color-background);
     border-bottom: 1px solid var(--color-border);
-    z-index: var(--z-sticky);
+    z-index: 89; /* Lower z-index than main header (100) */
     padding: var(--space-md) 0;
   }
 
@@ -580,6 +580,10 @@
 
   /* Responsive Design */
   @media (max-width: 768px) {
+    .test-nav {
+      top: 70px; /* Position below mobile header height */
+    }
+    
     .test-nav .container {
       flex-direction: column;
       gap: var(--space-md);
