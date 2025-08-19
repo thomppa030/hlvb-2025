@@ -435,75 +435,7 @@
     font-weight: var(--font-weight-medium);
   }
 
-  /* Contact Section */
-  .contact {
-    padding: var(--space-4xl) 0;
-  }
-
-  .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4xl);
-    align-items: start;
-  }
-
-  .contact-info h2 {
-    margin-bottom: var(--space-xl);
-    color: var(--color-text);
-  }
-
-  .contact-details {
-    display: grid;
-    gap: var(--space-xl);
-  }
-
-  .contact-item h4 {
-    color: var(--color-text);
-    margin-bottom: var(--space-sm);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .contact-item p {
-    color: var(--color-text-light);
-    line-height: var(--line-height-relaxed);
-  }
-
-  .contact-item a {
-    color: var(--color-secondary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-  }
-
-  .contact-item a:hover {
-    color: var(--color-secondary-light);
-  }
-
-  .contact-cta {
-    background: var(--color-background-elevated);
-    padding: var(--space-2xl);
-    border-radius: var(--radius-xl);
-    text-align: center;
-    border: 1px solid var(--color-border-light);
-    box-shadow: 0 4px 12px rgba(90, 78, 71, 0.08);
-  }
-
-  .contact-cta h3 {
-    margin-bottom: var(--space-md);
-    color: var(--color-text);
-  }
-
-  .contact-cta p {
-    margin-bottom: var(--space-xl);
-    color: var(--color-text-light);
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: var(--space-md);
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: var(--space-xl);
-  }
+  /* Removed unused Contact Section styles */
 
   /* Dark mode adjustments */
 
@@ -513,11 +445,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
-  :global([data-theme="dark"]) .contact-cta {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
 
   :global([data-theme="dark"]) .stat-item {
     background: var(--color-background-alt);
@@ -554,10 +481,6 @@
       gap: var(--space-2xl);
     }
 
-    .contact-content {
-      grid-template-columns: 1fr;
-      gap: var(--space-2xl);
-    }
   }
 
   @media (max-width: 768px) {
@@ -579,9 +502,6 @@
       grid-template-columns: 1fr;
     }
 
-    .cta-buttons {
-      flex-direction: column;
-    }
   }
 
   @media (max-width: 480px) {
