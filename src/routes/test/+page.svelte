@@ -100,6 +100,7 @@
             This is a <a href="#test">sample link</a> to test link styling and hover
             states.
           </p>
+          <div id="test"></div>
         </div>
       </div>
     </div>
