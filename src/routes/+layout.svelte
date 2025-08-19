@@ -20,13 +20,13 @@
   onMount(() => {
     mounted = true;
 
-    // Set initial theme - simplified since Header now handles theme
+    // Set initial theme - default to light mode
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       document.documentElement.setAttribute("data-theme", savedTheme);
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      // Default to light mode instead of system preference
+      document.documentElement.setAttribute("data-theme", "light");
     }
   });
 </script>
