@@ -1,0 +1,50 @@
+{
+  "type": "SharedSlice",
+  "id": "heading_slice",
+  "name": "HeadingSlice",
+  "description": "Page heading with title and subtitle",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Page Title",
+            "allowTargetBlank": false,
+            "single": "heading1"
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "Page subtitle or description",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "alignment": {
+          "type": "Select",
+          "config": {
+            "label": "Text Alignment",
+            "placeholder": "Choose text alignment",
+            "options": [
+              "center",
+              "left",
+              "right"
+            ],
+            "default_value": "center"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

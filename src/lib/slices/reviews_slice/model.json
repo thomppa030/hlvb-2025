@@ -1,0 +1,68 @@
+{
+  "type": "SharedSlice",
+  "id": "reviews_slice",
+  "name": "ReviewsSlice",
+  "description": "Reviews section with ratings from multiple platforms",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "What our guests say",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Highly rated across all major booking platforms...",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": "Read All Reviews"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "/reviews",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        }
+      },
+      "items": {
+        "platform": {
+          "type": "Text",
+          "config": {
+            "label": "Platform",
+            "placeholder": "Google"
+          }
+        },
+        "score": {
+          "type": "Text",
+          "config": {
+            "label": "Score",
+            "placeholder": "4.3/5"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "type": "SharedSlice",
+  "id": "hero_slice",
+  "name": "HeroSlice",
+  "description": "Hero section with title, subtitle, image and buttons",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Hotel Ludwig van Beethoven",
+            "allowTargetBlank": false,
+            "single": "heading1"
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "Your luxury retreat in the heart of the city",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "primary_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Primary Button Text",
+            "placeholder": "Book Your Stay"
+          }
+        },
+        "secondary_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Button Text",
+            "placeholder": "Explore"
+          }
+        },
+        "booking_url": {
+          "type": "Link",
+          "config": {
+            "label": "Booking URL",
+            "placeholder": "https://booking.example.com",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "show_booking_widget": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Booking Widget",
+            "default_value": true,
+            "placeholder_true": "Show",
+            "placeholder_false": "Hide"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
