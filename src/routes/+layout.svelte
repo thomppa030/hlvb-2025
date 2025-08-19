@@ -11,7 +11,8 @@
 
   // Define which pages should show the sticky booking form
   const pagesWithStickyForm = [
-    '/' // Only show on home page
+    '/', // German home page
+    '/en' // English home page
   ];
 
   // Check if current page should show sticky form
