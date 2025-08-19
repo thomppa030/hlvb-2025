@@ -1,20 +1,33 @@
 <!-- src/lib/components/ui/StickyBookingForm.svelte -->
 <script>
   import { onMount } from 'svelte';
+  import { page } from '$app/stores';
   import BookingWidget from './BookingWidget.svelte';
   
   let isVisible = false;
   let isUserClosed = false;
   let heroElement = null;
   let stickyForm = null;
+  let observer = null;
   
-  onMount(() => {
+  // Reset visibility when page changes (language switch)
+  $: if ($page.url.pathname) {
+    isVisible = false;
+    isUserClosed = false;
+  }
+  
+  function setupObserver() {
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+    
     // Find the hero section
     heroElement = document.querySelector('.hero');
     
     if (!heroElement) return;
     
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           // Show sticky form when hero is no longer visible and user hasn't closed it
@@ -28,9 +41,22 @@
     );
     
     observer.observe(heroElement);
+  }
+  
+  // Reset observer when page changes
+  $: if ($page.url.pathname) {
+    setTimeout(() => {
+      setupObserver();
+    }, 100); // Small delay to ensure DOM is updated
+  }
+  
+  onMount(() => {
+    setupObserver();
     
     return () => {
-      observer.disconnect();
+      if (observer) {
+        observer.disconnect();
+      }
     };
   });
 
