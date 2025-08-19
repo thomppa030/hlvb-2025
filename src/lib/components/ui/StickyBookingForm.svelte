@@ -1,6 +1,7 @@
 <!-- src/lib/components/ui/StickyBookingForm.svelte -->
 <script>
   import { onMount } from 'svelte';
+  import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import BookingWidget from './BookingWidget.svelte';
   
@@ -17,6 +18,8 @@
   }
   
   function setupObserver() {
+    if (!browser) return;
+    
     if (observer) {
       observer.disconnect();
       observer = null;
@@ -44,7 +47,7 @@
   }
   
   // Reset observer when page changes
-  $: if ($page.url.pathname) {
+  $: if ($page.url.pathname && browser) {
     setTimeout(() => {
       setupObserver();
     }, 100); // Small delay to ensure DOM is updated
