@@ -10,10 +10,20 @@
 
   export let data;
 
-  // Set language from the loaded data
+  // Set language from the loaded data, but respect current language preference
   onMount(() => {
     if (data.lang) {
-      currentLanguage.switchTo(data.lang);
+      // Only switch if we're not already on the preferred language
+      currentLanguage.update(current => {
+        // If we're on home page and user already has a language preference, don't override
+        if (typeof localStorage !== 'undefined') {
+          const storedLang = localStorage.getItem('language');
+          if (storedLang && ['de', 'en'].includes(storedLang)) {
+            return storedLang;
+          }
+        }
+        return data.lang;
+      });
     }
   });
 

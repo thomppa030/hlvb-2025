@@ -53,7 +53,7 @@
     <nav class="nav">
       <!-- Logo/Brand -->
       <a href="/" class="brand" class:active={isActive("/")}>
-        <img src="/cropped-Logo-Taupe.webp" alt="Hotel Ludwig van Beethoven" class="brand-logo" />
+        <img src="/cropped-Logo-Taupe.webp" alt="Hotel Ludwig van Beethoven" class="brand-logo" loading="lazy" decoding="async" />
       </a>
 
       <!-- Navigation Links -->

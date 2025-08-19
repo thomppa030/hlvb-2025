@@ -30,6 +30,7 @@
           field={heroData.background_image} 
           class="hero-image" 
           loading="eager"
+          fetchpriority="high"
           sizes="100vw"
         />
       {:else}
@@ -38,6 +39,8 @@
           src="/hlvb_backside_header.webp" 
           alt="Hotel Ludwig van Beethoven" 
           class="hero-image"
+          loading="eager"
+          fetchpriority="high"
         />
       {/if}
       <div class="hero-overlay"></div>
