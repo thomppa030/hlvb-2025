@@ -15,6 +15,10 @@
   $: if ($page.url.pathname) {
     isVisible = false;
     isUserClosed = false;
+    if (browser) {
+      // Immediately setup observer for new page without delay
+      setupObserver();
+    }
   }
   
   function setupObserver() {
@@ -28,7 +32,11 @@
     // Find the hero section
     heroElement = document.querySelector('.hero');
     
-    if (!heroElement) return;
+    if (!heroElement) {
+      // If hero not found yet, try again on next tick
+      requestAnimationFrame(() => setupObserver());
+      return;
+    }
     
     observer = new IntersectionObserver(
       (entries) => {
@@ -44,13 +52,6 @@
     );
     
     observer.observe(heroElement);
-  }
-  
-  // Reset observer when page changes
-  $: if ($page.url.pathname && browser) {
-    setTimeout(() => {
-      setupObserver();
-    }, 100); // Small delay to ensure DOM is updated
   }
   
   onMount(() => {
