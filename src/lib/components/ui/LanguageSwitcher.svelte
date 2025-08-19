@@ -1,6 +1,7 @@
 <!-- src/lib/components/ui/LanguageSwitcher.svelte -->
 <script>
-  import { currentLanguage, languages } from '$lib/stores/i18n.js';
+  import { currentLanguage, languages, switchLanguage } from '$lib/stores/i18n.js';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
   
   let showDropdown = false;
@@ -15,8 +16,8 @@
     showDropdown = !showDropdown;
   }
   
-  function selectLanguage(langCode) {
-    currentLanguage.switchTo(langCode);
+  async function selectLanguage(langCode) {
+    await switchLanguage(langCode, $page.url.pathname);
     showDropdown = false;
   }
   

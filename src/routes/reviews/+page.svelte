@@ -1,7 +1,10 @@
 <!-- src/routes/reviews/+page.svelte -->
 <script>
+  import { SliceZone } from '@prismicio/svelte';
+  import { components } from '$lib/slices';
   import ReviewCard from "$lib/components/ui/ReviewCard.svelte";
   import Button from "$lib/components/ui/Button.svelte";
+  import { t } from '$lib/stores/i18n.js';
   
   export let data;
   
@@ -11,8 +14,8 @@
   // Filter reviews based on selected rating, minimum word count, and minimum star rating
   $: filteredReviews = (selectedRating === 'all' 
     ? data.reviews 
-    : data.reviews.filter(review => review.rating === parseInt(selectedRating)))
-    .filter(review => {
+    : data.reviews.filter((review) => review.rating === parseInt(selectedRating)))
+    .filter((review) => {
       // Filter out reviews with less than 10 words
       const wordCount = review.comment ? review.comment.trim().split(/\s+/).length : 0;
       // For "all" ratings, only show 3+ stars. For explicit selection, show any rating.
@@ -35,22 +38,30 @@
     acc[rating] = (acc[rating] || 0) + 1;
     return acc;
   }, {});
+  
+  // Get page title from Prismic or fallback
+  $: pageTitle = data.prismicPage?.data?.title?.[0]?.text || $t('reviews.title');
+  $: pageMetaDescription = data.prismicPage?.data?.meta_description || $t('reviews.meta_description');
 </script>
 
 <svelte:head>
-  <title>Guest Reviews | Luxury Hotel</title>
-  <meta name="description" content="Read authentic guest reviews and experiences from our valued customers" />
+  <title>{pageTitle} | Hotel Ludwig van Beethoven</title>
+  <meta name="description" content={pageMetaDescription} />
 </svelte:head>
 
 <div class="reviews-page">
-  <!-- Hero Section -->
-  <section class="reviews-hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">Guest Reviews</h1>
-        <p class="hero-subtitle">
-          Discover what our guests are saying about their experiences
-        </p>
+  <!-- Prismic Content (if available) -->
+  {#if data.prismicPage?.data?.slices}
+    <SliceZone slices={data.prismicPage.data.slices} {components} />
+  {:else}
+    <!-- Fallback Hero Section -->
+    <section class="reviews-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">{$t('reviews.title')}</h1>
+          <p class="hero-subtitle">
+            {$t('reviews.text')}
+          </p>
         
         {#if data.totalReviews > 0}
           <div class="rating-summary">
@@ -63,13 +74,35 @@
                   </span>
                 {/each}
               </div>
-              <span class="review-count">Based on {data.totalReviews} reviews</span>
+              <span class="review-count">{$t('reviews.based_on')} {data.totalReviews} {$t('reviews.reviews_count')}</span>
             </div>
           </div>
         {/if}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {/if}
+  
+  <!-- Rating Summary (always show if we have reviews) -->
+  {#if data.totalReviews > 0}
+    <section class="rating-summary-section">
+      <div class="container">
+        <div class="rating-summary">
+          <div class="average-rating">
+            <span class="rating-number">{data.averageRating}</span>
+            <div class="rating-stars">
+              {#each Array(5) as _, i}
+                <span class="star" class:filled={i < Math.round(data.averageRating)}>
+                  ★
+                </span>
+              {/each}
+            </div>
+            <span class="review-count">{$t('reviews.based_on')} {data.totalReviews} {$t('reviews.reviews_count')}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  {/if}
   
   <!-- Filters Section -->
   {#if data.reviews.length > 0}
@@ -77,24 +110,24 @@
       <div class="container">
         <div class="filters-wrapper">
           <div class="filter-group">
-            <label class="filter-label" for="rating-filter">Filter by rating:</label>
+            <label class="filter-label" for="rating-filter">{$t('reviews.filter_by_rating')}:</label>
             <select 
               id="rating-filter"
               class="filter-select" 
               bind:value={selectedRating}
               on:change={() => displayCount = 6}
             >
-              <option value="all">All Ratings (3+ stars)</option>
-              <option value="5">5 Stars ({ratingDistribution[5] || 0})</option>
-              <option value="4">4 Stars ({ratingDistribution[4] || 0})</option>
-              <option value="3">3 Stars ({ratingDistribution[3] || 0})</option>
-              <option value="2">2 Stars ({ratingDistribution[2] || 0})</option>
-              <option value="1">1 Star ({ratingDistribution[1] || 0})</option>
+              <option value="all">{$t('reviews.all_ratings')} (3+ {$t('reviews.stars')})</option>
+              <option value="5">5 {$t('reviews.stars')} ({ratingDistribution[5] || 0})</option>
+              <option value="4">4 {$t('reviews.stars')} ({ratingDistribution[4] || 0})</option>
+              <option value="3">3 {$t('reviews.stars')} ({ratingDistribution[3] || 0})</option>
+              <option value="2">2 {$t('reviews.stars')} ({ratingDistribution[2] || 0})</option>
+              <option value="1">1 {$t('reviews.star')} ({ratingDistribution[1] || 0})</option>
             </select>
           </div>
           
           <div class="results-info">
-            Showing {displayedReviews.length} of {filteredReviews.length} reviews
+            {$t('reviews.showing')} {displayedReviews.length} {$t('reviews.of')} {filteredReviews.length} {$t('reviews.reviews_count')}
           </div>
         </div>
       </div>
@@ -110,7 +143,7 @@
         </div>
       {:else if filteredReviews.length === 0}
         <div class="no-reviews">
-          <p>No reviews found matching your criteria.</p>
+          <p>{$t('reviews.no_reviews_found')}</p>
         </div>
       {:else}
         <div class="reviews-grid">
@@ -132,7 +165,7 @@
               size="large" 
               on:click={loadMore}
             >
-              Load More Reviews
+              {$t('reviews.load_more')}
             </Button>
           </div>
         {/if}
@@ -224,6 +257,18 @@
     font-size: var(--font-size-base);
     color: var(--color-text);
     font-weight: var(--font-weight-medium);
+  }
+  
+  /* Standalone Rating Summary Section */
+  .rating-summary-section {
+    background-color: var(--color-background);
+    padding: var(--space-2xl) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  }
+  
+  .rating-summary-section .rating-summary {
+    display: flex;
+    justify-content: center;
   }
   
   /* Filters Section */

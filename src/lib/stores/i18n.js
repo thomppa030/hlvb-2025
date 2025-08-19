@@ -1,6 +1,8 @@
 // src/lib/stores/i18n.js
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/environment';
+import { goto } from '$app/navigation';
+import { page } from '$app/stores';
 
 // Create language store
 function createLanguageStore() {
@@ -36,6 +38,51 @@ function createLanguageStore() {
 }
 
 export const currentLanguage = createLanguageStore();
+
+// Prismic language utilities
+export function getPrismicLang(lang) {
+  return lang === 'de' ? 'de-de' : `${lang}-${lang}`;
+}
+
+export function getLanguageFromPrismic(prismicLang) {
+  return prismicLang.split('-')[0];
+}
+
+// Create a store for Prismic document language
+export const prismicLanguage = derived(currentLanguage, ($currentLanguage) => {
+  return getPrismicLang($currentLanguage);
+});
+
+// Function to switch language with URL navigation
+export async function switchLanguage(newLang, currentPath = '/') {
+  if (!['de', 'en'].includes(newLang)) return;
+  
+  currentLanguage.switchTo(newLang);
+  
+  if (browser) {
+    // Handle URL changes for language switching
+    let newPath = currentPath;
+    
+    // Remove existing language prefix
+    if (currentPath.startsWith('/en/')) {
+      newPath = currentPath.substring(3) || '/';
+    } else if (currentPath === '/en') {
+      newPath = '/';
+    } else if (currentPath.startsWith('/de/')) {
+      newPath = currentPath.substring(3) || '/';
+    } else if (currentPath === '/de') {
+      newPath = '/';
+    }
+    
+    // Add new language prefix (except for German which is default)
+    if (newLang === 'en') {
+      newPath = `/en${newPath === '/' ? '' : newPath}`;
+    }
+    
+    // Navigate to new URL
+    await goto(newPath);
+  }
+}
 
 // Translation dictionaries
 const translations = {
@@ -82,8 +129,19 @@ const translations = {
     
     // Reviews
     'reviews.title': 'Was unsere Gäste sagen',
-    'reviews.text': 'Hoch bewertet auf allen großen Buchungsplattformen für unseren persönlichen Service, einzigartige Atmosphäre und erstklassige Lage in Kreuzberg.',
+    'reviews.text': 'Entdecken Sie, was unsere Gäste über ihre Erfahrungen sagen',
     'reviews.read_all': 'Alle Bewertungen lesen',
+    'reviews.meta_description': 'Lesen Sie authentische Gästebewertungen und Erfahrungen unserer geschätzten Kunden',
+    'reviews.based_on': 'Basierend auf',
+    'reviews.reviews_count': 'Bewertungen',
+    'reviews.filter_by_rating': 'Nach Bewertung filtern',
+    'reviews.all_ratings': 'Alle Bewertungen',
+    'reviews.stars': 'Sterne',
+    'reviews.star': 'Stern',
+    'reviews.showing': 'Zeige',
+    'reviews.of': 'von',
+    'reviews.no_reviews_found': 'Keine Bewertungen gefunden, die Ihren Kriterien entsprechen.',
+    'reviews.load_more': 'Mehr Bewertungen laden',
     
     // Booking Widget
     'booking.title': 'Buchen Sie Ihren Aufenthalt',
@@ -143,8 +201,19 @@ const translations = {
     
     // Reviews
     'reviews.title': 'What Our Guests Say',
-    'reviews.text': 'Highly rated across all major booking platforms for our personalized service, unique atmosphere, and prime Kreuzberg location.',
+    'reviews.text': 'Discover what our guests are saying about their experiences',
     'reviews.read_all': 'Read All Reviews',
+    'reviews.meta_description': 'Read authentic guest reviews and experiences from our valued customers',
+    'reviews.based_on': 'Based on',
+    'reviews.reviews_count': 'reviews',
+    'reviews.filter_by_rating': 'Filter by rating',
+    'reviews.all_ratings': 'All Ratings',
+    'reviews.stars': 'Stars',
+    'reviews.star': 'Star',
+    'reviews.showing': 'Showing',
+    'reviews.of': 'of',
+    'reviews.no_reviews_found': 'No reviews found matching your criteria.',
+    'reviews.load_more': 'Load More Reviews',
     
     // Booking Widget
     'booking.title': 'Book Your Stay',

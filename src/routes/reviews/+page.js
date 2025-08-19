@@ -1,6 +1,18 @@
 // src/routes/reviews/+page.js
+import { getByUID } from '$lib/prismic.js';
+import { currentLanguage } from '$lib/stores/i18n.js';
+import { get } from 'svelte/store';
 
-export async function load({ fetch }) {
+export async function load({ fetch, url }) {
+  const lang = get(currentLanguage) || 'de';
+  
+  // Fetch reviews page from Prismic
+  let prismicPage = null;
+  try {
+    prismicPage = await getByUID('page', 'reviews', lang);
+  } catch (error) {
+    console.log('Reviews page not found in Prismic, using fallback content');
+  }
   try {
     const response = await fetch('/api/reviews');
     const data = await response.json();
@@ -20,6 +32,7 @@ export async function load({ fetch }) {
       : 0;
     
     return {
+      prismicPage,
       reviews: data.reviews,
       error: null,
       averageRating: parseFloat(averageRating),
@@ -28,6 +41,7 @@ export async function load({ fetch }) {
   } catch (error) {
     console.error('Error loading reviews:', error);
     return {
+      prismicPage: null,
       reviews: [],
       error: 'Unable to load reviews. Please try again later.',
       averageRating: 0,

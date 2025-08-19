@@ -1,6 +1,7 @@
 <!-- src/lib/components/ui/BookingWidget.svelte -->
 <script>
   import Button from "./Button.svelte";
+  import { t, currentLanguage } from '$lib/stores/i18n.js';
 
   // Hotel ID for OnePageBooking
   export let hotelId = "beethoven";
@@ -60,7 +61,7 @@
       params.append("children", children.toString());
     }
 
-    params.append("lang", "de");
+    params.append("lang", $currentLanguage === 'en' ? 'en' : 'de');
 
     const queryString = params.toString();
     return `https://onepagebooking.com/${hotelId}${queryString ? "?" + queryString : ""}`;
@@ -81,22 +82,22 @@
 {#if type === "simple"}
   <!-- Simple booking button (recommended) -->
   <div class="booking-widget booking-widget--simple">
-    <h3>Book Your Stay</h3>
-    <p>Experience Berlin at Hotel Ludwig van Beethoven</p>
+    <h3>{$t('booking.title')}</h3>
+    <p>{$t('booking.subtitle')}</p>
     <Button variant="primary" size="large" on:click={handleBooking}>
-      Book Now
+      {$t('booking.book_now')}
     </Button>
   </div>
 {:else}
   <!-- Form widget with date/guest selection -->
   <div class="booking-widget booking-widget--form">
-    <h3>Check Availability</h3>
+    <h3>{$t('booking.check_availability')}</h3>
 
     <form on:submit|preventDefault={handleBooking} class="booking-form">
       <!-- Date Selection Row -->
       <div class="form-row dates-row">
         <div class="form-group">
-          <label for="arrival">Check-in</label>
+          <label for="arrival">{$t('booking.checkin')}</label>
           <input
             type="date"
             id="arrival"
@@ -107,7 +108,7 @@
         </div>
 
         <div class="form-group">
-          <label for="departure">Check-out</label>
+          <label for="departure">{$t('booking.checkout')}</label>
           <input
             type="date"
             id="departure"
@@ -121,31 +122,31 @@
       <!-- Guest Selection Row -->
       <div class="form-row guests-row">
         <div class="form-group">
-          <label for="adults">Adults</label>
+          <label for="adults">{$t('booking.adults')}</label>
           <select id="adults" bind:value={adults}>
-            <option value={1}>1 Adult</option>
-            <option value={2}>2 Adults</option>
-            <option value={3}>3 Adults</option>
-            <option value={4}>4 Adults</option>
+            <option value={1}>{$currentLanguage === 'de' ? '1 Erwachsener' : '1 Adult'}</option>
+            <option value={2}>{$currentLanguage === 'de' ? '2 Erwachsene' : '2 Adults'}</option>
+            <option value={3}>{$currentLanguage === 'de' ? '3 Erwachsene' : '3 Adults'}</option>
+            <option value={4}>{$currentLanguage === 'de' ? '4 Erwachsene' : '4 Adults'}</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="rooms">Rooms</label>
+          <label for="rooms">{$t('booking.rooms')}</label>
           <select id="rooms" bind:value={rooms}>
-            <option value={1}>1 Room</option>
-            <option value={2}>2 Rooms</option>
-            <option value={3}>3 Rooms</option>
+            <option value={1}>{$currentLanguage === 'de' ? '1 Zimmer' : '1 Room'}</option>
+            <option value={2}>{$currentLanguage === 'de' ? '2 Zimmer' : '2 Rooms'}</option>
+            <option value={3}>{$currentLanguage === 'de' ? '3 Zimmer' : '3 Rooms'}</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="children">Children</label>
+          <label for="children">{$t('booking.children')}</label>
           <select id="children" bind:value={children}>
-            <option value={0}>No Children</option>
-            <option value={1}>1 Child</option>
-            <option value={2}>2 Children</option>
-            <option value={3}>3 Children</option>
+            <option value={0}>{$currentLanguage === 'de' ? 'Keine Kinder' : 'No Children'}</option>
+            <option value={1}>{$currentLanguage === 'de' ? '1 Kind' : '1 Child'}</option>
+            <option value={2}>{$currentLanguage === 'de' ? '2 Kinder' : '2 Children'}</option>
+            <option value={3}>{$currentLanguage === 'de' ? '3 Kinder' : '3 Children'}</option>
           </select>
         </div>
       </div>
@@ -156,7 +157,7 @@
         type="submit"
         class="booking-submit"
       >
-        Book Now
+        {$t('booking.book_now')}
       </Button>
     </form>
   </div>
