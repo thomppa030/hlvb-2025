@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "src/routes/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  }
+}
