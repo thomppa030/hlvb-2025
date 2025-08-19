@@ -114,23 +114,33 @@
 
 /* Theme variants */
 [data-theme="dark"] {
-  --color-background: #2a251f; /* Lighter dark taupe background */
-  --color-background-alt: #332e26; /* Slightly lighter dark taupe */
-  --color-background-elevated: #3a342b; /* Cards/elevated elements */
+  /* Battle-tested dark mode - gray-based like GitHub/Discord */
+  --color-background: #0d1117; /* GitHub dark background */
+  --color-background-alt: #161b22; /* Slightly lighter for sections */
+  --color-background-elevated: #21262d; /* Cards/elevated elements */
   --color-background-dark: #f6f4f3;
   
-  --color-text: #f0ebe5; /* Lighter text for better readability */
-  --color-text-light: #d8d0c6; /* Muted light text */
-  --color-text-lighter: #c2b8aa; /* Darker muted text */
-  --color-text-inverse: #7c6b65; /* Taupe for light backgrounds */
+  /* High contrast text for accessibility */
+  --color-text: #f0f6fc; /* Near white for primary text */
+  --color-text-light: #8b949e; /* GitHub muted text */
+  --color-text-lighter: #6e7681; /* Darker muted text */
+  --color-text-inverse: #24292f; /* Dark text for light surfaces */
   
-  --color-border: #4a443a; /* Lighter dark border */
-  --color-border-light: #3d372e; /* Subtle borders */
+  /* Subtle borders that work with dark backgrounds */
+  --color-border: #30363d; /* GitHub border color */
+  --color-border-light: #21262d; /* Subtle borders */
   
-  /* Berlin-blau with better contrast for dark mode */
-  --color-secondary: #5a8aae; /* Lighter berlin-blau for better dark mode contrast */
-  --color-secondary-light: #6a9abe;
-  --color-accent: #5a8aae;
+  /* Desaturated brand colors for dark mode */
+  --color-primary: #8b7355; /* Desaturated taupe - 20% less saturation */
+  --color-primary-light: #a68b73; /* Lighter desaturated variant */
+  --color-secondary: #4a90e2; /* Desaturated blue - better contrast */
+  --color-secondary-light: #6ba6ff; /* Lighter blue variant */
+  --color-accent: #4a90e2; /* Consistent with secondary */
+  
+  /* Adjusted state colors for dark mode */
+  --color-success: #3fb950; /* GitHub green */
+  --color-warning: #d29922; /* GitHub yellow */
+  --color-error: #f85149; /* GitHub red */
 }
 
 /* High contrast mode */

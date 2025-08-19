@@ -184,13 +184,12 @@
 
 <style>
   .header {
-    background-color: var(--color-background);
+    background-color: #f6f4f3;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     position: sticky;
     top: 0;
     z-index: 100;
     backdrop-filter: blur(20px);
-    background-color: rgba(255, 255, 255, 0.85);
   }
 
   .container {
@@ -223,6 +222,7 @@
     height: 90px;
     width: auto;
     display: block;
+    transition: filter var(--transition-fast);
   }
 
   .nav-links {
@@ -246,13 +246,16 @@
     letter-spacing: 0.5px;
     position: relative;
     overflow: hidden;
-    color: var(--color-text) !important; /* Dark text for light mode */
+    color: var(--color-text) !important; /* Dark text for all modes since header stays light */
   }
 
-  /* Light text in dark mode */
-  /* svelte-ignore unused-css-selector */
-  :global([data-theme="dark"]) .book-cta {
-    color: white !important;
+  /* Force dark text on booking CTA in header regardless of theme */
+  .header :global(.book-cta) {
+    color: #5a4e47 !important;
+  }
+  
+  .header :global(.book-cta):hover {
+    color: #5a4e47 !important;
   }
 
   :global(.book-cta):before {
@@ -326,33 +329,7 @@
     box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.08);
   }
 
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .header {
-    background-color: rgba(0, 0, 0, 0.85);
-    border-bottom-color: rgba(255, 255, 255, 0.06);
-  }
-
-  :global([data-theme="dark"]) .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.04);
-  }
-
-  :global([data-theme="dark"]) .nav-link.active {
-    background-color: rgba(74, 122, 158, 0.15);
-    color: var(--color-secondary-light);
-  }
-
-  :global([data-theme="dark"]) .theme-toggle {
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  :global([data-theme="dark"]) .theme-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
-
-  :global([data-theme="dark"]) .theme-toggle:focus {
-    box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.15);
-  }
+  /* Header stays light in dark mode to preserve logo visibility and design consistency */
 
   /* Mobile responsive */
   @media (max-width: 768px) {

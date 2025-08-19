@@ -185,13 +185,13 @@
   
   /* Dark mode adjustments */
   :global([data-theme="dark"]) .sticky-booking-form {
-    background: rgba(42, 37, 31, 0.95);
+    background: rgba(13, 17, 23, 0.95);
     border-bottom-color: rgba(255, 255, 255, 0.06);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   :global([data-theme="dark"]) .sticky-booking-form :global(.booking-widget) {
-    background: rgba(42, 37, 31, 0.95);
+    background: rgba(13, 17, 23, 0.95);
   }
 
   :global([data-theme="dark"]) .close-button {
@@ -207,7 +207,7 @@
 
   :global([data-theme="dark"]) .close-button:focus {
     border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(90, 138, 174, 0.15);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
   }
   
   /* Mobile responsive */
