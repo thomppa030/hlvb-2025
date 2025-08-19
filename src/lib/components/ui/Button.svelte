@@ -4,7 +4,7 @@
   export let size = "medium";
   export let type = "button";
   export let disabled = false;
-  export let href = null;
+  export let href = undefined;
   export let target = null;
   export let loading = false;
 
@@ -106,6 +106,19 @@
   .btn--outline:hover:not(:disabled) {
     background-color: var(--color-primary);
     color: var(--color-text-inverse);
+  }
+
+  .btn--outline-light {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .btn--outline-light:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
   }
 
   .btn--ghost {

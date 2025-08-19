@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a luxury hotel homepage project (hlvb-2025) built with SvelteKit and Deno 2. It features a comprehensive design system with dark/light theme support and component-based architecture.
+This is a luxury hotel homepage project (hlvb-2025) built with SvelteKit and npm. It features a comprehensive design system with dark/light theme support and component-based architecture.
 
 ## Tech Stack
 
 - **SvelteKit** - Full-stack framework with file-based routing
-- **Deno 2** - JavaScript runtime (NOT Node.js)
+- **npm** - Package manager and JavaScript runtime
 - **Vite** - Build tool
 - **TypeScript** - Type safety
 - **CSS Custom Properties** - Design tokens and theming
@@ -19,26 +19,18 @@ This is a luxury hotel homepage project (hlvb-2025) built with SvelteKit and Den
 ### Development
 ```bash
 # Start development server
-deno task dev
-# or
 npm run dev
 
 # Build for production
-deno task build
-# or
 npm run build
 
 # Preview production build
-deno task preview
-# or
 npm run preview
 ```
 
 ### Type Checking
 ```bash
 # Run type checks
-deno task check
-# or
 npm run check
 
 # Type check with watch mode
@@ -48,13 +40,13 @@ npm run check:watch
 ### Setup & Installation
 ```bash
 # Initial setup (install + sync)
-deno task setup
+npm run setup
 
 # Install dependencies only
-deno task install
+npm install
 
 # Generate SvelteKit files
-deno task sync
+npx svelte-kit sync
 ```
 
 ## Architecture & Code Organization
@@ -125,7 +117,7 @@ SvelteKit file-based routing in `src/routes/`:
 
 ## Key Development Notes
 
-1. **Deno vs Node**: This project uses Deno 2. Use `deno task` commands primarily. NPM scripts are available but Deno is preferred.
+1. **npm Package Manager**: This project uses npm for package management. Use `npm run` commands for all scripts.
 
 2. **Design Tokens First**: Always use CSS variables from `variables.css` rather than hardcoded values.
 

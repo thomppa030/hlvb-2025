@@ -53,7 +53,7 @@
     <nav class="nav">
       <!-- Logo/Brand -->
       <a href="/" class="brand" class:active={isActive("/")}>
-        <span class="brand-text">Hotel Ludwig van Beethoven</span>
+        <img src="/cropped-Logo-Taupe.webp" alt="Hotel Ludwig van Beethoven" class="brand-logo" />
       </a>
 
       <!-- Navigation Links -->
@@ -203,29 +203,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 100px;
     gap: var(--space-lg);
-    padding: var(--space-sm) 0;
+    padding: var(--space-md) 0;
   }
 
   .brand {
     text-decoration: none;
-    color: var(--color-text);
-    font-family: var(--font-display); /* Crimson Text */
-    font-size: var(--font-size-lg);
-    font-weight: var(
-      --font-weight-semibold
-    ); /* Semibold as per brand guidelines */
-    letter-spacing: 0.02em; /* Slight letter spacing for brand name */
-    transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    transition: opacity var(--transition-fast);
   }
 
   .brand:hover {
-    color: var(--color-secondary);
+    opacity: 0.8;
   }
 
-  .brand-text {
-    display: inline-block;
+  .brand-logo {
+    height: 90px;
+    width: auto;
+    display: block;
   }
 
   .nav-links {
@@ -335,10 +332,6 @@
     border-bottom-color: rgba(255, 255, 255, 0.06);
   }
 
-  :global([data-theme="dark"]) .brand {
-    font-weight: var(--font-weight-bold); /* Bold on dark surfaces */
-  }
-
   :global([data-theme="dark"]) .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.04);
   }
@@ -364,22 +357,13 @@
   /* Mobile responsive */
   @media (max-width: 768px) {
     .nav {
-      height: 70px;
+      height: 80px;
       gap: var(--space-md);
-      padding: var(--space-xs) 0;
+      padding: var(--space-sm) 0;
     }
 
-    .brand {
-      font-size: var(--font-size-base);
-    }
-
-    .brand-text {
-      display: none;
-    }
-
-    .brand::after {
-      content: "LvB";
-      display: inline-block;
+    .brand-logo {
+      height: 60px;
     }
 
     .nav-links {

@@ -23,7 +23,7 @@
       },
       {
         threshold: 0,
-        rootMargin: '-80px 0px 0px 0px' // Account for header height
+        rootMargin: '-100px 0px 0px 0px' // Account for header height
       }
     );
     
@@ -65,7 +65,7 @@
 <style>
   .sticky-booking-form {
     position: fixed;
-    top: 80px; /* Updated header height */
+    top: 100px; /* Updated header height */
     left: 0;
     right: 0;
     z-index: 90;
@@ -183,7 +183,7 @@
   /* Mobile responsive */
   @media (max-width: 768px) {
     .sticky-booking-form {
-      top: 70px; /* Mobile header height */
+      top: 80px; /* Mobile header height */
     }
     
     .container {
