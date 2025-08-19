@@ -266,8 +266,23 @@
   }
 
   :global(.booking-submit) {
-    width: 100%;
-    justify-self: stretch;
+    width: auto;
+    min-width: 200px;
+    max-width: 280px;
+    margin: 0 auto;
+    justify-self: center;
+    background-color: var(--color-secondary) !important;
+    color: var(--color-text-inverse) !important;
+    border: none !important;
+    padding: var(--space-md) var(--space-xl) !important;
+    font-size: var(--font-size-lg) !important;
+    font-weight: var(--font-weight-semibold) !important;
+  }
+  
+  :global(.booking-submit:hover:not(:disabled)) {
+    background-color: var(--color-secondary-light) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
   }
 
   /* Ensure button text is white in dark mode */
