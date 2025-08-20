@@ -1,24 +1,35 @@
 <!-- src/lib/components/ui/Hero.svelte -->
 <script>
   import BookingWidget from "./BookingWidget.svelte";
-  import OptimizedImage from "./OptimizedImage.svelte";
   import { t } from "$lib/stores/i18n.js";
 </script>
 
 <div class="hero-wrapper">
   <section class="hero">
     <div class="hero-image-container">
-      <OptimizedImage
-        src="/hlvb_backside_header.webp"
-        mobileSrc="/hlvb_backside_header_mobile.webp"
-        alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
-        class_="hero-image"
-        width={1920}
-        height={799}
-        fetchpriority="high"
-        loading="eager"
-        placeholder="linear-gradient(135deg, #5a4e47, #7c6b65)"
-      />
+      <!-- Use picture element for better responsive image support -->
+      <picture>
+        <source 
+          media="(max-width: 768px)" 
+          srcset="/hlvb_backside_header_mobile.webp"
+          type="image/webp"
+        />
+        <source 
+          media="(min-width: 769px)" 
+          srcset="/hlvb_backside_header.webp"
+          type="image/webp"
+        />
+        <img
+          src="/hlvb_backside_header_mobile.webp"
+          alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
+          class="hero-image"
+          width="1920"
+          height="799"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
+        />
+      </picture>
       <div class="hero-overlay"></div>
     </div>
 
@@ -69,12 +80,13 @@
     max-width: 2560px;
   }
 
-  .hero-image-container :global(.hero-image) {
+  .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     aspect-ratio: 1920 / 799;
+    display: block;
   }
 
   .hero-overlay {

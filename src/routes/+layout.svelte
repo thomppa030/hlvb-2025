@@ -3,8 +3,13 @@
   import "../app.css";
   import Header from "$lib/components/ui/Header.svelte";
   import HeaderCentered from "$lib/components/ui/HeaderCentered.svelte";
-  import Footer from "$lib/components/ui/Footer.svelte";
-  import StickyBookingForm from "$lib/components/ui/StickyBookingForm.svelte";
+  
+  // Lazy load non-critical components
+  const loadFooter = () => import("$lib/components/ui/Footer.svelte");
+  const loadStickyForm = () => import("$lib/components/ui/StickyBookingForm.svelte");
+  
+  let Footer;
+  let StickyBookingForm;
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
@@ -21,7 +26,7 @@
   // Check if current page should show sticky form
   $: showStickyForm = pagesWithStickyForm.includes($page.url.pathname);
 
-  onMount(() => {
+  onMount(async () => {
     mounted = true;
 
     // Force light mode only
@@ -35,6 +40,14 @@
       // Set default to centered if no saved preference
       headerStyle = 'centered';
     }
+    
+    // Lazy load non-critical components after initial render
+    const [footerModule, stickyFormModule] = await Promise.all([
+      loadFooter(),
+      loadStickyForm()
+    ]);
+    Footer = footerModule.default;
+    StickyBookingForm = stickyFormModule.default;
   });
 
   function toggleHeaderStyle() {
@@ -89,13 +102,15 @@
     <Header />
   {/if}
   
-  {#if showStickyForm}
-    <StickyBookingForm />
+  {#if showStickyForm && StickyBookingForm}
+    <svelte:component this={StickyBookingForm} />
   {/if}
   <main>
     <slot />
   </main>
-  <Footer />
+  {#if Footer}
+    <svelte:component this={Footer} />
+  {/if}
 </div>
 
 <style>

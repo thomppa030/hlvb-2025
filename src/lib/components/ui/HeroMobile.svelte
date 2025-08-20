@@ -1,95 +1,60 @@
-<!-- src/lib/slices/HeroSlice.svelte -->
+<!-- src/lib/components/ui/HeroMobile.svelte -->
 <script>
-  import { PrismicRichText, PrismicImage } from '@prismicio/svelte';
-  import BookingWidget from '../components/ui/BookingWidget.svelte';
-
-  export let slice;
-
-  // Extract data from slice with fallbacks
-  $: heroData = {
-    title: slice.primary.title || [{ type: 'heading1', text: 'Hotel Ludwig van Beethoven', spans: [] }],
-    subtitle: slice.primary.subtitle || [{ type: 'paragraph', text: 'Your luxury retreat in the heart of the city', spans: [] }],
-    background_image: slice.primary.background_image,
-    primary_button_text: slice.primary.primary_button_text || 'Book Your Stay',
-    secondary_button_text: slice.primary.secondary_button_text || 'Explore',
-    show_booking_widget: slice.primary.show_booking_widget !== false
-  };
+  import BookingWidget from "./BookingWidget.svelte";
+  import { t } from "$lib/stores/i18n.js";
 </script>
 
 <div class="hero-wrapper">
   <section class="hero">
     <div class="hero-image-container">
-      {#if heroData.background_image?.url}
-        <PrismicImage 
-          field={heroData.background_image} 
-          class="hero-image" 
+      <!-- Mobile-first approach: Use picture element for better browser support -->
+      <picture>
+        <source 
+          media="(max-width: 768px)" 
+          srcset="/hlvb_backside_header_mobile.webp"
+          type="image/webp"
+        />
+        <source 
+          media="(min-width: 769px)" 
+          srcset="/hlvb_backside_header.webp"
+          type="image/webp"
+        />
+        <img
+          src="/hlvb_backside_header_mobile.webp"
+          alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
+          class="hero-image"
+          width="800"
+          height="332"
           loading="eager"
           fetchpriority="high"
-          sizes="100vw"
-          imgixParams={{ 
-            fit: 'crop', 
-            q: 75,
-            w: 2560,
-            h: 1440,
-            fm: 'webp'
-          }}
+          decoding="sync"
         />
-      {:else}
-        <!-- Fallback with picture element for better responsive support -->
-        <picture>
-          <source 
-            media="(max-width: 768px)" 
-            srcset="/hlvb_backside_header_mobile.webp"
-            type="image/webp"
-          />
-          <source 
-            media="(min-width: 769px)" 
-            srcset="/hlvb_backside_header.webp"
-            type="image/webp"
-          />
-          <img
-            src="/hlvb_backside_header_mobile.webp"
-            alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
-            class="hero-image"
-            width="1920"
-            height="799"
-            loading="eager"
-            fetchpriority="high"
-            decoding="sync"
-          />
-        </picture>
-      {/if}
+      </picture>
       <div class="hero-overlay"></div>
     </div>
 
     <div class="hero-content">
       <div class="container">
-        <div class="hero-title">
-          <PrismicRichText field={heroData.title} />
-        </div>
-        
-        <div class="hero-subtitle">
-          <PrismicRichText field={heroData.subtitle} />
-        </div>
-
+        <h1 class="hero-title">Hotel Ludwig van Beethoven</h1>
+        <p class="hero-subtitle">
+          {$t("hero.subtitle", "Your luxury retreat in the heart of the city")}
+        </p>
       </div>
     </div>
     
     <!-- Booking Widget positioned at bottom of hero -->
-    {#if heroData.show_booking_widget}
-      <div class="hero-booking">
-        <div class="booking-container">
-          <BookingWidget type="form" hotelId="beethoven" />
-        </div>
+    <div class="hero-booking">
+      <div class="booking-container">
+        <BookingWidget type="form" hotelId="beethoven" />
       </div>
-    {/if}
+    </div>
   </section>
 </div>
 
 <style>
   .hero-wrapper {
     position: relative;
-    margin-bottom: calc(var(--space-4xl) + var(--space-2xl)); /* Account for booking widget extending outside */
+    margin-bottom: calc(var(--space-4xl) + var(--space-2xl));
   }
 
   .hero {
@@ -114,14 +79,12 @@
     max-width: 2560px;
   }
 
-  .hero-image-container :global(img),
   .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    aspect-ratio: 1920 / 799;
-    display: block;
+    aspect-ratio: 800 / 332;
   }
 
   .hero-overlay {
@@ -132,8 +95,8 @@
     height: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(26, 74, 107, 0.4),
-      rgba(90, 78, 71, 0.6)
+      rgba(90, 78, 71, 0.4),
+      rgba(26, 74, 107, 0.6)
     );
   }
 
@@ -143,7 +106,7 @@
     text-align: center;
     color: white;
     padding: var(--space-2xl) var(--space-xl);
-    padding-bottom: calc(var(--space-4xl) + 80px); /* Extra padding to ensure buttons don't overlap with booking widget */
+    padding-bottom: calc(var(--space-4xl) + 80px);
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
@@ -162,7 +125,7 @@
     gap: var(--space-2xl);
   }
 
-  .hero-title :global(h1) {
+  .hero-title {
     font-family: var(--font-display);
     font-size: clamp(var(--font-size-4xl), 6vw, 4.5rem);
     font-weight: var(--font-weight-bold);
@@ -170,11 +133,15 @@
     text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
     letter-spacing: -0.02em;
     line-height: 1.05;
-    color: white;
+    color: var(--color-text-inverse);
     text-align: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .hero-subtitle :global(p) {
+  .hero-subtitle {
     font-family: var(--font-primary);
     font-size: clamp(var(--font-size-lg), 2.2vw, var(--font-size-2xl));
     font-weight: var(--font-weight-normal);
@@ -187,19 +154,18 @@
     opacity: 0.95;
   }
 
-
   /* Hero Booking Widget */
   .hero-booking {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    transform: translateY(25%); /* Reduced from 50% to nudge widget up on 1080p */
+    transform: translateY(50%);
     z-index: 2;
   }
 
   .booking-container {
-    max-width: 1380px; /* Increased by 15% from 1200px */
+    max-width: 1380px;
     margin: 0 auto;
     padding: 0 var(--space-lg);
   }
@@ -210,7 +176,6 @@
     border-radius: var(--radius-xl);
     border: 1px solid var(--color-border-light);
   }
-
 
   /* Tablet responsive */
   @media (max-width: 1024px) {
@@ -235,6 +200,10 @@
       height: 75vh;
       min-height: 550px;
     }
+    
+    .hero-image {
+      aspect-ratio: 800 / 332;
+    }
 
     .hero-content {
       padding: var(--space-xl) var(--space-md);
@@ -246,13 +215,12 @@
       gap: var(--space-xl);
     }
 
-
     .booking-container {
       padding: 0 var(--space-md);
     }
 
     .hero-booking {
-      transform: translateY(20%);
+      transform: translateY(40%);
     }
   }
 
@@ -276,7 +244,6 @@
     .container {
       gap: var(--space-lg);
     }
-
 
     .hero-booking {
       transform: translateY(20%);

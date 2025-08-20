@@ -1,5 +1,7 @@
 <!-- src/lib/components/ui/OptimizedImage.svelte -->
 <script>
+  import { browser } from '$app/environment';
+  
   export let src = '';
   export let alt = '';
   export let width = null;
@@ -12,6 +14,15 @@
   export let style = '';
   export let placeholder = null; // Base64 or color
   export let mobileSrc = null; // Optional mobile-optimized image
+  
+  // Detect if we're on mobile (client-side only)
+  let isMobile = false;
+  if (browser && mobileSrc) {
+    isMobile = window.matchMedia('(max-width: 768px)').matches;
+  }
+  
+  // Use mobile src as default on mobile devices
+  $: actualSrc = (isMobile && mobileSrc) ? mobileSrc : src;
   
   // Generate responsive srcset for mobile/desktop if mobileSrc is provided
   $: responsiveSrcset = mobileSrc ? `${mobileSrc} 800w, ${src} 1920w` : null;
@@ -27,7 +38,7 @@
 </script>
 
 <img
-  {src}
+  src={actualSrc}
   srcset={responsiveSrcset || undefined}
   {alt}
   {width}
