@@ -101,6 +101,7 @@
     text-align: center;
     color: white;
     padding: var(--space-2xl) var(--space-xl);
+    padding-bottom: calc(var(--space-4xl) + 80px); /* Extra padding to ensure buttons don't overlap with booking widget */
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
@@ -202,6 +203,7 @@
   @media (max-width: 1024px) {
     .hero-content {
       padding: var(--space-xl) var(--space-lg);
+      padding-bottom: calc(var(--space-3xl) + 70px);
       min-height: 45vh;
     }
 
@@ -228,6 +230,7 @@
 
     .hero-content {
       padding: var(--space-xl) var(--space-md);
+      padding-bottom: calc(var(--space-2xl) + 60px);
       min-height: 40vh;
     }
 
@@ -268,6 +271,7 @@
 
     .hero-content {
       padding: var(--space-lg) var(--space-sm);
+      padding-bottom: calc(var(--space-xl) + 50px);
       min-height: 35vh;
     }
 
