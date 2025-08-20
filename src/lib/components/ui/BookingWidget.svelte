@@ -165,15 +165,16 @@
     background: var(--color-background-elevated);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-xl);
-    padding: var(--space-2xl);
+    padding: var(--space-lg); /* Reduced from 2xl to lg (20% height reduction) */
     box-shadow: 0 4px 12px rgba(90, 78, 71, 0.08);
     overflow: hidden;
   }
 
   .booking-widget h3 {
     color: var(--color-text);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     text-align: center;
+    font-size: var(--font-size-3xl); /* Large prominent heading */
   }
 
   .booking-widget--simple {
@@ -188,12 +189,12 @@
   .booking-form {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: var(--space-lg); /* Reduced gap */
   }
 
   .form-row {
     display: grid;
-    gap: var(--space-lg);
+    gap: var(--space-md); /* Reduced gap */
     align-items: end;
     width: 100%;
     box-sizing: border-box;
@@ -206,8 +207,8 @@
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
-    min-width: 0; /* Allow flex items to shrink below content size */
+    gap: 4px; /* Reduced gap */
+    min-width: 0;
   }
 
   .form-group label {
@@ -224,15 +225,15 @@
 
   .form-group input,
   .form-group select {
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-sm) var(--space-md); /* Reduced padding */
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     background: var(--color-background);
     color: var(--color-text);
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm); /* Smaller font */
     font-weight: var(--font-weight-medium);
     transition: all var(--transition-fast);
-    min-height: 48px;
+    min-height: 40px; /* Reduced height */
     width: 100%;
     box-sizing: border-box;
     cursor: pointer;
@@ -260,15 +261,15 @@
 
   :global(.booking-submit) {
     width: auto;
-    min-width: 200px;
-    max-width: 280px;
+    min-width: 180px; /* Slightly smaller */
+    max-width: 250px;
     margin: 0 auto;
     justify-self: center;
     background-color: var(--color-secondary) !important;
     color: var(--color-text-inverse) !important;
     border: none !important;
-    padding: var(--space-md) var(--space-xl) !important;
-    font-size: var(--font-size-lg) !important;
+    padding: var(--space-sm) var(--space-lg) !important; /* Reduced padding */
+    font-size: var(--font-size-base) !important; /* Smaller font */
     font-weight: var(--font-weight-semibold) !important;
   }
   

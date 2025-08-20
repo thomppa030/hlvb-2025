@@ -95,7 +95,7 @@
 <style>
   .sticky-booking-form {
     position: fixed;
-    top: 100px; /* Updated header height */
+    top: 110px; /* Updated header height for centered header */
     left: 0;
     right: 0;
     z-index: 90;
