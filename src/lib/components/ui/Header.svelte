@@ -23,7 +23,22 @@
     <nav class="nav">
       <!-- Logo/Brand -->
       <a href="/" class="brand" class:active={isActive("/")}>
-        <img src="/cropped-Logo-Taupe.webp" alt="Hotel Ludwig van Beethoven" class="brand-logo" loading="lazy" decoding="async" />
+        <picture>
+          <source 
+            media="(max-width: 768px)" 
+            srcset="/logo-mobile.webp"
+            type="image/webp"
+          />
+          <img 
+            src="/cropped-Logo-Taupe.webp" 
+            alt="Hotel Ludwig van Beethoven" 
+            class="brand-logo" 
+            width="180" 
+            height="100"
+            loading="eager" 
+            decoding="sync" 
+          />
+        </picture>
       </a>
 
       <!-- Navigation Links -->

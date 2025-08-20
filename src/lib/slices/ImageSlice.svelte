@@ -15,13 +15,32 @@
   <div class="container">
     <div class="image-wrapper">
       {#if imageData.image?.url}
-        <PrismicImage 
-          field={imageData.image}
-          class="slice-image"
-          loading="lazy"
-          decoding="async"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-        />
+        <picture>
+          <source
+            media="(max-width: 480px)"
+            srcset="{imageData.image.url}?w=480&q=60&auto=compress,format&fm=webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 768px)"
+            srcset="{imageData.image.url}?w=768&q=65&auto=compress,format&fm=webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 1200px)"
+            srcset="{imageData.image.url}?w=1000&q=70&auto=compress,format&fm=webp"
+            type="image/webp"
+          />
+          <img
+            src="{imageData.image.url}?w=1200&q=75&auto=compress,format&fm=webp"
+            alt={imageData.image.alt || ''}
+            class="slice-image"
+            loading="lazy"
+            decoding="async"
+            width={imageData.image.dimensions?.width}
+            height={imageData.image.dimensions?.height}
+          />
+        </picture>
       {/if}
       
       {#if imageData.caption && imageData.caption.length > 0}
