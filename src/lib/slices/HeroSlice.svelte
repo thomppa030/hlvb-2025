@@ -29,8 +29,8 @@
           imgixParams={{ 
             fit: 'crop', 
             q: 75,
-            w: 2560,
-            h: 1440,
+            w: 1920,
+            h: 799,
             fm: 'webp'
           }}
         />
@@ -115,7 +115,7 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    max-width: 2560px;
+    max-width: 1920px;
   }
 
   .hero-image-container :global(img),
