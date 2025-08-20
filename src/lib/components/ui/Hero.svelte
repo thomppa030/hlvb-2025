@@ -13,14 +13,18 @@
           media="(max-width: 768px)" 
           srcset="/hlvb_backside_header_mobile.webp"
           type="image/webp"
+          width="1920"
+          height="799"
         />
         <source 
           media="(min-width: 769px)" 
           srcset="/hlvb_backside_header.webp"
           type="image/webp"
+          width="1920"
+          height="799"
         />
         <img
-          src="/hlvb_backside_header.webp"
+          src="/hlvb_backside_header_mobile.webp"
           alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
           class="hero-image"
           width="1920"
