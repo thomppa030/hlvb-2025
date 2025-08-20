@@ -39,11 +39,11 @@
         <!-- Fallback optimized image -->
         <OptimizedImage
           src="/hlvb_backside_header.webp"
+          mobileSrc="/hlvb_backside_header_mobile.webp"
           alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
           class_="hero-image"
           width={1920}
           height={799}
-          sizes="100vw"
           fetchpriority="high"
           loading="eager"
           placeholder="linear-gradient(135deg, #5a4e47, #7c6b65)"
@@ -109,6 +109,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    aspect-ratio: 1920 / 799;
   }
 
   .hero-overlay {

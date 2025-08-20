@@ -11,10 +11,11 @@
   export let class_ = '';
   export let style = '';
   export let placeholder = null; // Base64 or color
+  export let mobileSrc = null; // Optional mobile-optimized image
   
-  // Generate responsive srcset only if we have actual multiple image sizes
-  // For now, disable srcset to ensure proper LCP measurement
-  $: responsiveSrcset = null;
+  // Generate responsive srcset for mobile/desktop if mobileSrc is provided
+  $: responsiveSrcset = mobileSrc ? `${mobileSrc} 800w, ${src} 1920w` : null;
+  $: responsiveSizes = mobileSrc ? '(max-width: 768px) 800px, 1920px' : sizes;
   
   // Handle image load error - fallback to original
   function handleError(event) {
@@ -31,7 +32,7 @@
   {alt}
   {width}
   {height}
-  {sizes}
+  sizes={responsiveSizes}
   {loading}
   {decoding}
   {fetchpriority}
