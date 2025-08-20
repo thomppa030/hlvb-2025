@@ -1,0 +1,251 @@
+{
+  "type": "SharedSlice",
+  "id": "carousel_slice",
+  "name": "CarouselSlice",
+  "description": "Image carousel with preview thumbnails, navigation, and customizable settings",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default image carousel with full features",
+      "imageUrl": "",
+      "primary": {
+        "section_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Heading",
+            "placeholder": "Enter section heading...",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "section_subheading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Subheading",
+            "placeholder": "Enter section subheading...",
+            "allowTargetBlank": false,
+            "single": "heading3"
+          }
+        },
+        "section_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Enter description...",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "aspect_ratio": {
+          "type": "Select",
+          "config": {
+            "label": "Aspect Ratio",
+            "placeholder": "Choose aspect ratio",
+            "options": [
+              "16/9",
+              "21/9",
+              "4/3",
+              "3/2",
+              "1/1"
+            ],
+            "default_value": "16/9"
+          }
+        },
+        "autoplay": {
+          "type": "Boolean",
+          "config": {
+            "label": "Autoplay",
+            "placeholder_false": "Manual navigation",
+            "placeholder_true": "Auto-advance slides",
+            "default_value": false
+          }
+        },
+        "autoplay_interval": {
+          "type": "Number",
+          "config": {
+            "label": "Autoplay Interval (ms)",
+            "placeholder": "5000",
+            "min": 1000,
+            "max": 10000,
+            "step": 500
+          }
+        },
+        "show_thumbnails": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Preview Thumbnails",
+            "placeholder_false": "Hide thumbnails",
+            "placeholder_true": "Show thumbnails",
+            "default_value": true
+          }
+        },
+        "show_indicators": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Dot Indicators",
+            "placeholder_false": "Hide indicators",
+            "placeholder_true": "Show indicators",
+            "default_value": true
+          }
+        },
+        "show_navigation": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Navigation Arrows",
+            "placeholder_false": "Hide arrows",
+            "placeholder_true": "Show arrows",
+            "default_value": true
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Carousel Image",
+            "constraint": {
+              "width": 1200,
+              "height": 800
+            },
+            "thumbnails": [
+              {
+                "name": "carousel_thumb",
+                "width": 400,
+                "height": 300
+              }
+            ]
+          }
+        },
+        "caption": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Image Caption",
+            "placeholder": "Enter image caption...",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        }
+      }
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Minimal carousel without thumbnails and indicators",
+      "imageUrl": "",
+      "primary": {
+        "section_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Heading",
+            "placeholder": "Enter section heading...",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "section_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Enter description...",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "aspect_ratio": {
+          "type": "Select",
+          "config": {
+            "label": "Aspect Ratio",
+            "placeholder": "Choose aspect ratio",
+            "options": [
+              "16/9",
+              "21/9",
+              "4/3",
+              "3/2",
+              "1/1"
+            ],
+            "default_value": "16/9"
+          }
+        },
+        "autoplay": {
+          "type": "Boolean",
+          "config": {
+            "label": "Autoplay",
+            "placeholder_false": "Manual navigation",
+            "placeholder_true": "Auto-advance slides",
+            "default_value": false
+          }
+        },
+        "autoplay_interval": {
+          "type": "Number",
+          "config": {
+            "label": "Autoplay Interval (ms)",
+            "placeholder": "5000",
+            "min": 1000,
+            "max": 10000,
+            "step": 500
+          }
+        },
+        "show_thumbnails": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Preview Thumbnails",
+            "placeholder_false": "Hide thumbnails",
+            "placeholder_true": "Show thumbnails",
+            "default_value": false
+          }
+        },
+        "show_indicators": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Dot Indicators",
+            "placeholder_false": "Hide indicators",
+            "placeholder_true": "Show indicators",
+            "default_value": false
+          }
+        },
+        "show_navigation": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Navigation Arrows",
+            "placeholder_false": "Hide arrows",
+            "placeholder_true": "Show arrows",
+            "default_value": true
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Carousel Image",
+            "constraint": {
+              "width": 1200,
+              "height": 800
+            },
+            "thumbnails": [
+              {
+                "name": "carousel_thumb",
+                "width": 400,
+                "height": 300
+              }
+            ]
+          }
+        },
+        "caption": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Image Caption",
+            "placeholder": "Enter image caption...",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        }
+      }
+    }
+  ]
+}
