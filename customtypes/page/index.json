@@ -43,6 +43,9 @@
             },
             "feature_slice": {
               "type": "SharedSlice"
+            },
+            "carousel_slice": {
+              "type": "SharedSlice"
             }
           }
         }

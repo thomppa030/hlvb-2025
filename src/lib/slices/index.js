@@ -7,6 +7,7 @@ import ImageSlice from './ImageSlice.svelte';
 import ReviewsSlice from './ReviewsSlice.svelte';
 import HeadingSlice from './HeadingSlice.svelte';
 import FeatureSlice from './FeatureSlice.svelte';
+import CarouselSlice from './CarouselSlice.svelte';
 
 export const components = {
   hero_slice: HeroSlice,
@@ -15,6 +16,7 @@ export const components = {
   reviews_slice: ReviewsSlice,
   heading_slice: HeadingSlice,
   feature_slice: FeatureSlice,
+  carousel_slice: CarouselSlice,
 };
 
 export { NotFound };
