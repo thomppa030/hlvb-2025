@@ -2,6 +2,7 @@
 <script>
   import Button from "$lib/components/ui/Button.svelte";
   import Card from "$lib/components/ui/Card.svelte";
+  import ImageCarousel from "$lib/components/ui/ImageCarousel.svelte";
 
   let theme = "light";
   let currentSection = "typography";
@@ -11,6 +12,7 @@
     { id: "colors", label: "Colors" },
     { id: "spacing", label: "Spacing" },
     { id: "components", label: "Components" },
+    { id: "carousel", label: "Carousel" },
     { id: "layout", label: "Layout" },
     { id: "forms", label: "Forms" },
     { id: "responsiveness", label: "Responsive" },
@@ -38,6 +40,35 @@
     currentSection = sectionId;
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   }
+
+  // Sample images for carousel
+  const carouselImages = [
+    {
+      src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+      alt: "Luxury hotel exterior view",
+      caption: "Elegant hotel facade in the heart of the city"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&h=600&fit=crop",
+      alt: "Hotel lobby interior",
+      caption: "Spacious lobby with modern design"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
+      alt: "Luxury hotel room",
+      caption: "Comfortable rooms with premium amenities"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
+      alt: "Hotel restaurant",
+      caption: "Fine dining experience in our restaurant"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&h=600&fit=crop",
+      alt: "Hotel spa and wellness",
+      caption: "Relaxing spa and wellness facilities"
+    }
+  ];
 </script>
 
 <svelte:head>
@@ -183,6 +214,58 @@
                 hierarchy.
               </p>
             </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carousel Section -->
+  <section id="carousel" class="test-section">
+    <div class="container">
+      <h2 class="section-title">Image Carousel</h2>
+
+      <div class="carousel-showcase">
+        <div class="carousel-demo">
+          <h3>Standard Carousel with Preview Thumbnails</h3>
+          <ImageCarousel 
+            images={carouselImages} 
+            showThumbnails={true}
+            showIndicators={true}
+            showNavigation={true}
+            aspectRatio="16/9"
+          />
+        </div>
+
+        <div class="carousel-options">
+          <h3>Carousel Variants</h3>
+          
+          <div class="carousel-variant">
+            <h4>Auto-playing Carousel</h4>
+            <ImageCarousel 
+              images={carouselImages.slice(0, 3)} 
+              autoplay={true}
+              autoplayInterval={3000}
+              aspectRatio="21/9"
+            />
+          </div>
+
+          <div class="carousel-variant">
+            <h4>Minimal Carousel (No Thumbnails)</h4>
+            <ImageCarousel 
+              images={carouselImages.slice(0, 4)} 
+              showThumbnails={false}
+              showIndicators={true}
+              aspectRatio="4/3"
+            />
+          </div>
+
+          <div class="carousel-variant">
+            <h4>Single Image (No Navigation)</h4>
+            <ImageCarousel 
+              images={[carouselImages[0]]} 
+              aspectRatio="3/2"
+            />
           </div>
         </div>
       </div>
@@ -467,6 +550,38 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-lg);
+  }
+
+  /* Carousel Styles */
+  .carousel-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4xl);
+  }
+
+  .carousel-demo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .carousel-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .carousel-variant {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .carousel-variant h4 {
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
   }
 
   /* Layout Styles */
