@@ -1,0 +1,33 @@
+{
+  "name": "Hotel Ludwig van Beethoven",
+  "short_name": "HLVB",
+  "description": "Luxury hotel in Berlin - Hotel Ludwig van Beethoven",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f4f3",
+  "theme_color": "#5a4e47",
+  "orientation": "portrait-primary",
+  "categories": ["travel", "hospitality"],
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/cropped-Logo-Taupe.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/hlvb_backside_header.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide"
+    }
+  ]
+}
