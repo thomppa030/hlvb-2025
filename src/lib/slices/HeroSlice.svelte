@@ -25,12 +25,11 @@
           class="hero-image" 
           loading="eager"
           fetchpriority="high"
-          sizes="100vw"
+          sizes="(max-width: 768px) 390px, 1920px"
+          widths={[390, 768, 1200, 1920]}
           imgixParams={{ 
             fit: 'crop', 
-            q: 75,
-            w: 1920,
-            h: 799,
+            q: 60,
             fm: 'webp'
           }}
         />
