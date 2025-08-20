@@ -18,21 +18,21 @@
         <picture>
           <source
             media="(max-width: 480px)"
-            srcset="{imageData.image.url}?w=480&q=60&auto=compress,format&fm=webp"
+            srcset="{imageData.image.url}?w=375&h=250&fit=max&q=50&auto=compress,format&fm=webp"
             type="image/webp"
           />
           <source
             media="(max-width: 768px)"
-            srcset="{imageData.image.url}?w=768&q=65&auto=compress,format&fm=webp"
+            srcset="{imageData.image.url}?w=768&q=55&auto=compress,format&fm=webp"
             type="image/webp"
           />
           <source
             media="(max-width: 1200px)"
-            srcset="{imageData.image.url}?w=1000&q=70&auto=compress,format&fm=webp"
+            srcset="{imageData.image.url}?w=1000&q=65&auto=compress,format&fm=webp"
             type="image/webp"
           />
           <img
-            src="{imageData.image.url}?w=1200&q=75&auto=compress,format&fm=webp"
+            src="{imageData.image.url}?w=1200&q=70&auto=compress,format&fm=webp"
             alt={imageData.image.alt || ''}
             class="slice-image"
             loading="lazy"

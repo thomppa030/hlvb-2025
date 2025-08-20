@@ -26,16 +26,16 @@
           <picture>
             <source
               media="(max-width: 480px)"
-              srcset="{featureData.image.url}?w=480&h=400&fit=crop&q=60&auto=compress,format&fm=webp"
+              srcset="{featureData.image.url}?w=375&h=250&fit=crop&q=50&auto=compress,format&fm=webp"
               type="image/webp"
             />
             <source
               media="(max-width: 768px)"
-              srcset="{featureData.image.url}?w=768&h=500&fit=crop&q=65&auto=compress,format&fm=webp"
+              srcset="{featureData.image.url}?w=768&h=500&fit=crop&q=55&auto=compress,format&fm=webp"
               type="image/webp"
             />
             <img
-              src="{featureData.image.url}?w=900&h=600&fit=crop&q=70&auto=compress,format&fm=webp"
+              src="{featureData.image.url}?w=900&h=600&fit=crop&q=65&auto=compress,format&fm=webp"
               alt={featureData.imageAlt}
               class="feature-image"
               loading="lazy"

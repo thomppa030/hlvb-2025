@@ -25,6 +25,11 @@
       <a href="/" class="brand" class:active={isActive("/")}>
         <picture>
           <source 
+            media="(max-width: 480px)" 
+            srcset="/logo-mobile-opt.webp"
+            type="image/webp"
+          />
+          <source 
             media="(max-width: 768px)" 
             srcset="/logo-mobile.webp"
             type="image/webp"
