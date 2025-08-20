@@ -41,8 +41,8 @@
           src="/hlvb_backside_header.webp"
           alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
           class_="hero-image"
-          width={2560}
-          height={1440}
+          width={1920}
+          height={799}
           sizes="100vw"
           fetchpriority="high"
           loading="eager"

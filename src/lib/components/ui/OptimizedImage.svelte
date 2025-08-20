@@ -12,23 +12,9 @@
   export let style = '';
   export let placeholder = null; // Base64 or color
   
-  // Generate responsive srcset if width is provided
-  $: responsiveSrcset = width ? generateSrcset(src, width) : null;
-  
-  // Generate different sizes for responsive images
-  function generateSrcset(baseSrc, maxWidth) {
-    if (!baseSrc || !baseSrc.includes('.')) return null;
-    
-    // For now, let's create a simpler srcset since we don't have multiple image sizes
-    // This could be enhanced later with actual responsive image generation
-    const breakpoints = [400, 800, 1200, 1600].filter(w => w <= maxWidth);
-    
-    // Use the same source but with different size hints
-    // In a real implementation, you'd have actual different sized images
-    return breakpoints
-      .map(w => `${baseSrc} ${w}w`)
-      .join(', ');
-  }
+  // Generate responsive srcset only if we have actual multiple image sizes
+  // For now, disable srcset to ensure proper LCP measurement
+  $: responsiveSrcset = null;
   
   // Handle image load error - fallback to original
   function handleError(event) {
