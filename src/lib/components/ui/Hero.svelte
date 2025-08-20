@@ -10,11 +10,6 @@
       <!-- Use picture element for better responsive image support -->
       <picture>
         <source 
-          media="(max-width: 480px)" 
-          srcset="/hlvb_backside_header_mobile_opt.webp"
-          type="image/webp"
-        />
-        <source 
           media="(max-width: 768px)" 
           srcset="/hlvb_backside_header_mobile.webp"
           type="image/webp"
@@ -25,11 +20,11 @@
           type="image/webp"
         />
         <img
-          src="/hlvb_backside_header_mobile_opt.webp"
+          src="/hlvb_backside_header_mobile.webp"
           alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
           class="hero-image"
-          width="640"
-          height="266"
+          width="1920"
+          height="799"
           loading="eager"
           fetchpriority="high"
           decoding="sync"
