@@ -48,7 +48,7 @@
             type="image/webp"
           />
           <img
-            src="/hlvb_backside_header_mobile.webp"
+            src="/hlvb_backside_header.webp"
             alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
             class="hero-image"
             width="1920"
