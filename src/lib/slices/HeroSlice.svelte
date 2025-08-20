@@ -174,25 +174,6 @@
     opacity: 0.95;
   }
 
-  .hero-actions {
-    display: flex;
-    gap: var(--space-xl);
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: var(--space-xl);
-  }
-  
-  .hero-actions :global(.btn) {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-    transform: translateY(0);
-    transition: all var(--transition-normal);
-  }
-  
-  .hero-actions :global(.btn:hover) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  }
 
   /* Hero Booking Widget */
   .hero-booking {
@@ -229,11 +210,6 @@
     .container {
       gap: var(--space-xl);
     }
-    
-    .hero-actions {
-      gap: var(--space-lg);
-      margin-top: var(--space-lg);
-    }
   }
 
   /* Mobile responsive */
@@ -257,16 +233,6 @@
       gap: var(--space-xl);
     }
 
-    .hero-actions {
-      gap: var(--space-lg);
-      margin-top: var(--space-lg);
-    }
-
-    .hero-actions :global(.btn) {
-      min-width: 160px;
-      flex: 1;
-      max-width: 200px;
-    }
 
     .booking-container {
       padding: 0 var(--space-md);
@@ -298,18 +264,6 @@
       gap: var(--space-lg);
     }
 
-    .hero-actions {
-      flex-direction: column;
-      gap: var(--space-md);
-      margin-top: var(--space-lg);
-      width: 100%;
-    }
-
-    .hero-actions :global(.btn) {
-      width: 100%;
-      max-width: 280px;
-      min-width: auto;
-    }
 
     .hero-booking {
       transform: translateY(20%);

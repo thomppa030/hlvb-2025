@@ -53,9 +53,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="preload"
-    as="style"
-    onload="this.onload=null;this.rel='stylesheet'"
+    rel="stylesheet"
   />
   <noscript>
     <link

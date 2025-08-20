@@ -12,14 +12,6 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Split vendor code
-          vendor: ['@prismicio/client', '@prismicio/svelte'],
-        },
-      },
-    },
   },
   server: {
     fs: {
