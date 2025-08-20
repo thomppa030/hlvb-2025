@@ -2,6 +2,7 @@
 <script>
   import { PrismicRichText, PrismicImage } from '@prismicio/svelte';
   import BookingWidget from '../components/ui/BookingWidget.svelte';
+  import OptimizedImage from '../components/ui/OptimizedImage.svelte';
 
   export let slice;
 
@@ -26,15 +27,26 @@
           loading="eager"
           fetchpriority="high"
           sizes="100vw"
+          imgixParams={{ 
+            fit: 'crop', 
+            q: 75,
+            w: 2560,
+            h: 1440,
+            fm: 'webp'
+          }}
         />
       {:else}
-        <!-- Fallback image -->
-        <img 
-          src="/hlvb_backside_header.webp" 
-          alt="Hotel Ludwig van Beethoven" 
-          class="hero-image"
-          loading="eager"
+        <!-- Fallback optimized image -->
+        <OptimizedImage
+          src="/hlvb_backside_header.webp"
+          alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
+          class_="hero-image"
+          width={2560}
+          height={1440}
+          sizes="100vw"
           fetchpriority="high"
+          loading="eager"
+          placeholder="linear-gradient(135deg, #5a4e47, #7c6b65)"
         />
       {/if}
       <div class="hero-overlay"></div>

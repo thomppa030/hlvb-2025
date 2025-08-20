@@ -1,16 +1,23 @@
 <!-- src/lib/components/ui/Hero.svelte -->
 <script>
   import BookingWidget from "./BookingWidget.svelte";
+  import OptimizedImage from "./OptimizedImage.svelte";
   import { t } from "$lib/stores/i18n.js";
 </script>
 
 <div class="hero-wrapper">
   <section class="hero">
     <div class="hero-image-container">
-      <img
+      <OptimizedImage
         src="/hlvb_backside_header.webp"
-        alt="Hotel Ludwig van Beethoven"
-        class="hero-image"
+        alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
+        class_="hero-image"
+        width={2560}
+        height={1440}
+        sizes="100vw"
+        fetchpriority="high"
+        loading="eager"
+        placeholder="linear-gradient(135deg, #5a4e47, #7c6b65)"
       />
       <div class="hero-overlay"></div>
     </div>
