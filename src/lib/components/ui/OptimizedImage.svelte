@@ -17,16 +17,16 @@
   
   // Generate different sizes for responsive images
   function generateSrcset(baseSrc, maxWidth) {
-    if (!baseSrc.includes('.')) return null;
+    if (!baseSrc || !baseSrc.includes('.')) return null;
     
-    const [name, ext] = baseSrc.split('.').slice(-2);
-    const basePath = baseSrc.replace(`.${ext}`, '');
+    // For now, let's create a simpler srcset since we don't have multiple image sizes
+    // This could be enhanced later with actual responsive image generation
+    const breakpoints = [400, 800, 1200, 1600].filter(w => w <= maxWidth);
     
-    const breakpoints = [400, 600, 800, 1200, 1600, 2000].filter(w => w <= maxWidth);
-    if (!breakpoints.includes(maxWidth)) breakpoints.push(maxWidth);
-    
+    // Use the same source but with different size hints
+    // In a real implementation, you'd have actual different sized images
     return breakpoints
-      .map(w => `${basePath}-${w}w.webp ${w}w`)
+      .map(w => `${baseSrc} ${w}w`)
       .join(', ');
   }
   
