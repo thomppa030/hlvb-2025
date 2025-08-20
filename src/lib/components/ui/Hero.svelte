@@ -11,24 +11,24 @@
       <picture>
         <source 
           media="(max-width: 768px)" 
-          srcset="/hlvb_backside_header_mobile.webp"
+          srcset="https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp"
           type="image/webp"
-          width="1920"
-          height="799"
+          width="390"
+          height="203"
         />
         <source 
           media="(min-width: 769px)" 
-          srcset="/hlvb_backside_header.webp"
+          srcset="https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=75&w=1920&h=799&fm=webp"
           type="image/webp"
           width="1920"
           height="799"
         />
         <img
-          src="/hlvb_backside_header_mobile.webp"
+          src="https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp"
           alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
           class="hero-image"
-          width="1920"
-          height="799"
+          width="390"
+          height="203"
           loading="eager"
           fetchpriority="high"
           decoding="sync"
