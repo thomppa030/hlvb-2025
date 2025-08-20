@@ -170,7 +170,7 @@
   .container {
     max-width: 1380px; /* Match hero booking widget width */
     margin: 0 auto;
-    padding: var(--space-lg);
+    padding: var(--space-md);
     position: relative;
   }
 
@@ -180,8 +180,8 @@
 
   .close-button {
     position: absolute;
-    top: var(--space-lg);
-    right: var(--space-lg);
+    top: var(--space-md);
+    right: var(--space-md);
     background: none;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -192,8 +192,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     z-index: 10;
   }
 
@@ -214,19 +214,19 @@
     background: rgba(255, 255, 255, 0.95);
     border: none;
     box-shadow: none;
-    padding: var(--space-lg);
+    padding: var(--space-md);
     width: 100%;
     border-radius: var(--radius-lg);
   }
   
   .sticky-booking-form :global(.booking-form) {
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
   
   .sticky-booking-form :global(.form-group input),
   .sticky-booking-form :global(.form-group select) {
-    min-height: 40px;
-    padding: var(--space-sm) var(--space-md);
+    min-height: 36px;
+    padding: var(--space-xs) var(--space-sm);
     font-size: var(--font-size-sm);
   }
   
@@ -240,14 +240,14 @@
     /* Top position is now handled dynamically by JavaScript */
     
     .container {
-      padding: var(--space-md);
+      padding: var(--space-sm);
     }
 
     .close-button {
-      top: var(--space-md);
-      right: var(--space-md);
-      width: 32px;
-      height: 32px;
+      top: var(--space-sm);
+      right: var(--space-sm);
+      width: 28px;
+      height: 28px;
     }
     
     .sticky-booking-form :global(.form-row),
