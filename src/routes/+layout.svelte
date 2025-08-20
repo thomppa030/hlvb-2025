@@ -41,6 +41,12 @@
       headerStyle = 'centered';
     }
     
+    // Load additional font weights asynchronously
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&family=Crimson+Text:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap';
+    document.head.appendChild(link);
+    
     // Lazy load non-critical components after initial render
     const [footerModule, stickyFormModule] = await Promise.all([
       loadFooter(),
@@ -62,15 +68,10 @@
   <meta charset="utf-8" />
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Additional fonts loaded programmatically to avoid render-blocking -->
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&family=Crimson+Text:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </noscript>

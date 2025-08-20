@@ -38,6 +38,11 @@
         <!-- Fallback with picture element for better responsive support -->
         <picture>
           <source 
+            media="(max-width: 480px)" 
+            srcset="/hlvb_backside_header_mobile_opt.webp"
+            type="image/webp"
+          />
+          <source 
             media="(max-width: 768px)" 
             srcset="/hlvb_backside_header_mobile.webp"
             type="image/webp"
@@ -48,11 +53,11 @@
             type="image/webp"
           />
           <img
-            src="/hlvb_backside_header_mobile.webp"
+            src="/hlvb_backside_header_mobile_opt.webp"
             alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
             class="hero-image"
-            width="1920"
-            height="799"
+            width="640"
+            height="266"
             loading="eager"
             fetchpriority="high"
             decoding="sync"
