@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "npx svelte-kit sync && vite build",
+    "build:analyze": "npm run build && npx vite-bundle-analyzer .svelte-kit/output/client/_app",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
