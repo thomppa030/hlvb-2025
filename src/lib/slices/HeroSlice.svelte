@@ -207,7 +207,7 @@
   }
 
   .booking-container {
-    max-width: 1200px;
+    max-width: 1380px; /* Increased by 15% from 1200px */
     margin: 0 auto;
     padding: 0 var(--space-lg);
   }

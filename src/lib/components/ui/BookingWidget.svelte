@@ -94,8 +94,8 @@
     <h3>{$t('booking.check_availability')}</h3>
 
     <form on:submit|preventDefault={handleBooking} class="booking-form">
-      <!-- Date Selection Row -->
-      <div class="form-row dates-row">
+      <!-- Single Line Form Row -->
+      <div class="form-row single-line">
         <div class="form-group">
           <label for="arrival">{$t('booking.checkin')}</label>
           <input
@@ -117,10 +117,7 @@
             required
           />
         </div>
-      </div>
 
-      <!-- Guest Selection Row -->
-      <div class="form-row guests-row">
         <div class="form-group">
           <label for="adults">{$t('booking.adults')}</label>
           <select id="adults" bind:value={adults}>
@@ -202,12 +199,8 @@
     box-sizing: border-box;
   }
 
-  .dates-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .guests-row {
-    grid-template-columns: 1fr 1fr 1fr;
+  .single-line {
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .form-group {
@@ -337,12 +330,8 @@
       gap: var(--space-lg);
     }
 
-    .dates-row {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .guests-row {
-      grid-template-columns: 1fr 1fr 1fr;
+    .single-line {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
@@ -355,13 +344,8 @@
       gap: var(--space-md);
     }
 
-    .dates-row {
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-    }
-
-    .guests-row {
-      grid-template-columns: 1fr;
+    .single-line {
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--space-md);
     }
 
@@ -378,8 +362,7 @@
   }
 
   @media (max-width: 480px) {
-    .dates-row,
-    .guests-row {
+    .single-line {
       grid-template-columns: 1fr;
       gap: var(--space-sm);
     }

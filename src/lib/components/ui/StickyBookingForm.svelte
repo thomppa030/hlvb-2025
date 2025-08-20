@@ -112,7 +112,7 @@
   }
   
   .container {
-    max-width: 1200px;
+    max-width: 1380px; /* Match hero booking widget width */
     margin: 0 auto;
     padding: var(--space-lg);
     position: relative;
@@ -227,14 +227,16 @@
       height: 32px;
     }
     
-    .sticky-booking-form :global(.form-row) {
+    .sticky-booking-form :global(.form-row),
+    .sticky-booking-form :global(.single-line) {
       grid-template-columns: 1fr 1fr;
       gap: var(--space-sm);
     }
   }
   
   @media (max-width: 480px) {
-    .sticky-booking-form :global(.form-row) {
+    .sticky-booking-form :global(.form-row),
+    .sticky-booking-form :global(.single-line) {
       grid-template-columns: 1fr;
     }
   }
