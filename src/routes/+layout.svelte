@@ -2,13 +2,8 @@
 <script>
   import "../app.css";
   import HeaderCentered from "$lib/components/ui/HeaderCentered.svelte";
-  
-  // Lazy load non-critical components
-  const loadFooter = () => import("$lib/components/ui/Footer.svelte");
-  const loadStickyForm = () => import("$lib/components/ui/StickyBookingForm.svelte");
-  
-  let Footer;
-  let StickyBookingForm;
+  import Footer from "$lib/components/ui/Footer.svelte";
+  import StickyBookingForm from "$lib/components/ui/StickyBookingForm.svelte";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
 
@@ -23,25 +18,10 @@
   // Check if current page should show sticky form
   $: showStickyForm = pagesWithStickyForm.includes($page.url.pathname);
 
-  onMount(async () => {
+  onMount(() => {
     mounted = true;
-
     // Force light mode only
     document.documentElement.setAttribute("data-theme", "light");
-    
-    // Load additional font weights asynchronously
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&family=Crimson+Text:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap';
-    document.head.appendChild(link);
-    
-    // Lazy load non-critical components after initial render
-    const [footerModule, stickyFormModule] = await Promise.all([
-      loadFooter(),
-      loadStickyForm()
-    ]);
-    Footer = footerModule.default;
-    StickyBookingForm = stickyFormModule.default;
   });
 </script>
 
@@ -62,15 +42,13 @@
   <!-- Always use HeaderCentered -->
   <HeaderCentered />
   
-  {#if showStickyForm && StickyBookingForm}
-    <svelte:component this={StickyBookingForm} />
+  {#if showStickyForm}
+    <StickyBookingForm />
   {/if}
   <main>
     <slot />
   </main>
-  {#if Footer}
-    <svelte:component this={Footer} />
-  {/if}
+  <Footer />
 </div>
 
 <style>

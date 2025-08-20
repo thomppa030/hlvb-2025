@@ -73,6 +73,14 @@
     justify-content: center;
   }
 
+  /* Mobile viewport fixes for LCP detection */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 500px;
+      height: 75vh;
+    }
+  }
+
   .hero-image-container {
     position: absolute;
     top: 0;
