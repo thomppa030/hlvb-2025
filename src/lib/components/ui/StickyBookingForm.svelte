@@ -8,38 +8,17 @@
   let isVisible = false;
   let isUserClosed = false;
   let heroElement = null;
-  let stickyForm = null;
   let observer = null;
-  let headerStyle = 'default';
   
-  // Get header style from localStorage to match layout
-  function getHeaderStyle() {
-    if (!browser) return 'default';
-    return localStorage.getItem('headerStyle') || 'default';
-  }
-  
-  // Calculate dynamic top position based on header style
-  function getTopPosition() {
-    const style = getHeaderStyle();
-    const width = window.innerWidth;
-    
-    if (width <= 768) {
-      return '80px'; // Mobile header height is same for both styles
-    } else if (width <= 1024 && style === 'centered') {
-      return '90px'; // Tablet centered header height
-    } else if (width <= 1024 && style === 'default') {
-      return '100px'; // Tablet default header height (no change)
-    }
-    
-    return style === 'centered' ? '110px' : '100px'; // Desktop heights
-  }
   
   // Reset visibility when page changes (language switch)
   $: if ($page.url.pathname) {
     isVisible = false;
     isUserClosed = false;
+    // Clear cached hero element on page change
+    heroElement = null;
     if (browser) {
-      // Immediately setup observer for new page without delay
+      // Setup observer for new page
       setupObserver();
     }
   }
@@ -52,12 +31,14 @@
       observer = null;
     }
     
-    // Find the hero section
-    heroElement = document.querySelector('.hero');
+    // Cache hero element lookup - only query once per page
+    if (!heroElement) {
+      heroElement = document.querySelector('.hero');
+    }
     
     if (!heroElement) {
-      // If hero not found yet, try again on next tick
-      requestAnimationFrame(() => setupObserver());
+      // If hero still not found, try once more with longer delay to avoid excessive DOM queries
+      setTimeout(() => setupObserver(), 100);
       return;
     }
     
@@ -77,48 +58,17 @@
     observer.observe(heroElement);
   }
   
+
   onMount(() => {
     setupObserver();
-    updateHeaderStyle();
-    
-    // Listen for localStorage changes (when header style is toggled)
-    const handleStorageChange = () => {
-      updateHeaderStyle();
-    };
-    
-    // Listen for window resize to recalculate position
-    const handleResize = () => {
-      updateHeaderStyle();
-    };
-    
-    // Periodically check for header style changes (in case localStorage changes in same tab)
-    const checkHeaderStyle = () => {
-      const currentStyle = getHeaderStyle();
-      if (currentStyle !== headerStyle) {
-        updateHeaderStyle();
-      }
-    };
-    
-    const styleCheckInterval = setInterval(checkHeaderStyle, 500);
-    
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('resize', handleResize);
     
     return () => {
       if (observer) {
         observer.disconnect();
       }
-      clearInterval(styleCheckInterval);
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('resize', handleResize);
     };
   });
   
-  function updateHeaderStyle() {
-    if (!browser || !stickyForm) return;
-    headerStyle = getHeaderStyle();
-    stickyForm.style.top = getTopPosition();
-  }
 
   function handleClose() {
     isUserClosed = true;
@@ -129,7 +79,6 @@
 <div 
   class="sticky-booking-form" 
   class:visible={isVisible}
-  bind:this={stickyForm}
 >
   <div class="container">
     <div class="sticky-form-content">
@@ -151,7 +100,8 @@
 <style>
   .sticky-booking-form {
     position: fixed;
-    top: 100px; /* Default fallback - will be updated by JavaScript */
+    /* Fixed positioning for HeaderCentered only */
+    top: 110px; /* Desktop centered header */
     left: 0;
     right: 0;
     z-index: 90;
@@ -159,8 +109,21 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     transform: translateY(-100%);
-    transition: transform var(--transition-normal), top var(--transition-fast);
+    transition: transform var(--transition-normal);
     box-shadow: 0 4px 12px rgba(90, 78, 71, 0.08);
+  }
+
+  /* Responsive positioning for HeaderCentered */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .sticky-booking-form {
+      top: 90px; /* Tablet centered header */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sticky-booking-form {
+      top: 80px; /* Mobile centered header */
+    }
   }
   
   .sticky-booking-form.visible {
@@ -237,8 +200,6 @@
   
   /* Mobile responsive */
   @media (max-width: 768px) {
-    /* Top position is now handled dynamically by JavaScript */
-    
     .container {
       padding: var(--space-sm);
     }
