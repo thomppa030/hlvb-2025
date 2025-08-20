@@ -1,15 +1,9 @@
 <!-- src/lib/slices/HeroSlice.svelte -->
 <script>
   import { PrismicRichText, PrismicImage } from '@prismicio/svelte';
-  import Button from '../components/ui/Button.svelte';
   import BookingWidget from '../components/ui/BookingWidget.svelte';
 
   export let slice;
-
-  function handleBooking() {
-    const bookingUrl = slice.primary.booking_url?.url || "https://onepagebooking.com/beethoven";
-    window.open(bookingUrl, "_blank");
-  }
 
   // Extract data from slice with fallbacks
   $: heroData = {
@@ -56,14 +50,6 @@
           <PrismicRichText field={heroData.subtitle} />
         </div>
 
-        <div class="hero-actions">
-          <Button variant="accent" size="large" on:click={handleBooking}>
-            {heroData.primary_button_text}
-          </Button>
-          <Button variant="outline-light" size="large">
-            {heroData.secondary_button_text}
-          </Button>
-        </div>
       </div>
     </div>
     
@@ -202,7 +188,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    transform: translateY(50%);
+    transform: translateY(25%); /* Reduced from 50% to nudge widget up on 1080p */
     z-index: 2;
   }
 
@@ -281,7 +267,7 @@
     }
 
     .hero-booking {
-      transform: translateY(40%);
+      transform: translateY(20%);
     }
   }
 
@@ -320,7 +306,7 @@
     }
 
     .hero-booking {
-      transform: translateY(30%);
+      transform: translateY(20%);
     }
   }
 

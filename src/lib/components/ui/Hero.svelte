@@ -1,12 +1,7 @@
 <!-- src/lib/components/ui/Hero.svelte -->
 <script>
-  import Button from "./Button.svelte";
   import BookingWidget from "./BookingWidget.svelte";
   import { t } from "$lib/stores/i18n.js";
-
-  function handleBooking() {
-    window.open("https://onepagebooking.com/beethoven", "_blank");
-  }
 </script>
 
 <div class="hero-wrapper">
@@ -27,14 +22,6 @@
           {$t("hero.subtitle", "Your luxury retreat in the heart of the city")}
         </p>
 
-        <div class="hero-actions">
-          <Button variant="accent" size="large" on:click={handleBooking}>
-            {$t("hero.book_now", "Book Your Stay")}
-          </Button>
-          <Button variant="outline-light" size="large">
-            {$t("hero.explore", "Explore")}
-          </Button>
-        </div>
       </div>
     </div>
     
@@ -293,7 +280,7 @@
     }
 
     .hero-booking {
-      transform: translateY(30%);
+      transform: translateY(20%);
     }
   }
 
