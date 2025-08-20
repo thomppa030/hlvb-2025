@@ -182,14 +182,6 @@
     color: var(--color-primary);
   }
   
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .feature-section {
-    background: var(--color-background);
-  }
-  
-  :global([data-theme="dark"]) .feature-image-wrapper {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  }
   
   /* Responsive Design */
   @media (max-width: 1024px) {

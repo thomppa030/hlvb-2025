@@ -345,14 +345,6 @@
     background-color: var(--color-primary-light);
   }
 
-  :global([data-theme="dark"]) .theme-toggle {
-    background-color: var(--color-text);
-    color: var(--color-background);
-  }
-
-  :global([data-theme="dark"]) .theme-toggle:hover {
-    background-color: var(--color-text-light);
-  }
 
   .test-section {
     padding: var(--space-4xl) 0;

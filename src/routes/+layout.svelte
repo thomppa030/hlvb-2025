@@ -10,7 +10,7 @@
   import { browser } from "$app/environment";
 
   let mounted = false;
-  let headerStyle = 'default'; // 'default' or 'centered'
+  let headerStyle = 'centered'; // 'default' or 'centered'
 
   // Define which pages should show the sticky booking form
   const pagesWithStickyForm = [
@@ -24,19 +24,16 @@
   onMount(() => {
     mounted = true;
 
-    // Set initial theme - default to light mode
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      document.documentElement.setAttribute("data-theme", savedTheme);
-    } else {
-      // Default to light mode instead of system preference
-      document.documentElement.setAttribute("data-theme", "light");
-    }
+    // Force light mode only
+    document.documentElement.setAttribute("data-theme", "light");
 
     // Load saved header style preference
     const savedHeaderStyle = localStorage.getItem("headerStyle");
     if (savedHeaderStyle && ['default', 'centered'].includes(savedHeaderStyle)) {
       headerStyle = savedHeaderStyle;
+    } else {
+      // Set default to centered if no saved preference
+      headerStyle = 'centered';
     }
   });
 
@@ -142,19 +139,6 @@
     flex-shrink: 0;
   }
 
-  /* Dark mode styles for switcher */
-  :global([data-theme="dark"]) .switcher-btn {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-  }
-
-  :global([data-theme="dark"]) .switcher-btn:hover {
-    background: var(--color-background-elevated);
-  }
-
-  :global([data-theme="dark"]) .switcher-btn:focus {
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
-  }
 
   .app.mounted {
     opacity: 1;
@@ -169,7 +153,4 @@
     background-color: #f6f4f3; /* 10% Sättigung Taupe hell */
   }
 
-  :global([data-theme="dark"] html) {
-    background-color: #2a251f; /* Lighter dark taupe */
-  }
 </style>

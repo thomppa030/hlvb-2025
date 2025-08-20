@@ -149,31 +149,4 @@
     outline-offset: 2px;
   }
 
-  /* Dark theme adjustments */
-  :global([data-theme="dark"]) .card {
-    background-color: var(--color-background-alt);
-    border-color: var(--color-border);
-  }
-
-  :global([data-theme="dark"]) .card--ghost {
-    background-color: transparent;
-  }
-
-  :global([data-theme="dark"]) .card--elevated {
-    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  :global([data-theme="dark"]) .card--elevated:hover {
-    box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  :global([data-theme="dark"]) .card--default {
-    box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  :global([data-theme="dark"]) .card--hoverable:hover {
-    box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
-  }
 </style>

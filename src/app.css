@@ -46,10 +46,6 @@ h1 {
   letter-spacing: 0.05em; /* Extended letter spacing */
 }
 
-/* Dark theme: Bold weight for better readability on dark surfaces */
-:global([data-theme="dark"]) h1 {
-  font-weight: var(--font-weight-bold);
-}
 
 /* H2-H6 - Semibold for subheadings and further emphasis */
 h2 {
@@ -57,18 +53,12 @@ h2 {
   font-weight: var(--font-weight-semibold);
 }
 
-:global([data-theme="dark"]) h2 {
-  font-weight: var(--font-weight-bold);
-}
 
 h3 {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-semibold);
 }
 
-:global([data-theme="dark"]) h3 {
-  font-weight: var(--font-weight-bold);
-}
 
 h4 {
   font-size: var(--font-size-2xl);

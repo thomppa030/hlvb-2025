@@ -72,10 +72,6 @@
     margin: 0;
   }
 
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .image-wrapper :global(.slice-image) {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-  }
 
   /* Mobile responsive */
   @media (max-width: 768px) {

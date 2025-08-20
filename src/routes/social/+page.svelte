@@ -108,12 +108,6 @@
     max-width: 100%;
   }
 
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .widget-container {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
 
 
   /* Responsive design */

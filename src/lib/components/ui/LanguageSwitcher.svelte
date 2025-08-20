@@ -280,31 +280,4 @@
     font-weight: var(--font-weight-medium);
   }
 
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .language-button {
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  :global([data-theme="dark"]) .language-button:hover {
-    background-color: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
-
-  :global([data-theme="dark"]) .language-button:focus {
-    box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.15);
-  }
-
-  :global([data-theme="dark"]) .language-dropdown {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  :global([data-theme="dark"]) .language-option:hover {
-    background-color: var(--color-background);
-  }
-
-  :global([data-theme="dark"]) .flag-circle {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
 </style>

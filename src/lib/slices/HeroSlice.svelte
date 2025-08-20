@@ -205,12 +205,6 @@
     border: 1px solid var(--color-border-light);
   }
 
-  /* Dark mode adjustments for booking widget */
-  :global([data-theme="dark"]) .hero-booking :global(.booking-widget) {
-    background: var(--color-background-elevated);
-    border-color: var(--color-border);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-  }
 
   /* Tablet responsive */
   @media (max-width: 1024px) {

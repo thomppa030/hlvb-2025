@@ -85,11 +85,6 @@
     margin-right: auto;
   }
   
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .heading-section {
-    background: var(--color-background);
-    border-bottom-color: rgba(255, 255, 255, 0.03);
-  }
   
   /* Responsive Design */
   @media (max-width: 768px) {

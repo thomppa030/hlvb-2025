@@ -195,34 +195,6 @@
     font-weight: var(--font-weight-medium);
   }
   
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .review-card {
-    background-color: var(--color-background-alt);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    border-color: var(--color-border);
-  }
-  
-  :global([data-theme="dark"]) .review-card:hover {
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-  }
-  
-  :global([data-theme="dark"]) .star.filled {
-    color: #E6C547; /* Brighter gold for dark mode */
-  }
-  
-  :global([data-theme="dark"]) .review-comment {
-    background: rgba(238, 234, 231, 0.05);
-  }
-  
-  :global([data-theme="dark"]) .review-footer {
-    background: var(--color-background);
-    border-top-color: var(--color-border);
-  }
-  
-  :global([data-theme="dark"]) .rating-text {
-    background: var(--color-background);
-    border-color: var(--color-border);
-  }
   
   @media (max-width: 768px) {
     .review-card {

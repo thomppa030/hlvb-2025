@@ -364,36 +364,6 @@
     font-size: var(--font-size-lg);
   }
   
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .reviews-hero {
-    background: var(--color-background);
-    border-bottom-color: rgba(255, 255, 255, 0.03);
-  }
-  
-  :global([data-theme="dark"]) .average-rating {
-    background: transparent;
-    border-color: var(--color-secondary);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  :global([data-theme="dark"]) .filters-section {
-    background-color: var(--color-background);
-    border-bottom-color: rgba(255, 255, 255, 0.05);
-  }
-  
-  :global([data-theme="dark"]) .filter-select {
-    background-color: var(--color-background);
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-  
-  :global([data-theme="dark"]) .filter-select:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  :global([data-theme="dark"]) .filter-select:focus {
-    box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.2);
-  }
   
   /* Responsive Design */
   @media (max-width: 768px) {

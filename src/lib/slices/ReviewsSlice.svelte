@@ -126,12 +126,6 @@
     font-family: var(--font-primary);
   }
 
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .rating-item {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
 
   /* Mobile responsive */
   @media (max-width: 1024px) {

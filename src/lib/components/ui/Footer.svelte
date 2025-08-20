@@ -91,15 +91,6 @@
     margin: 0;
   }
 
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .footer {
-    background: var(--color-background);
-    border-top-color: var(--color-border);
-  }
-
-  :global([data-theme="dark"]) .footer-bottom {
-    border-top-color: var(--color-border);
-  }
 
   /* Responsive Design */
   @media (max-width: 768px) {

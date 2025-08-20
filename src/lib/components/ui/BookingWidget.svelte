@@ -279,37 +279,6 @@
     box-shadow: var(--shadow-md);
   }
 
-  /* Ensure button text is white in dark mode */
-  /* svelte-ignore unused-css-selector */
-  :global([data-theme="dark"]) .booking-submit {
-    color: white !important;
-  }
-
-  /* Dark mode adjustments */
-  :global([data-theme="dark"]) .booking-widget {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  :global([data-theme="dark"]) .form-group input,
-  :global([data-theme="dark"]) .form-group select {
-    background: var(--color-background);
-    border-color: var(--color-border);
-  }
-
-  :global([data-theme="dark"]) .form-group input:hover,
-  :global([data-theme="dark"]) .form-group select:hover {
-    border-color: var(--color-secondary);
-    background-color: var(--color-background-alt);
-    box-shadow: 0 2px 8px rgba(90, 138, 174, 0.15);
-  }
-
-  :global([data-theme="dark"]) .form-group input:focus,
-  :global([data-theme="dark"]) .form-group select:focus {
-    border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(90, 138, 174, 0.15);
-  }
 
   /* Responsive design */
   @media (max-width: 1200px) {

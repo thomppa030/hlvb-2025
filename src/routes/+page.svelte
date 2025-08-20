@@ -447,37 +447,6 @@
 
   /* Removed unused Contact Section styles */
 
-  /* Dark mode adjustments */
-
-  :global([data-theme="dark"]) .rating-item {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-
-  :global([data-theme="dark"]) .stat-item {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  :global([data-theme="dark"]) .amenity-item {
-    background: var(--color-background-alt);
-    border-color: var(--color-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  :global([data-theme="dark"]) .amenity-icon {
-    background: rgba(74, 122, 158, 0.15);
-    border-color: rgba(74, 122, 158, 0.3);
-    color: var(--color-secondary-light);
-  }
-
-  :global([data-theme="dark"]) .location-highlight {
-    background: var(--color-background);
-    border-color: var(--color-border);
-  }
 
   /* Responsive Design */
   @media (max-width: 1024px) {
