@@ -20,19 +20,32 @@
   <section class="hero">
     <div class="hero-image-container">
       {#if heroData.background_image?.url}
-        <PrismicImage 
-          field={heroData.background_image} 
-          class="hero-image" 
-          loading="eager"
-          fetchpriority="high"
-          sizes="(max-width: 768px) 390px, 1920px"
-          widths={[390, 768, 1200, 1920]}
-          imgixParams={{ 
-            fit: 'crop', 
-            q: 60,
-            fm: 'webp'
-          }}
-        />
+        <picture>
+          <source 
+            media="(max-width: 768px)" 
+            srcset="{heroData.background_image.url}&fit=crop&q=60&w=390&h=203&fm=webp"
+            type="image/webp"
+            width="390"
+            height="203"
+          />
+          <source 
+            media="(min-width: 769px)" 
+            srcset="{heroData.background_image.url}&fit=crop&q=75&w=1920&h=799&fm=webp"
+            type="image/webp"
+            width="1920"
+            height="799"
+          />
+          <img
+            src="{heroData.background_image.url}&fit=crop&q=60&w=390&h=203&fm=webp"
+            alt="{heroData.background_image.alt || 'Hotel Ludwig van Beethoven Berlin - Exterior view'}"
+            class="hero-image"
+            width="390"
+            height="203"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+          />
+        </picture>
       {:else}
         <!-- Fallback with picture element for better responsive support -->
         <picture>
