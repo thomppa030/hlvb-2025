@@ -1,72 +1,119 @@
 <!-- src/routes/social/+page.svelte -->
 <script>
-  import { onMount } from 'svelte';
-  import { browser } from '$app/environment';
+  import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
-  let isLoading = true;
-  let hasError = false;
+  let scriptLoaded = false;
+  let showWidget = false;
 
   onMount(() => {
     if (browser) {
-      // Simple approach: Load script and wait a bit for initialization
-      const script = document.createElement('script');
-      script.src = 'https://app.aadvanto.com/widgets-assets/website-widgets.bundle.js';
+      // Check if this is the first visit (not a refresh)
+      const hasRefreshed = sessionStorage.getItem("social-page-refreshed");
+      console.log("Has refreshed:", hasRefreshed);
+
+      if (!hasRefreshed) {
+        console.log("First visit detected, refreshing page...");
+        // First visit - set flag and refresh
+        sessionStorage.setItem("social-page-refreshed", "true");
+        location.reload();
+        return;
+      }
+
+      console.log("Page already refreshed, loading Aadvanto widget script...");
+
+      // Check if script already exists
+      const existingScript = document.querySelector(
+        'script[src*="aadvanto.com"]',
+      );
+      if (existingScript) {
+        showWidget = true;
+        return;
+      }
+
+      // Load the script
+      const script = document.createElement("script");
+      script.src =
+        "https://app.aadvanto.com/widgets-assets/website-widgets.bundle.js";
       script.async = true;
 
       script.onload = () => {
-        // Give the script time to initialize custom elements
-        setTimeout(() => {
-          isLoading = false;
-        }, 1000);
+        console.log("Aadvanto script loaded");
+        scriptLoaded = true;
+
+        // Wait a bit for initialization then show widget regardless
+        showWidget = true;
       };
 
-      script.onerror = () => {
-        hasError = true;
-        isLoading = false;
+      script.onerror = (error) => {
+        console.error("Failed to load Aadvanto script:", error);
+        showWidget = false;
       };
 
       document.head.appendChild(script);
-
-      // Fallback timeout
-      setTimeout(() => {
-        isLoading = false;
-      }, 5000);
     }
+  });
+
+  // Clean up the flag when navigating away (not on refresh)
+  onMount(() => {
+    return () => {
+      // This runs when component unmounts (navigating away)
+      if (browser) {
+        sessionStorage.removeItem("social-page-refreshed");
+      }
+    };
   });
 </script>
 
 <svelte:head>
   <title>Social Media - Hotel Ludwig van Beethoven</title>
-  <meta name="description" content="Stay connected with Hotel Ludwig van Beethoven through our social media updates." />
+  <meta
+    name="description"
+    content="Stay connected with Hotel Ludwig van Beethoven through our social media updates."
+  />
 </svelte:head>
 
 <div class="social-page">
   <div class="container">
     <header class="page-header">
       <h1>Social Media</h1>
-      <p>Stay connected with us and see what our guests are sharing about their experiences.</p>
+      <p>
+        Stay connected with us and see what our guests are sharing about their
+        experiences.
+      </p>
     </header>
 
     <section class="social-widget-section">
       <div class="widget-container">
-        {#if hasError}
-          <div class="error-message">
-            <p>Unable to load social media content. Please try refreshing the page.</p>
-          </div>
-        {:else if isLoading}
+        {#if !showWidget}
           <div class="loading">
             <div class="spinner"></div>
-            <p>Loading social media...</p>
+            <p>Loading social media feed...</p>
           </div>
         {/if}
 
-        <!-- Always render the widget, just hide it while loading -->
-        <div class:hidden={isLoading || hasError}>
+        <!-- Always render the widget HTML, just hide it while loading -->
+        <div class="widget-wrapper" style="display: {showWidget ? 'flex' : 'none'}">
           <ub-widget-social-post
             data-key="OlkquTEQk5PlrkXGrs3w8Fq7nXLwyv"
-            data-locationId="4973010">
+            data-locationId="4973010"
+          >
           </ub-widget-social-post>
         </div>
+      </div>
+    </section>
+
+    <!-- Keep the iframe approach hidden but present -->
+    <section class="alternative-widget-section" style="display: none;">
+      <div class="widget-container">
+        <iframe
+          src="https://app.aadvanto.com/widget/social-post?key=OlkquTEQk5PlrkXGrs3w8Fq7nXLwyv&locationId=4973010"
+          width="100%"
+          height="600"
+          frameborder="0"
+          style="border: none;"
+        >
+        </iframe>
       </div>
     </section>
   </div>
@@ -110,9 +157,13 @@
     padding: var(--space-2xl);
     min-height: 800px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .loading, .error-message {
+  .loading {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,26 +183,58 @@
   }
 
   @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
-  .loading p, .error-message p {
+  .loading p {
     color: var(--color-text-light);
     font-size: var(--font-size-lg);
   }
 
-  .error-message p {
-    color: var(--color-error, var(--color-text-light));
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  /* Widget styling */
-  :global(ub-widget-social-post) {
+  .widget-wrapper {
     width: 100%;
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Widget styling - force center alignment */
+  :global(ub-widget-social-post) {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Target all nested elements in the widget */
+  :global(ub-widget-social-post *) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  /* Target direct children */
+  :global(ub-widget-social-post > *) {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Target any divs inside the widget */
+  :global(ub-widget-social-post div) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Target any iframes inside the widget */
+  :global(ub-widget-social-post iframe) {
+    margin: 0 auto !important;
+    display: block !important;
   }
 
   /* Responsive */
@@ -170,3 +253,4 @@
     }
   }
 </style>
+
