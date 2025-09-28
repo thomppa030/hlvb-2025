@@ -21,41 +21,58 @@
         <!-- Left side links -->
         <div class="nav-side nav-left">
           <a href="/" class="nav-link" class:active={isActive("/")}>
-            {$t('nav.home')}
+            {$t("nav.home")}
           </a>
-          <a href="/reviews" class="nav-link" class:active={isActive("/reviews")}>
-            {$t('nav.reviews')}
+          <a
+            href="/reviews"
+            class="nav-link"
+            class:active={isActive("/reviews")}
+          >
+            {$t("nav.reviews")}
           </a>
         </div>
 
         <!-- Centered Logo -->
         <a href="/" class="brand" class:active={isActive("/")}>
           <picture>
-            <source 
-              media="(max-width: 480px)" 
+            <source
+              media="(max-width: 480px)"
               srcset="/logo-mobile-opt.webp"
               type="image/webp"
             />
-            <source 
-              media="(max-width: 768px)" 
+            <source
+              media="(max-width: 768px)"
               srcset="/logo-mobile.webp"
               type="image/webp"
             />
-            <img 
-              src="/cropped-Logo-Taupe.webp" 
-              alt="Hotel Ludwig van Beethoven" 
-              class="brand-logo" 
-              width="180" 
+            <img
+              src="/cropped-Logo-Taupe.webp"
+              alt="Hotel Ludwig van Beethoven"
+              class="brand-logo"
+              width="180"
               height="100"
-              loading="eager" 
-              decoding="sync" 
+              loading="eager"
+              decoding="sync"
             />
           </picture>
         </a>
 
         <!-- Right side links -->
         <div class="nav-side nav-right">
-          <a href="/social" class="nav-link" class:active={isActive("/social")}>
+          <a
+            href="/infos"
+            class="nav-link"
+            class:active={isActive("/infos")}
+            on:click={() => console.log('Infos link clicked - navigating to /infos')}
+          >
+            Infos
+          </a>
+          <a
+            href="/social"
+            class="nav-link"
+            class:active={isActive("/social")}
+            on:click={() => console.log('Social link clicked - navigating to /social')}
+          >
             Social
           </a>
         </div>
