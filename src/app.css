@@ -152,6 +152,51 @@ input:focus, textarea:focus, select:focus {
   padding: var(--section-padding-y) 0;
 }
 
+/* Blue Line Effect Utilities */
+.blue-line-bottom {
+  position: relative;
+}
+
+.blue-line-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: var(--space-md);
+  right: var(--space-md);
+  height: 2px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.blue-line-full::after {
+  left: 0;
+  right: 0;
+}
+
+.blue-line-center::after {
+  left: 50%;
+  right: auto;
+  width: 60px;
+  transform: translateX(-50%);
+}
+
+/* Heading with blue line accent */
+.heading-accent {
+  position: relative;
+  padding-bottom: var(--space-lg);
+}
+
+.heading-accent::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-sm);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

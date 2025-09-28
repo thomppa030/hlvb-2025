@@ -20,8 +20,9 @@
 </svelte:head>
 
 <div class="privacy-container">
-  <div class="privacy-content">
-    <h1>Privacy Policy</h1>
+  <div class="container">
+    <div class="privacy-content">
+    <h1 class="heading-accent">Privacy Policy</h1>
 
     <section>
       <h2>1. Data Controller</h2>
@@ -213,106 +214,111 @@
     </section>
 
     <p class="privacy-date">Last updated: November 2024</p>
+    </div>
   </div>
 </div>
 
 <style>
   .privacy-container {
-    min-height: calc(100vh - 200px);
-    padding: var(--spacing-4xl) var(--spacing-xl);
-    background-color: var(--color-surface);
+    background-color: var(--color-background);
+    padding: var(--space-4xl) 0;
+  }
+
+  .container {
+    max-width: var(--container-lg);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
   }
 
   .privacy-content {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    padding: var(--spacing-3xl);
+    background: var(--color-background-elevated);
+    padding: var(--space-3xl);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 2px 8px rgba(90, 78, 71, 0.08);
   }
 
   h1 {
-    font-family: var(--font-heading);
-    font-size: var(--text-3xl);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-bottom: var(--spacing-2xl);
-    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-lg);
     border-bottom: 2px solid var(--color-border);
   }
 
   h2 {
-    font-family: var(--font-heading);
-    font-size: var(--text-xl);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--spacing-2xl);
-    margin-bottom: var(--spacing-lg);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
   }
 
   h3 {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-md);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
   }
 
   section {
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--space-2xl);
   }
 
   p {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
   }
 
   ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-xl);
+    margin: var(--space-md) 0;
+    padding-left: var(--space-xl);
   }
 
   li {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
   }
 
   strong {
     color: var(--color-text);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   .privacy-date {
-    margin-top: var(--spacing-3xl);
-    padding-top: var(--spacing-xl);
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
     border-top: 1px solid var(--color-border);
     font-style: italic;
-    color: var(--color-text-tertiary);
+    color: var(--color-text-light);
   }
 
   @media (max-width: 768px) {
     .privacy-container {
-      padding: var(--spacing-2xl) var(--spacing-lg);
+      padding: var(--space-2xl) 0;
     }
 
     .privacy-content {
-      padding: var(--spacing-xl);
+      padding: var(--space-xl);
     }
 
     h1 {
-      font-size: var(--text-2xl);
+      font-size: var(--font-size-2xl);
     }
 
     h2 {
-      font-size: var(--text-lg);
+      font-size: var(--font-size-lg);
     }
   }
 </style>
