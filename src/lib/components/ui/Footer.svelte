@@ -1,4 +1,14 @@
 <!-- src/lib/components/ui/Footer.svelte -->
+<script>
+  import { page } from '$app/stores';
+  import { currentLanguage, t } from '$lib/stores/i18n.js';
+
+  $: isEnglish = $page.url.pathname.startsWith('/en') || $currentLanguage === 'en';
+  $: impressumLink = isEnglish ? '/en/impressum' : '/impressum';
+  $: privacyLink = isEnglish ? '/en/datenschutz' : '/datenschutz';
+  $: privacyText = isEnglish ? 'Privacy' : 'Datenschutz';
+</script>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
@@ -12,7 +22,9 @@
       </div>
 
       <div class="footer-links">
-        <a href="/impressum">Impressum</a>
+        <a href={impressumLink}>{$t('footer.impressum')}</a>
+        <span class="separator">•</span>
+        <a href={privacyLink}>{privacyText}</a>
       </div>
     </div>
 
@@ -79,6 +91,12 @@
     color: var(--color-secondary);
   }
 
+  .footer-links .separator {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    margin: 0 var(--space-xs);
+  }
+
   .footer-bottom {
     border-top: 1px solid var(--color-border-light);
     padding-top: var(--space-lg);
@@ -91,7 +109,6 @@
     margin: 0;
   }
 
-
   /* Responsive Design */
   @media (max-width: 768px) {
     .footer-content {
@@ -101,4 +118,3 @@
     }
   }
 </style>
-
