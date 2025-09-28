@@ -258,16 +258,26 @@
 </svelte:head>
 
 <div class="social-page">
-  <div class="container">
-    <header class="page-header">
-      <h1 class="heading-accent">Social Media</h1>
-      <p>
-        Stay connected with us and see what our guests are sharing about their
-        experiences.
-      </p>
-    </header>
+  <!-- Hero Section -->
+  <section class="social-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="heading-accent-center">Social Media</h1>
+        <p class="hero-subtitle">
+          Stay connected with us and see what our guests are sharing about their
+          experiences at Hotel Ludwig van Beethoven.
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <section class="social-widget-section">
+  <!-- Social Media Feed Section -->
+  <section class="social-feed-section">
+    <div class="container">
+      <div class="feed-header">
+        <h2 class="heading-accent-center">Latest Posts</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      </div>
       <div class="widget-container" class:debug-active={debugMode}>
         {#if !showWidget}
           <div class="loading">
@@ -322,66 +332,329 @@
           {/if}
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Keep the iframe approach hidden but present -->
-    <section class="alternative-widget-section" style="display: none;">
-      <div class="widget-container">
-        <iframe
-          src="https://app.aadvanto.com/widget/social-post?key=OlkquTEQk5PlrkXGrs3w8Fq7nXLwyv&locationId=4973010"
-          width="100%"
-          height="600"
-          frameborder="0"
-          style="border: none;"
-          title="aadvanto login form"
-        >
-        </iframe>
+  <!-- Introduction Section -->
+  <section class="social-intro">
+    <div class="container">
+      <div class="intro-content">
+        <div class="intro-text">
+          <h2 class="heading-accent-center">Connect With Us</h2>
+          <p>
+            Follow our journey and join our community of travelers who share
+            their memorable experiences in Berlin. From architectural highlights
+            to local discoveries, see how our guests experience the authentic
+            charm of Kreuzberg.
+          </p>
+          <p>
+            Share your own moments using <strong
+              >#HotelLudwigVanBeethoven</strong
+            >
+            and become part of our story.
+          </p>
+        </div>
+        <div class="social-links-grid">
+          <a
+            href="https://facebook.com/hotellvb"
+            target="_blank"
+            rel="noopener"
+            class="social-link-card"
+          >
+            <div class="social-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 512 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M452,0H60C26.916,0,0,26.916,0,60v392c0,33.084,26.916,60,60,60h392c33.084,0,60-26.916,60-60V60 C512,26.916,485.084,0,452,0z M472,452c0,11.028-8.972,20-20,20H338V309h61.79L410,247h-72v-43c0-16.975,13.025-30,30-30h41v-62 h-41c-50.923,0-91.978,41.25-91.978,92.174V247H216v62h60.022v163H60c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h392 c11.028,0,20,8.972,20,20V452z"
+                />
+              </svg>
+            </div>
+            <h3>Facebook</h3>
+            <p>Updates & community</p>
+          </a>
+          <a
+            href="https://tripadvisor.com/hotellvb"
+            target="_blank"
+            rel="noopener"
+            class="social-link-card"
+          >
+            <div class="social-icon">
+              <svg
+                height="24"
+                viewBox="0 -70 490.66667 490"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+                id="fi_1241014"
+                ><path
+                  d="m362.667969 259.535156c-35.347657 0-64-28.65625-64-64 0-35.347656 28.652343-64 64-64 35.34375 0 64 28.652344 64 64-.074219 35.3125-28.683594 63.925782-64 64zm0-106.667968c-23.566407 0-42.667969 19.101562-42.667969 42.667968 0 23.5625 19.101562 42.664063 42.667969 42.664063 23.5625 0 42.664062-19.101563 42.664062-42.664063 0-23.566406-19.101562-42.667968-42.664062-42.667968zm0 0"
+                ></path><path
+                  d="m362.667969 323.535156c-70.695313 0-128-57.308594-128-128 0-70.695312 57.304687-128 128-128 70.691406 0 128 57.304688 128 128-.074219 70.660156-57.339844 127.925782-128 128zm0-234.667968c-58.910157 0-106.667969 47.753906-106.667969 106.667968 0 58.910156 47.757812 106.664063 106.667969 106.664063 58.910156 0 106.664062-47.753907 106.664062-106.664063-.070312-58.882812-47.785156-106.59375-106.664062-106.667968zm0 0"
+                ></path><path
+                  d="m373.332031 184.867188h-21.332031v21.332031h21.332031zm0 0"
+                ></path><path
+                  d="m128 259.535156c-35.347656 0-64-28.65625-64-64 0-35.347656 28.652344-64 64-64s64 28.652344 64 64c-.074219 35.3125-28.683594 63.925782-64 64zm0-106.667968c-23.5625 0-42.667969 19.101562-42.667969 42.667968 0 23.5625 19.105469 42.664063 42.667969 42.664063s42.667969-19.101563 42.667969-42.664063c0-23.566406-19.105469-42.667968-42.667969-42.667968zm0 0"
+                ></path><path
+                  d="m128 323.535156c-70.691406 0-128-57.308594-128-128 0-70.695312 57.308594-128 128-128s128 57.304688 128 128c-.074219 70.660156-57.339844 127.925782-128 128zm0-234.667968c-58.910156 0-106.667969 47.753906-106.667969 106.667968 0 58.910156 47.757813 106.664063 106.667969 106.664063s106.667969-47.753907 106.667969-106.664063c-.074219-58.882812-47.789063-106.59375-106.667969-106.667968zm0 0"
+                ></path><path
+                  d="m138.667969 184.867188h-21.335938v21.332031h21.335938zm0 0"
+                ></path><path
+                  d="m245.332031 351.265625-48.53125-60.664063 16.664063-13.335937 31.867187 39.867187 31.867188-39.867187 16.667969 13.335937zm0 0"
+                ></path><path
+                  d="m447.867188 101.667969-20-7.46875 24.933593-66.132813-114.800781 20.535156-3.734375-20.933593 151.601563-27.335938zm0 0"
+                ></path><path
+                  d="m42.800781 101.667969-38-101.335938 151.597657 27.335938-3.730469 20.933593-114.800781-20.535156 24.933593 66.132813zm0 0"
+                ></path><path
+                  d="m490.667969 195.535156h-21.335938c0-88.269531-100.53125-160-224-160-123.464843 0-224 71.730469-224 160h-21.332031c0-100 110-181.335937 245.332031-181.335937 135.335938 0 245.335938 81.335937 245.335938 181.335937zm0 0"
+                ></path></svg
+              >
+            </div>
+            <h3>TripAdvisor</h3>
+            <p>Guest reviews & ratings</p>
+          </a>
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <!-- Engagement Section -->
+  <section class="social-engagement">
+    <div class="container">
+      <div class="engagement-content">
+        <h2 class="heading-accent-center">Share Your Experience</h2>
+        <p>
+          Did you enjoy your stay at Hotel Ludwig van Beethoven? We'd love to
+          see your photos and hear about your Berlin adventures!
+        </p>
+        <div class="engagement-actions">
+          <a href="/reviews" class="engagement-btn primary"> Write a Review </a>
+          <span class="engagement-hashtag">#HotelLudwigVanBeethoven</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keep the iframe approach hidden but present -->
+  <section class="alternative-widget-section" style="display: none;">
+    <div class="widget-container">
+      <iframe
+        src="https://app.aadvanto.com/widget/social-post?key=OlkquTEQk5PlrkXGrs3w8Fq7nXLwyv&locationId=4973010"
+        width="100%"
+        height="600"
+        frameborder="0"
+        style="border: none;"
+        title="aadvanto login form"
+      >
+      </iframe>
+    </div>
+  </section>
 </div>
 
 <style>
   .social-page {
     background: var(--color-background);
-    padding: var(--space-4xl) 0;
   }
 
-  .container {
+  /* Hero Section */
+  .social-hero {
+    background: var(--color-background);
+    padding: var(--section-padding-y) 0;
+    text-align: center;
+  }
+
+  .hero-content {
     max-width: var(--container-xl);
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--section-padding-x);
   }
 
-  .page-header {
-    text-align: center;
-    margin-bottom: var(--space-4xl);
-  }
-
-  .page-header h1 {
+  .hero-content h1 {
     color: var(--color-text);
-    margin-bottom: var(--space-lg);
-    font-family: var(--font-display);
+    margin-bottom: var(--space-xl);
   }
 
-  .page-header p {
+  .hero-subtitle {
     color: var(--color-text-light);
-    font-size: var(--font-size-lg);
     max-width: 600px;
     margin: 0 auto;
   }
 
-  .widget-container {
+  /* Introduction Section */
+  .social-intro {
+    padding: var(--section-padding-y) 0;
+    background: var(--color-background);
+  }
+
+  .social-intro .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--section-padding-x);
+  }
+
+  .intro-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    align-items: center;
+    text-align: center;
+  }
+
+  .intro-text h2 {
+    margin-bottom: var(--space-xl);
+    color: var(--color-text);
+  }
+
+  .intro-text p {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
+  }
+
+  .social-links-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .social-link-card {
     background: var(--color-background-elevated);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 2px 8px rgba(90, 78, 71, 0.08);
+    text-decoration: none;
+    transition: transform var(--transition-fast);
+    text-align: center;
+    flex: 1;
+    max-width: 300px;
+  }
+
+  .social-link-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(90, 78, 71, 0.12);
+  }
+
+  .social-icon {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .social-link-card h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .social-link-card p {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  /* Social Feed Section */
+  .social-feed-section {
+    padding: var(--section-padding-y) 0;
+    background: var(--color-background-elevated);
+  }
+
+  .social-feed-section .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--section-padding-x);
+  }
+
+  .feed-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .feed-header h2 {
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+  }
+
+  .feed-header p {
+    color: var(--color-text-light);
+  }
+
+  /* Engagement Section */
+  .social-engagement {
+    padding: var(--section-padding-y) 0;
+    background: var(--color-background-elevated);
+  }
+
+  .social-engagement .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--section-padding-x);
+  }
+
+  .engagement-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .engagement-content h2 {
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+  }
+
+  .engagement-content p {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .engagement-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .engagement-btn {
+    background: var(--color-secondary);
+    color: white;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+    transition: background-color var(--transition-fast);
+  }
+
+  .engagement-btn:hover {
+    background: var(--color-accent);
+  }
+
+  .engagement-hashtag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    color: var(--color-secondary);
+    font-weight: var(--font-weight-semibold);
+    background: rgba(26, 74, 107, 0.1);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(26, 74, 107, 0.2);
+  }
+
+  .widget-container {
+    background: var(--color-background);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-xl);
-    padding: var(--space-3xl);
-    min-height: 1000px;
+    padding: var(--space-2xl);
+    min-height: 600px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(90, 78, 71, 0.08);
   }
 
   .loading {
@@ -602,15 +875,15 @@
     flex-direction: column !important;
     background: var(--color-background-elevated) !important;
     border: 1px solid var(--color-border-light) !important;
-    border-radius: var(--radius-lg) !important;
-    box-shadow: var(--shadow-md) !important;
-    transition: all 0.3s ease !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: 0 4px 12px rgba(90, 78, 71, 0.08) !important;
+    transition: all var(--transition-fast) !important;
     overflow: hidden !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item:hover) {
-    transform: translateY(-4px) !important;
-    box-shadow: var(--shadow-lg) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(90, 78, 71, 0.12) !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item-photo) {
@@ -626,47 +899,50 @@
   }
 
   .theme-carousel :global(.ubw-social-post-item-title-container) {
-    padding: var(--space-md) var(--space-md) var(--space-sm) !important;
-    font-size: var(--font-size-lg) !important;
+    padding: var(--space-lg) var(--space-lg) var(--space-sm) !important;
+    font-size: var(--font-size-xl) !important;
     font-family: var(--font-display) !important;
+    font-weight: var(--font-weight-semibold) !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item-title-container a) {
     color: var(--color-text) !important;
     text-decoration: none !important;
     display: block !important;
-    line-height: 1.3 !important;
+    line-height: var(--line-height-tight) !important;
+    transition: color var(--transition-fast) !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item-title-container a:hover) {
-    color: var(--color-primary) !important;
+    color: var(--color-secondary) !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item-description) {
-    padding: 0 var(--space-md) !important;
+    padding: 0 var(--space-lg) !important;
     flex-grow: 1 !important;
-    font-size: var(--font-size-sm) !important;
-    line-height: 1.5 !important;
+    font-size: var(--font-size-base) !important;
+    line-height: var(--line-height-relaxed) !important;
     color: var(--color-text-light) !important;
     overflow: hidden !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item-button) {
-    margin: var(--space-md) !important;
+    margin: var(--space-lg) !important;
     margin-top: auto !important;
-    background: var(--color-primary) !important;
-    color: white !important;
+    background: var(--color-secondary) !important;
+    color: var(--color-text-inverse) !important;
     border: none !important;
-    padding: var(--space-sm) var(--space-md) !important;
-    border-radius: var(--radius-md) !important;
+    padding: var(--space-sm) var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
     font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-semibold) !important;
     cursor: pointer !important;
-    transition: all 0.2s ease !important;
+    transition: all var(--transition-fast) !important;
     align-self: stretch !important;
   }
 
   .theme-carousel :global(.ubw-social-post-item-button:hover) {
-    background: var(--color-primary-dark) !important;
+    background: var(--color-secondary-light) !important;
     transform: translateY(-1px) !important;
   }
 
@@ -676,12 +952,12 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-md);
-    margin: var(--space-lg) auto 0;
-    background: rgba(255, 255, 255, 0.95);
-    padding: var(--space-sm) var(--space-lg);
+    margin: var(--space-xl) auto 0;
+    background: var(--color-background-elevated);
+    padding: var(--space-md) var(--space-xl);
     border-radius: var(--radius-full);
-    box-shadow: var(--shadow-lg);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 4px 12px rgba(90, 78, 71, 0.08);
     z-index: 100 !important;
     pointer-events: auto !important;
     width: fit-content;
@@ -692,28 +968,29 @@
     height: 44px;
     border: none;
     border-radius: 50%;
-    background: var(--color-primary);
-    color: white;
-    font-size: var(--font-size-lg);
-    font-weight: bold;
+    background: var(--color-secondary);
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     user-select: none;
+    line-height: 1;
   }
 
   .carousel-btn:hover:not(:disabled) {
-    background: var(--color-primary-dark);
-    transform: scale(1.1);
+    background: var(--color-secondary-light);
+    transform: scale(1.05);
   }
 
   .carousel-btn:disabled {
     background: var(--color-border-light);
     color: var(--color-text-light);
     cursor: not-allowed;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 
   .carousel-indicators {
@@ -727,18 +1004,18 @@
     height: 12px;
     border-radius: 50%;
     border: none;
-    background: var(--color-border-light);
+    background: var(--color-border);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
   }
 
   .carousel-indicator.active {
-    background: var(--color-primary);
+    background: var(--color-secondary);
     transform: scale(1.2);
   }
 
   .carousel-indicator:hover {
-    background: var(--color-primary);
+    background: var(--color-secondary-light);
   }
 
   /* Position carousel nav above widget content */
@@ -750,19 +1027,58 @@
     position: relative !important;
   }
 
-  /* Responsive */
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .social-links-grid {
+      gap: var(--space-xl);
+    }
+  }
+
   @media (max-width: 768px) {
-    .social-page {
-      padding: var(--space-2xl) 0;
+    .social-hero,
+    .social-intro,
+    .social-feed-section,
+    .social-engagement {
+      padding: var(--space-3xl) 0;
     }
 
-    .container {
+    .hero-content,
+    .social-intro .container,
+    .social-feed-section .container,
+    .social-engagement .container {
       padding: 0 var(--space-md);
     }
 
+    .social-links-grid {
+      flex-direction: column;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .social-link-card {
+      max-width: 400px;
+      width: 100%;
+    }
+
     .widget-container {
-      padding: var(--space-xl);
-      min-height: 600px;
+      padding: var(--space-lg);
+      min-height: 400px;
+    }
+
+    .engagement-actions {
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .carousel-nav {
+      padding: var(--space-sm) var(--space-lg);
+      gap: var(--space-sm);
+    }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      font-size: var(--font-size-base);
     }
   }
 </style>
