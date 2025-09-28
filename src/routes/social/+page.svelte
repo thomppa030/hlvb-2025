@@ -377,7 +377,52 @@
             <p>Updates & community</p>
           </a>
           <a
-            href="https://tripadvisor.com/hotellvb"
+            href="https://www.google.com/search?q=hotel+ludwig+van+beethoven&sca_esv=1ab80d3e8e62071f&sxsrf=AE3TifPjRmTbDli-tqJhmHiagrc4IllUfQ%3A1759061016069&source=hp&ei=GCTZaJ68AtKJ7NYPr_DGmAY&iflsig=AOw8s4IAAAAAaNkyKA0PQWivxgZnRwIIHKhJywpYaVFG&gs_ssp=eJzj4tZP1zcsScktMEpPN2C0UjWoMDFPtDBJSzJPM0gyNTY0M7QyqEhLNkw2NUpJMrdMTkwyNjPzksrIL0nNUcgpTSnPTFcoS8xTSEpNLcnIL0vNAwC7SBk6&oq=Hotel+Ludwi&gs_lp=Egdnd3Mtd2l6IgtIb3RlbCBMdWR3aSoCCAAyFxAuGIAEGMcBGJgFGJkFGMsBGI4FGK8BMggQABiABBjLATIIEAAYgAQYywEyCBAAGIAEGMsBMhEQLhiABBjHARiYBRjLARivATIIEAAYgAQYywEyFBAuGIAEGMcBGJgFGJkFGMsBGK8BMggQABiABBjLATIIEAAYgAQYywEyFBAuGIAEGMcBGJgFGJkFGMsBGK8BSPAbUABY2RJwAXgAkAEAmAF5oAHnB6oBBDEwLjK4AQPIAQD4AQGYAg2gAoAIwgIEECMYJ8ICChAjGIAEGCcYigXCAgsQLhiABBjRAxjHAcICBRAAGIAEwgIFEC4YgATCAggQLhiABBjUAsICFxAuGIAEGMcBGJgFGJkFGJ4FGI4FGK8BwgILEAAYgAQYkgMYigXCAggQABiABBjJA8ICFBAuGIAEGMcBGJgFGJkFGI4FGK8BwgIaEC4YgAQYxwEYmAUYmQUYywEYngUYjgUYrwHCAgsQABiABBjJAxjLAcICCBAuGIAEGMsBwgIKEAAYgAQYChjLAZgDAJIHBDExLjKgB8jKAbIHBDEwLjK4B_4HwgcGMS4xMS4xyAcR&sclient=gws-wiz"
+            target="_blank"
+            rel="noopener"
+            class="social-link-card"
+          >
+            <div class="social-icon">
+              <svg
+                version="1.1"
+                id="fi_104093"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="24"
+                height="24"
+                x="0px"
+                y="0px"
+                viewBox="0 0 210 210"
+                style="enable-background:new 0 0 210 210;"
+                xml:space="preserve"
+              >
+                <path
+                  d="M0,105C0,47.103,47.103,0,105,0c23.383,0,45.515,7.523,64.004,21.756l-24.4,31.696C133.172,44.652,119.477,40,105,40
+	c-35.841,0-65,29.159-65,65s29.159,65,65,65c28.867,0,53.398-18.913,61.852-45H105V85h105v20c0,57.897-47.103,105-105,105
+	S0,162.897,0,105z"
+                ></path>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+                <g> </g>
+              </svg>
+            </div>
+            <h3>Google</h3>
+            <p>Guest reviews & ratings</p>
+          </a>
+          <a
+            href="https://www.tripadvisor.com/Hotel_Review-g187323-d231108-Reviews-Hotel_Ludwig_Van_Beethoven-Berlin.html"
             target="_blank"
             rel="noopener"
             class="social-link-card"
