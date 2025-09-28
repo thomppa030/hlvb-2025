@@ -186,7 +186,7 @@
     color: var(--color-text);
     padding: var(--space-4xl) 0 var(--space-3xl);
     position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--color-border-light);
   }
   
   .hero-content {
@@ -197,7 +197,7 @@
   .hero-title {
     font-size: var(--font-size-4xl);
     font-family: var(--font-display);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
     color: var(--color-text);
     font-weight: var(--font-weight-semibold);
     letter-spacing: -0.01em;
@@ -206,12 +206,12 @@
   .hero-subtitle {
     font-size: var(--font-size-lg);
     margin-bottom: var(--space-3xl);
-    color: var(--color-text);
+    color: var(--color-text-light);
     font-weight: var(--font-weight-normal);
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    line-height: var(--line-height-normal);
+    line-height: var(--line-height-relaxed);
   }
   
   .rating-summary {
@@ -220,15 +220,15 @@
   }
   
   .average-rating {
-    background: transparent;
-    border: 2px solid var(--color-secondary);
+    background: var(--color-background-elevated);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-2xl);
     padding: var(--space-xl) var(--space-2xl);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-md);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-md);
   }
   
   .rating-number {
@@ -250,7 +250,7 @@
   }
   
   .star.filled {
-    color: #C8A882; /* Warm gold that complements the taupe palette */
+    color: var(--color-rating);
   }
   
   .review-count {
@@ -263,7 +263,7 @@
   .rating-summary-section {
     background-color: var(--color-background);
     padding: var(--space-2xl) 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--color-border-light);
   }
   
   .rating-summary-section .rating-summary {
@@ -273,9 +273,9 @@
   
   /* Filters Section */
   .filters-section {
-    background-color: var(--color-background);
-    padding: var(--space-lg) 0 var(--space-2xl);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: var(--color-background-alt);
+    padding: var(--space-2xl) 0;
+    border-bottom: 1px solid var(--color-border-light);
   }
   
   .filters-wrapper {
@@ -300,31 +300,32 @@
   
   .filter-select {
     padding: var(--space-sm) var(--space-lg);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: var(--radius-xl);
-    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-background-elevated);
     color: var(--color-text);
     font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
     cursor: pointer;
     transition: all var(--transition-fast);
-    font-weight: var(--font-weight-light);
     appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
     background-position: right 12px center;
     background-repeat: no-repeat;
     background-size: 16px;
     padding-right: var(--space-3xl);
+    box-shadow: var(--shadow-sm);
   }
   
   .filter-select:hover {
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border-color: var(--color-secondary-light);
+    box-shadow: var(--shadow-md);
   }
   
   .filter-select:focus {
     outline: none;
     border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(74, 144, 164, 0.08);
+    box-shadow: 0 0 0 3px rgba(26, 74, 107, 0.1);
   }
   
   .results-info {
@@ -342,7 +343,7 @@
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: var(--space-2xl);
     margin-bottom: var(--space-4xl);
-    max-width: 1400px;
+    max-width: var(--container-xl);
     margin-left: auto;
     margin-right: auto;
   }
@@ -366,36 +367,51 @@
   
   
   /* Responsive Design */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: var(--font-size-4xl);
-    }
-    
-    .hero-subtitle {
-      font-size: var(--font-size-base);
-    }
-    
-    .rating-number {
-      font-size: var(--font-size-3xl);
-    }
-    
-    .reviews-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-      max-width: none;
-    }
-    
+  @media (max-width: 1024px) {
     .filters-wrapper {
       flex-direction: column;
       align-items: stretch;
+      gap: var(--space-lg);
     }
-    
+
+    .filter-group {
+      justify-content: center;
+    }
+
+    .results-info {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .reviews-hero {
+      padding: var(--space-3xl) 0 var(--space-2xl);
+    }
+
+    .hero-title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-size-base);
+    }
+
+    .rating-number {
+      font-size: var(--font-size-2xl);
+    }
+
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
     .filter-group {
       flex-direction: column;
       align-items: stretch;
+      gap: var(--space-sm);
     }
-    
-    .results-info {
+
+    .filter-select {
       text-align: center;
     }
   }
