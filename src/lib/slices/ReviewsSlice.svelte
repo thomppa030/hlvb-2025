@@ -62,7 +62,7 @@
   }
 
   .container {
-    max-width: 1200px;
+    max-width: var(--container-xl);
     margin: 0 auto;
     padding: 0 var(--space-lg);
   }
@@ -77,17 +77,28 @@
   .reviews-title :global(h2) {
     font-family: var(--font-display);
     font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     margin-bottom: var(--space-lg);
-    line-height: var(--line-height-tight);
+    position: relative;
+    padding-bottom: var(--space-lg);
+  }
+
+  .reviews-title :global(h2)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-secondary);
+    border-radius: var(--radius-sm);
   }
 
   .reviews-description :global(p) {
     font-family: var(--font-primary);
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
-    color: var(--color-text-light);
+    color: var(--color-text);
     margin-bottom: var(--space-xl);
   }
 

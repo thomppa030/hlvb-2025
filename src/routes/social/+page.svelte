@@ -16,17 +16,13 @@
     if (browser) {
       // Check if this is the first visit (not a refresh)
       const hasRefreshed = sessionStorage.getItem("social-page-refreshed");
-      console.log("Has refreshed:", hasRefreshed);
 
       if (!hasRefreshed) {
-        console.log("First visit detected, refreshing page...");
         // First visit - set flag and refresh
         sessionStorage.setItem("social-page-refreshed", "true");
         location.reload();
         return;
       }
-
-      console.log("Page already refreshed, loading Aadvanto widget script...");
 
       // Check if script already exists
       const existingScript = document.querySelector(
@@ -44,7 +40,6 @@
       script.async = true;
 
       script.onload = () => {
-        console.log("Aadvanto script loaded");
         scriptLoaded = true;
 
         // Wait a bit for initialization then show widget regardless
@@ -81,8 +76,6 @@
       console.log("Widget not found");
       return;
     }
-
-    console.log("🔍 Widget Analysis Starting...");
 
     // Basic widget info
     const analysis = {
@@ -267,7 +260,7 @@
 <div class="social-page">
   <div class="container">
     <header class="page-header">
-      <h1>Social Media</h1>
+      <h1 class="heading-accent">Social Media</h1>
       <p>
         Stay connected with us and see what our guests are sharing about their
         experiences.
@@ -340,6 +333,7 @@
           height="600"
           frameborder="0"
           style="border: none;"
+          title="aadvanto login form"
         >
         </iframe>
       </div>
@@ -349,13 +343,12 @@
 
 <style>
   .social-page {
-    min-height: 100vh;
     background: var(--color-background);
     padding: var(--space-4xl) 0;
   }
 
   .container {
-    max-width: 1200px;
+    max-width: var(--container-xl);
     margin: 0 auto;
     padding: 0 var(--space-lg);
   }

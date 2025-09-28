@@ -24,12 +24,10 @@
   function handleClickOutside(event) {
     // Don't interfere with navigation links
     if (event.target.closest('a') || event.target.closest('.nav-link')) {
-      console.log('LanguageSwitcher: Ignoring click on navigation link');
       return;
     }
 
     if (!event.target.closest('.language-switcher')) {
-      console.log('LanguageSwitcher: Closing dropdown due to outside click');
       showDropdown = false;
     }
   }

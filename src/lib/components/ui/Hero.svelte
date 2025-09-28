@@ -145,7 +145,8 @@
     font-weight: var(--font-weight-bold);
     margin: 0;
     text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
-    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
     line-height: 1.05;
     color: var(--color-text-inverse);
     text-align: center;

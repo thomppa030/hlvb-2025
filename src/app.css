@@ -38,12 +38,11 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-/* H1 - Majuskeln (uppercase) with extended letter spacing */
+/* H1 - Primary headings */
 h1 {
   font-size: var(--font-size-5xl);
-  font-weight: var(--font-weight-semibold); /* Semibold on light backgrounds */
-  text-transform: uppercase;
-  letter-spacing: 0.05em; /* Extended letter spacing */
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
 }
 
 

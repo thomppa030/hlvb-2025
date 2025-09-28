@@ -153,7 +153,18 @@ const translations = {
     'booking.rooms': 'Zimmer',
     'booking.children': 'Kinder',
     'booking.book_now': 'Jetzt buchen',
-    
+    'booking.adults_1': '1 Erwachsener',
+    'booking.adults_2': '2 Erwachsene',
+    'booking.adults_3': '3 Erwachsene',
+    'booking.adults_4': '4 Erwachsene',
+    'booking.rooms_1': '1 Zimmer',
+    'booking.rooms_2': '2 Zimmer',
+    'booking.rooms_3': '3 Zimmer',
+    'booking.children_0': 'Keine Kinder',
+    'booking.children_1': '1 Kind',
+    'booking.children_2': '2 Kinder',
+    'booking.children_3': '3 Kinder',
+
     // Footer
     'footer.impressum': 'Impressum'
   },
@@ -225,7 +236,18 @@ const translations = {
     'booking.rooms': 'Rooms',
     'booking.children': 'Children',
     'booking.book_now': 'Book Now',
-    
+    'booking.adults_1': '1 Adult',
+    'booking.adults_2': '2 Adults',
+    'booking.adults_3': '3 Adults',
+    'booking.adults_4': '4 Adults',
+    'booking.rooms_1': '1 Room',
+    'booking.rooms_2': '2 Rooms',
+    'booking.rooms_3': '3 Rooms',
+    'booking.children_0': 'No Children',
+    'booking.children_1': '1 Child',
+    'booking.children_2': '2 Children',
+    'booking.children_3': '3 Children',
+
     // Footer
     'footer.impressum': 'Legal Notice'
   }

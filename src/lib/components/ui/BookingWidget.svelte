@@ -22,10 +22,10 @@
   }
 
   // Get tomorrow's date in YYYY-MM-DD format
-  function getTomorrowDate() {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().split("T")[0];
+  function getTomorrowDate(fromDate = null) {
+    const baseDate = fromDate ? new Date(fromDate) : new Date();
+    baseDate.setDate(baseDate.getDate() + 1);
+    return baseDate.toISOString().split("T")[0];
   }
 
   // Format date for OnePageBooking (DD.MM.YYYY)
@@ -77,6 +77,11 @@
     arrival = getTodayDate();
     departure = getTomorrowDate();
   }
+
+  // Reactive date validation: ensure departure is after arrival
+  $: if (arrival && departure && new Date(arrival) >= new Date(departure)) {
+    departure = getTomorrowDate(arrival);
+  }
 </script>
 
 {#if type === "simple"}
@@ -121,29 +126,29 @@
         <div class="form-group">
           <label for="adults">{$t('booking.adults')}</label>
           <select id="adults" bind:value={adults}>
-            <option value={1}>{$currentLanguage === 'de' ? '1 Erwachsener' : '1 Adult'}</option>
-            <option value={2}>{$currentLanguage === 'de' ? '2 Erwachsene' : '2 Adults'}</option>
-            <option value={3}>{$currentLanguage === 'de' ? '3 Erwachsene' : '3 Adults'}</option>
-            <option value={4}>{$currentLanguage === 'de' ? '4 Erwachsene' : '4 Adults'}</option>
+            <option value={1}>{$t('booking.adults_1')}</option>
+            <option value={2}>{$t('booking.adults_2')}</option>
+            <option value={3}>{$t('booking.adults_3')}</option>
+            <option value={4}>{$t('booking.adults_4')}</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="rooms">{$t('booking.rooms')}</label>
           <select id="rooms" bind:value={rooms}>
-            <option value={1}>{$currentLanguage === 'de' ? '1 Zimmer' : '1 Room'}</option>
-            <option value={2}>{$currentLanguage === 'de' ? '2 Zimmer' : '2 Rooms'}</option>
-            <option value={3}>{$currentLanguage === 'de' ? '3 Zimmer' : '3 Rooms'}</option>
+            <option value={1}>{$t('booking.rooms_1')}</option>
+            <option value={2}>{$t('booking.rooms_2')}</option>
+            <option value={3}>{$t('booking.rooms_3')}</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="children">{$t('booking.children')}</label>
           <select id="children" bind:value={children}>
-            <option value={0}>{$currentLanguage === 'de' ? 'Keine Kinder' : 'No Children'}</option>
-            <option value={1}>{$currentLanguage === 'de' ? '1 Kind' : '1 Child'}</option>
-            <option value={2}>{$currentLanguage === 'de' ? '2 Kinder' : '2 Children'}</option>
-            <option value={3}>{$currentLanguage === 'de' ? '3 Kinder' : '3 Children'}</option>
+            <option value={0}>{$t('booking.children_0')}</option>
+            <option value={1}>{$t('booking.children_1')}</option>
+            <option value={2}>{$t('booking.children_2')}</option>
+            <option value={3}>{$t('booking.children_3')}</option>
           </select>
         </div>
       </div>

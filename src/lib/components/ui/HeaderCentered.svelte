@@ -63,7 +63,6 @@
             href="/infos"
             class="nav-link"
             class:active={isActive("/infos")}
-            on:click={() => console.log('Infos link clicked - navigating to /infos')}
           >
             Infos
           </a>
@@ -71,7 +70,6 @@
             href="/social"
             class="nav-link"
             class:active={isActive("/social")}
-            on:click={() => console.log('Social link clicked - navigating to /social')}
           >
             Social
           </a>

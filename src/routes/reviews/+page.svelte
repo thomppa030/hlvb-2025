@@ -58,7 +58,7 @@
     <section class="reviews-hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">{$t('reviews.title')}</h1>
+          <h1 class="hero-title heading-accent">{$t('reviews.title')}</h1>
           <p class="hero-subtitle">
             {$t('reviews.text')}
           </p>
@@ -176,17 +176,21 @@
 
 <style>
   .reviews-page {
-    min-height: 100vh;
     background-color: var(--color-background);
+  }
+
+  .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
   }
   
   /* Hero Section */
   .reviews-hero {
     background: var(--color-background);
     color: var(--color-text);
-    padding: var(--space-4xl) 0 var(--space-3xl);
+    padding: var(--space-4xl) 0;
     position: relative;
-    border-bottom: 1px solid var(--color-border-light);
   }
   
   .hero-content {
@@ -199,14 +203,12 @@
     font-family: var(--font-display);
     margin-bottom: var(--space-xl);
     color: var(--color-text);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: -0.01em;
   }
   
   .hero-subtitle {
     font-size: var(--font-size-lg);
     margin-bottom: var(--space-3xl);
-    color: var(--color-text-light);
+    color: var(--color-text);
     font-weight: var(--font-weight-normal);
     max-width: 600px;
     margin-left: auto;
@@ -221,14 +223,14 @@
   
   .average-rating {
     background: var(--color-background-elevated);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-light);
     border-radius: var(--radius-2xl);
     padding: var(--space-xl) var(--space-2xl);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-md);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 2px 8px rgba(90, 78, 71, 0.08);
   }
   
   .rating-number {
@@ -255,15 +257,14 @@
   
   .review-count {
     font-size: var(--font-size-base);
-    color: var(--color-text);
+    color: var(--color-text-light);
     font-weight: var(--font-weight-medium);
   }
   
   /* Standalone Rating Summary Section */
   .rating-summary-section {
     background-color: var(--color-background);
-    padding: var(--space-2xl) 0;
-    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--space-4xl) 0;
   }
   
   .rating-summary-section .rating-summary {
@@ -274,8 +275,7 @@
   /* Filters Section */
   .filters-section {
     background-color: var(--color-background-alt);
-    padding: var(--space-2xl) 0;
-    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--space-4xl) 0;
   }
   
   .filters-wrapper {
@@ -300,7 +300,7 @@
   
   .filter-select {
     padding: var(--space-sm) var(--space-lg);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-light);
     border-radius: var(--radius-lg);
     background-color: var(--color-background-elevated);
     color: var(--color-text);
@@ -314,12 +314,12 @@
     background-repeat: no-repeat;
     background-size: 16px;
     padding-right: var(--space-3xl);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(90, 78, 71, 0.08);
   }
   
   .filter-select:hover {
     border-color: var(--color-secondary-light);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(90, 78, 71, 0.12);
   }
   
   .filter-select:focus {
@@ -331,11 +331,13 @@
   .results-info {
     font-size: var(--font-size-sm);
     color: var(--color-text-light);
+    font-weight: var(--font-weight-medium);
   }
   
   /* Reviews Section */
   .reviews-section {
     padding: var(--space-4xl) 0;
+    background: var(--color-background);
   }
   
   .reviews-grid {

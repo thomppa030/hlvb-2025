@@ -12,7 +12,7 @@
       <h1 class="heading-accent">Impressum</h1>
 
       <section>
-        <h2>Angaben gemäß § 5 TMG</h2>
+        <h2 class="heading-accent">Angaben gemäß § 5 TMG</h2>
         <p>
           <strong>Hotel Ludwig van Beethoven</strong><br>
           Hasenheide 14<br>
@@ -22,7 +22,7 @@
       </section>
 
       <section>
-        <h2>Kontakt</h2>
+        <h2 class="heading-accent">Kontakt</h2>
         <p>
           Telefon: +49 30 695 066 0<br>
           E-Mail: info@hotel-ludwig-van-beethoven.de<br>
@@ -31,7 +31,7 @@
       </section>
 
       <section>
-        <h2>Umsatzsteuer-ID</h2>
+        <h2 class="heading-accent">Umsatzsteuer-ID</h2>
         <p>
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
           DE123456789
@@ -39,7 +39,7 @@
       </section>
 
       <section>
-        <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+        <h2 class="heading-accent">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
         <p>
           Hotel Ludwig van Beethoven<br>
           Hasenheide 14<br>

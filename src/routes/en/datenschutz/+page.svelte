@@ -25,7 +25,7 @@
     <h1 class="heading-accent">Privacy Policy</h1>
 
     <section>
-      <h2>1. Data Controller</h2>
+      <h2 class="heading-accent">1. Data Controller</h2>
       <p>
         Responsible for data processing on this website:<br /><br />
         Hotel Ludwig van Beethoven<br />
@@ -38,7 +38,7 @@
     </section>
 
     <section>
-      <h2>2. General Information</h2>
+      <h2 class="heading-accent">2. General Information</h2>
       <p>
         The protection of your personal data is of particular concern to us. We
         therefore process your data exclusively on the basis of legal provisions
@@ -49,7 +49,7 @@
     </section>
 
     <section>
-      <h2>3. Collection of General Information</h2>
+      <h2 class="heading-accent">3. Collection of General Information</h2>
       <p>
         When you access our website, information of a general nature is
         automatically recorded. This information (server log files) includes the
@@ -66,7 +66,7 @@
     </section>
 
     <section>
-      <h2>4. Storage of Settings (localStorage)</h2>
+      <h2 class="heading-accent">4. Storage of Settings (localStorage)</h2>
       <p>
         Our website uses your browser's local storage (localStorage) to save
         your language preference. This function serves exclusively to display
@@ -83,7 +83,7 @@
     </section>
 
     <section>
-      <h2>5. Service Worker (Offline Functionality)</h2>
+      <h2 class="heading-accent">5. Service Worker (Offline Functionality)</h2>
       <p>
         Our website uses a Service Worker to cache certain content and improve
         performance. The Service Worker stores static resources such as images
@@ -97,9 +97,9 @@
     </section>
 
     <section>
-      <h2>6. Integration of External Services</h2>
+      <h2 class="heading-accent">6. Integration of External Services</h2>
 
-      <h3>6.1 Google Fonts</h3>
+      <h3 class="heading-accent">6.1 Google Fonts</h3>
       <p>
         Our website uses web fonts provided by Google for uniform display of
         fonts. When you access a page, your browser loads the required web fonts
@@ -115,7 +115,7 @@
         in the optimized presentation of our website).
       </p>
 
-      <h3>6.2 Prismic (Content Management)</h3>
+      <h3 class="heading-accent">6.2 Prismic (Content Management)</h3>
       <p>
         We use Prismic as a content management system. When loading images and
         content, these are retrieved from Prismic servers. Your IP address is
@@ -127,7 +127,7 @@
         in efficient content management).
       </p>
 
-      <h3>6.3 Customer Alliance (Reviews)</h3>
+      <h3 class="heading-accent">6.3 Customer Alliance (Reviews)</h3>
       <p>
         On our reviews page, we display guest reviews retrieved via Customer
         Alliance. When you access the reviews page, the review data is loaded
@@ -141,7 +141,7 @@
     </section>
 
     <section>
-      <h2>7. Your Rights</h2>
+      <h2 class="heading-accent">7. Your Rights</h2>
       <p>
         You generally have the rights to information, correction, deletion,
         restriction, data portability, revocation and objection regarding your
@@ -188,7 +188,7 @@
     </section>
 
     <section>
-      <h2>8. Contact</h2>
+      <h2 class="heading-accent">8. Contact</h2>
       <p>
         If you have any questions about the collection, processing or use of
         your personal data, for information, correction, restriction or deletion
@@ -204,7 +204,7 @@
     </section>
 
     <section>
-      <h2>9. Changes to This Privacy Policy</h2>
+      <h2 class="heading-accent">9. Changes to This Privacy Policy</h2>
       <p>
         We reserve the right to adapt this privacy policy so that it always
         complies with current legal requirements or to implement changes to our

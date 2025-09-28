@@ -25,6 +25,9 @@
   --color-warning: #8b6914; /* Warm amber */
   --color-error: #7a2e2e; /* Muted red that doesn't clash */
   --color-rating: #C8A882; /* Warm gold for star ratings that complements taupe palette */
+
+  /* Additional color variants */
+  --color-primary-dark: #3d342e; /* Darker variant of primary for hover states */
   
   /* Typography - Brand Fonts */
   --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
