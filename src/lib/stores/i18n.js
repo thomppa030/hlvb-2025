@@ -56,13 +56,13 @@ export const prismicLanguage = derived(currentLanguage, ($currentLanguage) => {
 // Function to switch language with URL navigation
 export async function switchLanguage(newLang, currentPath = '/') {
   if (!['de', 'en'].includes(newLang)) return;
-  
+
   currentLanguage.switchTo(newLang);
-  
+
   if (browser) {
     // Handle URL changes for language switching
     let newPath = currentPath;
-    
+
     // Remove existing language prefix
     if (currentPath.startsWith('/en/')) {
       newPath = currentPath.substring(3) || '/';
@@ -73,12 +73,12 @@ export async function switchLanguage(newLang, currentPath = '/') {
     } else if (currentPath === '/de') {
       newPath = '/';
     }
-    
+
     // Add new language prefix (except for German which is default)
     if (newLang === 'en') {
       newPath = `/en${newPath === '/' ? '' : newPath}`;
     }
-    
+
     // Navigate to new URL
     await goto(newPath);
   }
@@ -90,6 +90,8 @@ const translations = {
     // Navigation
     'nav.home': 'Startseite',
     'nav.reviews': 'Bewertungen',
+    'nav.infos': 'Infos',
+    'nav.aktuelles': 'Aktuelles',
     'nav.style': 'Style',
     'nav.book_now': 'Jetzt buchen',
     
@@ -173,6 +175,8 @@ const translations = {
     // Navigation
     'nav.home': 'Home',
     'nav.reviews': 'Reviews',
+    'nav.infos': 'Info',
+    'nav.aktuelles': 'News',
     'nav.style': 'Style',
     'nav.book_now': 'Book Now',
     

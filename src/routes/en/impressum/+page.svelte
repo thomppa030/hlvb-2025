@@ -3,43 +3,43 @@
 </script>
 
 <svelte:head>
-  <title>Impressum | Hotel Ludwig van Beethoven</title>
+  <title>Legal Notice | Hotel Ludwig van Beethoven</title>
 </svelte:head>
 
 <div class="impressum-page">
   <div class="container">
     <div class="impressum-content">
-      <h1 class="heading-accent">Impressum</h1>
+      <h1 class="heading-accent">Legal Notice</h1>
 
       <section>
-        <h2 class="heading-accent">Angaben gemäß § 5 TMG</h2>
+        <h2 class="heading-accent">Information according to § 5 TMG</h2>
         <p>
           <strong>Hotel Ludwig van Beethoven</strong><br>
           Hasenheide 14<br>
           10967 Berlin<br>
-          Deutschland
+          Germany
         </p>
       </section>
 
       <section>
-        <h2 class="heading-accent">Kontakt</h2>
+        <h2 class="heading-accent">Contact</h2>
         <p>
-          Telefon: +49 30 695 066 0<br>
-          E-Mail: info@hotel-ludwig-van-beethoven.de<br>
+          Phone: +49 30 695 066 0<br>
+          Email: info@hotel-ludwig-van-beethoven.de<br>
           Website: <a href="https://hotellvb.de">hotellvb.de</a>
         </p>
       </section>
 
       <section>
-        <h2 class="heading-accent">Umsatzsteuer-ID</h2>
+        <h2 class="heading-accent">VAT ID</h2>
         <p>
-          Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+          VAT identification number according to § 27 a VAT Act:<br>
           DE123456789
         </p>
       </section>
 
       <section>
-        <h2 class="heading-accent">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+        <h2 class="heading-accent">Responsible for content according to § 55 Abs. 2 RStV</h2>
         <p>
           Hotel Ludwig van Beethoven<br>
           Hasenheide 14<br>

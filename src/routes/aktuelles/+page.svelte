@@ -1,4 +1,4 @@
-<!-- src/routes/social/+page.svelte -->
+<!-- src/routes/aktuelles/+page.svelte -->
 <script>
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
@@ -250,10 +250,10 @@
 </script>
 
 <svelte:head>
-  <title>Social Media - Hotel Ludwig van Beethoven</title>
+  <title>Aktuelles - Hotel Ludwig van Beethoven</title>
   <meta
     name="description"
-    content="Stay connected with Hotel Ludwig van Beethoven through our social media updates."
+    content="Bleiben Sie mit dem Hotel Ludwig van Beethoven über unsere Social Media Updates verbunden."
   />
 </svelte:head>
 
@@ -262,10 +262,10 @@
   <section class="social-hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="heading-accent-center">Social Media</h1>
+        <h1 class="heading-accent-center">Aktuelles</h1>
         <p class="hero-subtitle">
-          Stay connected with us and see what our guests are sharing about their
-          experiences at Hotel Ludwig van Beethoven.
+          Bleiben Sie mit uns in Verbindung und sehen Sie, was unsere Gäste über ihre
+          Erfahrungen im Hotel Ludwig van Beethoven teilen.
         </p>
       </div>
     </div>
@@ -275,14 +275,14 @@
   <section class="social-feed-section">
     <div class="container">
       <div class="feed-header">
-        <h2 class="heading-accent-center">Latest Posts</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        <h2 class="heading-accent-center">Neueste Beiträge</h2>
+        <p>Entdecken Sie die neuesten Beiträge und Erfahrungen unserer Gäste.</p>
       </div>
       <div class="widget-container" class:debug-active={debugMode}>
         {#if !showWidget}
           <div class="loading">
             <div class="spinner"></div>
-            <p>Loading social media feed...</p>
+            <p>Social Media Feed wird geladen...</p>
           </div>
         {/if}
 
@@ -340,18 +340,18 @@
     <div class="container">
       <div class="intro-content">
         <div class="intro-text">
-          <h2 class="heading-accent-center">Connect With Us</h2>
+          <h2 class="heading-accent-center">Verbinden Sie sich mit uns</h2>
           <p>
-            Follow our journey and join our community of travelers who share
-            their memorable experiences in Berlin. From architectural highlights
-            to local discoveries, see how our guests experience the authentic
-            charm of Kreuzberg.
+            Folgen Sie unserer Reise und werden Sie Teil unserer Gemeinschaft von Reisenden, die
+            ihre unvergesslichen Erfahrungen in Berlin teilen. Von architektonischen Highlights
+            bis zu lokalen Entdeckungen - sehen Sie, wie unsere Gäste den authentischen
+            Charme von Kreuzberg erleben.
           </p>
           <p>
-            Share your own moments using <strong
+            Teilen Sie Ihre eigenen Momente mit <strong
               >#HotelLudwigVanBeethoven</strong
             >
-            and become part of our story.
+            und werden Sie Teil unserer Geschichte.
           </p>
         </div>
         <div class="social-links-grid">
@@ -374,7 +374,7 @@
               </svg>
             </div>
             <h3>Facebook</h3>
-            <p>Updates & community</p>
+            <p>Updates & Gemeinschaft</p>
           </a>
           <a
             href="https://www.google.com/search?q=hotel+ludwig+van+beethoven&sca_esv=1ab80d3e8e62071f&sxsrf=AE3TifPjRmTbDli-tqJhmHiagrc4IllUfQ%3A1759061016069&source=hp&ei=GCTZaJ68AtKJ7NYPr_DGmAY&iflsig=AOw8s4IAAAAAaNkyKA0PQWivxgZnRwIIHKhJywpYaVFG&gs_ssp=eJzj4tZP1zcsScktMEpPN2C0UjWoMDFPtDBJSzJPM0gyNTY0M7QyqEhLNkw2NUpJMrdMTkwyNjPzksrIL0nNUcgpTSnPTFcoS8xTSEpNLcnIL0vNAwC7SBk6&oq=Hotel+Ludwi&gs_lp=Egdnd3Mtd2l6IgtIb3RlbCBMdWR3aSoCCAAyFxAuGIAEGMcBGJgFGJkFGMsBGI4FGK8BMggQABiABBjLATIIEAAYgAQYywEyCBAAGIAEGMsBMhEQLhiABBjHARiYBRjLARivATIIEAAYgAQYywEyFBAuGIAEGMcBGJgFGJkFGMsBGK8BMggQABiABBjLATIIEAAYgAQYywEyFBAuGIAEGMcBGJgFGJkFGMsBGK8BSPAbUABY2RJwAXgAkAEAmAF5oAHnB6oBBDEwLjK4AQPIAQD4AQGYAg2gAoAIwgIEECMYJ8ICChAjGIAEGCcYigXCAgsQLhiABBjRAxjHAcICBRAAGIAEwgIFEC4YgATCAggQLhiABBjUAsICFxAuGIAEGMcBGJgFGJkFGJ4FGI4FGK8BwgILEAAYgAQYkgMYigXCAggQABiABBjJA8ICFBAuGIAEGMcBGJgFGJkFGI4FGK8BwgIaEC4YgAQYxwEYmAUYmQUYywEYngUYjgUYrwHCAgsQABiABBjJAxjLAcICCBAuGIAEGMsBwgIKEAAYgAQYChjLAZgDAJIHBDExLjKgB8jKAbIHBDEwLjK4B_4HwgcGMS4xMS4xyAcR&sclient=gws-wiz"
@@ -419,7 +419,7 @@
               </svg>
             </div>
             <h3>Google</h3>
-            <p>Guest reviews & ratings</p>
+            <p>Gästebewertungen & Bewertungen</p>
           </a>
           <a
             href="https://www.tripadvisor.com/Hotel_Review-g187323-d231108-Reviews-Hotel_Ludwig_Van_Beethoven-Berlin.html"
@@ -458,7 +458,7 @@
               >
             </div>
             <h3>TripAdvisor</h3>
-            <p>Guest reviews & ratings</p>
+            <p>Gästebewertungen & Bewertungen</p>
           </a>
         </div>
       </div>
@@ -469,13 +469,13 @@
   <section class="social-engagement">
     <div class="container">
       <div class="engagement-content">
-        <h2 class="heading-accent-center">Share Your Experience</h2>
+        <h2 class="heading-accent-center">Teilen Sie Ihre Erfahrung</h2>
         <p>
-          Did you enjoy your stay at Hotel Ludwig van Beethoven? We'd love to
-          see your photos and hear about your Berlin adventures!
+          Hat Ihnen Ihr Aufenthalt im Hotel Ludwig van Beethoven gefallen? Wir würden gerne
+          Ihre Fotos sehen und von Ihren Berlin-Abenteuern hören!
         </p>
         <div class="engagement-actions">
-          <a href="/reviews" class="engagement-btn primary"> Write a Review </a>
+          <a href="/reviews" class="engagement-btn primary"> Bewertung schreiben </a>
           <span class="engagement-hashtag">#HotelLudwigVanBeethoven</span>
         </div>
       </div>

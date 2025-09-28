@@ -2,14 +2,48 @@
 <script>
   import { page } from "$app/stores";
   import LanguageSwitcher from "./LanguageSwitcher.svelte";
-  import { t } from "$lib/stores/i18n.js";
+  import { t, currentLanguage } from "$lib/stores/i18n.js";
+
+  // Mobile menu state
+  let mobileMenuOpen = false;
+
+  // Toggle mobile menu
+  function toggleMobileMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+  }
+
+  // Close mobile menu when navigating
+  $: $page && (mobileMenuOpen = false);
 
   // Check if current route is active - reactive to page changes
   $: isActive = (route) => {
     const currentPath = $page.url.pathname;
-    if (route === "/" && currentPath === "/") return true;
-    if (route !== "/" && currentPath.startsWith(route)) return true;
-    return false;
+
+    // Handle home page for both languages
+    if (route === "/") {
+      return currentPath === "/" || currentPath === "/en";
+    }
+
+    // For other routes, check if the path starts with the route
+    // considering language prefix
+    if ($currentLanguage === 'en') {
+      const langRoute = route === '/' ? '/en' : `/en${route}`;
+      return currentPath === langRoute || currentPath.startsWith(langRoute + '/');
+    }
+
+    return currentPath === route || currentPath.startsWith(route + '/');
+  };
+
+  // Generate language-aware links
+  $: getLangLink = (path) => {
+    if ($currentLanguage === 'en') {
+      // For home page, return /en instead of /en/
+      if (path === '/') {
+        return '/en';
+      }
+      return `/en${path}`;
+    }
+    return path;
   };
 </script>
 
@@ -20,20 +54,20 @@
       <div class="nav-group">
         <!-- Left side links -->
         <div class="nav-side nav-left">
-          <a href="/" class="nav-link" class:active={isActive("/")}>
+          <a href={getLangLink("/")} class="nav-link" class:active={isActive("/")}>
             {$t("nav.home")}
           </a>
           <a
-            href="/reviews"
+            href={getLangLink("/reviews")}
             class="nav-link"
-            class:active={isActive("/reviews")}
+            class:active={isActive(getLangLink("/reviews"))}
           >
             {$t("nav.reviews")}
           </a>
         </div>
 
         <!-- Centered Logo -->
-        <a href="/" class="brand" class:active={isActive("/")}>
+        <a href={getLangLink("/")} class="brand" class:active={isActive("/")}>
           <picture>
             <source
               media="(max-width: 480px)"
@@ -60,29 +94,78 @@
         <!-- Right side links -->
         <div class="nav-side nav-right">
           <a
-            href="/infos"
+            href={getLangLink("/infos")}
             class="nav-link"
-            class:active={isActive("/infos")}
+            class:active={isActive(getLangLink("/infos"))}
           >
-            Infos
+            {$t("nav.infos")}
           </a>
           <a
-            href="/social"
+            href={getLangLink("/aktuelles")}
             class="nav-link"
-            class:active={isActive("/social")}
+            class:active={isActive(getLangLink("/aktuelles"))}
           >
-            Social
+            {$t("nav.aktuelles")}
           </a>
         </div>
       </div>
 
       <!-- Right side actions (further away) -->
       <div class="nav-actions">
+        <!-- Hamburger Menu Button (Mobile) -->
+        <button
+          class="hamburger-menu"
+          class:active={mobileMenuOpen}
+          on:click={toggleMobileMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
         <!-- Language Switcher -->
         <LanguageSwitcher />
       </div>
     </nav>
   </div>
+
+  <!-- Mobile Navigation Menu -->
+  <nav class="mobile-nav" class:active={mobileMenuOpen}>
+    <a
+      href={getLangLink("/")}
+      class="mobile-nav-link"
+      class:active={isActive("/")}
+      on:click={() => mobileMenuOpen = false}
+    >
+      {$t("nav.home")}
+    </a>
+    <a
+      href={getLangLink("/reviews")}
+      class="mobile-nav-link"
+      class:active={isActive(getLangLink("/reviews"))}
+      on:click={() => mobileMenuOpen = false}
+    >
+      {$t("nav.reviews")}
+    </a>
+    <a
+      href={getLangLink("/infos")}
+      class="mobile-nav-link"
+      class:active={isActive(getLangLink("/infos"))}
+      on:click={() => mobileMenuOpen = false}
+    >
+      {$t("nav.infos")}
+    </a>
+    <a
+      href={getLangLink("/aktuelles")}
+      class="mobile-nav-link"
+      class:active={isActive(getLangLink("/aktuelles"))}
+      on:click={() => mobileMenuOpen = false}
+    >
+      {$t("nav.aktuelles")}
+    </a>
+  </nav>
 </header>
 
 <style>
@@ -198,6 +281,106 @@
     border-radius: var(--radius-sm);
   }
 
+  /* Hamburger Menu Styles */
+  .hamburger-menu {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+    width: 40px;
+    height: 40px;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-right: var(--space-md);
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition-fast);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hamburger-line:nth-child(1) {
+    top: 12px;
+  }
+
+  .hamburger-line:nth-child(2) {
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .hamburger-line:nth-child(3) {
+    bottom: 12px;
+  }
+
+  .hamburger-menu.active .hamburger-line:nth-child(1) {
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+
+  .hamburger-menu.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active .hamburger-line:nth-child(3) {
+    bottom: 50%;
+    transform: translateX(-50%) translateY(50%) rotate(-45deg);
+  }
+
+  /* Mobile Navigation Menu */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 110px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: var(--space-md);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 99;
+  }
+
+  .mobile-nav.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    margin-bottom: var(--space-sm);
+  }
+
+  .mobile-nav-link:last-child {
+    margin-bottom: 0;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    background-color: var(--color-background-alt);
+    color: var(--color-secondary);
+  }
+
   /* Tablet responsive */
   @media (max-width: 1024px) {
     .header-centered {
@@ -250,6 +433,19 @@
 
     .nav-actions {
       right: var(--space-sm);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+      display: flex;
+    }
+
+    /* Show mobile nav when active */
+    .mobile-nav {
+      display: block;
+      top: 80px; /* Match header height */
     }
   }
 
@@ -261,5 +457,20 @@
     .brand-logo {
       height: 50px;
     }
+
+    .mobile-nav {
+      top: 80px; /* Match header height */
+    }
+  }
+
+  /* Dark mode support */
+  :global([data-theme="dark"]) .header-centered {
+    background: rgba(20, 20, 20, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  :global([data-theme="dark"]) .mobile-nav {
+    background: rgba(20, 20, 20, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 </style>

@@ -15,33 +15,31 @@
   <div class="container">
     <div class="content-grid">
       <div class="text-section">
-        <h1 class="heading-accent">Hotel Informationen</h1>
+        <h1 class="heading-accent">Hotel Information</h1>
         <p>
-          Willkommen im Hotel Ludwig van Beethoven, Ihrem charmanten Refugium im Herzen von Berlin-Kreuzberg.
-          Unser familiengeführtes Hotel verbindet traditionelle Gastlichkeit mit modernem Komfort und bietet
-          Ihnen die perfekte Basis, um die vielfältige Hauptstadt zu erkunden.
+          Welcome to Hotel Ludwig van Beethoven, your charming retreat in the heart of Berlin-Kreuzberg.
+          Our family-run hotel combines traditional hospitality with modern comfort, providing you with
+          the perfect base to explore the diverse capital city.
         </p>
         <p>
-          Seit Jahren empfangen wir Gäste aus aller Welt in unserem liebevoll gestalteten Hotel.
-          Jedes unserer Zimmer ist individuell eingerichtet und mit allem ausgestattet, was Sie für
-          einen angenehmen Aufenthalt benötigen. Kostenloses WLAN, komfortable Betten und ein
-          reichhaltiges Frühstück gehören selbstverständlich zu unserem Service.
+          For years, we have been welcoming guests from around the world to our lovingly designed hotel.
+          Each of our rooms is individually furnished and equipped with everything you need for a
+          pleasant stay. Free WiFi, comfortable beds, and a hearty breakfast are naturally part of
+          our service.
         </p>
         <p>
-          Die einzigartige Lage in Kreuzberg ermöglicht es Ihnen, das authentische Berlin zu erleben.
-          Zahlreiche Restaurants, Cafés, Galerien und kulturelle Einrichtungen befinden sich in
-          unmittelbarer Nähe. Auch die wichtigsten Sehenswürdigkeiten der Stadt sind bequem mit
-          öffentlichen Verkehrsmitteln erreichbar.
+          The unique location in Kreuzberg allows you to experience authentic Berlin. Numerous
+          restaurants, cafés, galleries, and cultural institutions are in the immediate vicinity.
+          The city's main attractions are also easily accessible by public transport.
         </p>
         <p>
-          Unser engagiertes Team steht Ihnen gerne mit Tipps und Empfehlungen zur Verfügung,
-          damit Ihr Berlin-Besuch zu einem unvergesslichen Erlebnis wird. Wir freuen uns darauf,
-          Sie in unserem Haus begrüßen zu dürfen!
+          Our dedicated team is happy to provide you with tips and recommendations to make your
+          Berlin visit an unforgettable experience. We look forward to welcoming you to our hotel!
         </p>
       </div>
 
       <div class="map-section">
-        <h2 class="heading-accent">Unsere Lage</h2>
+        <h2 class="heading-accent">Our Location</h2>
         {#if mapLoaded}
           <div class="map-container">
             <iframe
@@ -56,15 +54,15 @@
             ></iframe>
           </div>
         {:else}
-          <div class="map-loading">Karte wird geladen...</div>
+          <div class="map-loading">Loading map...</div>
         {/if}
         <div class="address">
-          <h3>Adresse</h3>
+          <h3>Address</h3>
           <p>
             Hotel Ludwig van Beethoven<br />
             Hasenheide 14<br />
             10967 Berlin<br />
-            Deutschland
+            Germany
           </p>
         </div>
       </div>

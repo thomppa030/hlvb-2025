@@ -6,6 +6,7 @@
   import StickyBookingForm from "$lib/components/ui/StickyBookingForm.svelte";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
+  import { currentLanguage } from "$lib/stores/i18n.js";
 
   let mounted = false;
 
@@ -18,10 +19,19 @@
   // Check if current page should show sticky form
   $: showStickyForm = pagesWithStickyForm.includes($page.url.pathname);
 
+  // Set language based on URL
+  $: if ($page.url.pathname.startsWith('/en')) {
+    currentLanguage.switchTo('en');
+  } else {
+    currentLanguage.switchTo('de');
+  }
+
   onMount(() => {
     mounted = true;
     // Force light mode only
     document.documentElement.setAttribute("data-theme", "light");
+    // Initialize language store
+    currentLanguage.init();
   });
 </script>
 
