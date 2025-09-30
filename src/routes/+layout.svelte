@@ -48,7 +48,7 @@
   </noscript>
 </svelte:head>
 
-<div class="app" class:mounted>
+<div class="app">
   <!-- Always use HeaderCentered -->
   <HeaderCentered />
   
@@ -64,14 +64,7 @@
 <style>
   .app {
     min-height: 100vh;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-  }
-
-
-
-  .app.mounted {
-    opacity: 1;
+    /* Removed opacity animation for LCP performance */
   }
 
   main {
