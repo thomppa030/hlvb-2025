@@ -336,11 +336,13 @@
     opacity: 0;
     transition: all var(--transition-normal);
     z-index: 99;
+    pointer-events: none;
   }
 
   .mobile-nav.active {
     transform: translateY(0);
     opacity: 1;
+    pointer-events: auto;
   }
 
 
