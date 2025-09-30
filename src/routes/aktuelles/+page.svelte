@@ -264,8 +264,8 @@
       <div class="hero-content">
         <h1 class="heading-accent-center">Aktuelles</h1>
         <p class="hero-subtitle">
-          Bleiben Sie mit uns in Verbindung und sehen Sie, was unsere Gäste über ihre
-          Erfahrungen im Hotel Ludwig van Beethoven teilen.
+          Bleiben Sie mit uns in Verbindung und sehen Sie, was unsere Gäste über
+          ihre Erfahrungen im Hotel Ludwig van Beethoven teilen.
         </p>
       </div>
     </div>
@@ -276,7 +276,9 @@
     <div class="container">
       <div class="feed-header">
         <h2 class="heading-accent-center">Neueste Beiträge</h2>
-        <p>Entdecken Sie die neuesten Beiträge und Erfahrungen unserer Gäste.</p>
+        <p>
+          Folgen Sie uns auf Social Media und bleiben Sie über Neuigkeiten und Angebote informiert.
+        </p>
       </div>
       <div class="widget-container" class:debug-active={debugMode}>
         {#if !showWidget}
@@ -306,7 +308,22 @@
                 disabled={currentSlide === 0}
                 aria-label="Previous slide"
               >
-                ←
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 448.011 448.011"
+                  style="enable-background:new 0 0 448.011 448.011;"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M438.731,209.463l-416-192c-6.624-3.008-14.528-1.216-19.136,4.48c-4.64,5.696-4.8,13.792-0.384,19.648l136.8,182.4
+            l-136.8,182.4c-4.416,5.856-4.256,13.984,0.352,19.648c3.104,3.872,7.744,5.952,12.448,5.952c2.272,0,4.544-0.48,6.688-1.472
+            l416-192c5.696-2.624,9.312-8.288,9.312-14.528S444.395,212.087,438.731,209.463z"
+                  />
+                </svg>
               </button>
 
               <div class="carousel-indicators">
@@ -326,7 +343,22 @@
                 disabled={currentSlide === totalSlides - 1}
                 aria-label="Next slide"
               >
-                →
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 448.011 448.011"
+                  style="enable-background:new 0 0 448.011 448.011;"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M438.731,209.463l-416-192c-6.624-3.008-14.528-1.216-19.136,4.48c-4.64,5.696-4.8,13.792-0.384,19.648l136.8,182.4
+            l-136.8,182.4c-4.416,5.856-4.256,13.984,0.352,19.648c3.104,3.872,7.744,5.952,12.448,5.952c2.272,0,4.544-0.48,6.688-1.472
+            l416-192c5.696-2.624,9.312-8.288,9.312-14.528S444.395,212.087,438.731,209.463z"
+                  />
+                </svg>
               </button>
             </div>
           {/if}
@@ -342,10 +374,11 @@
         <div class="intro-text">
           <h2 class="heading-accent-center">Verbinden Sie sich mit uns</h2>
           <p>
-            Folgen Sie unserer Reise und werden Sie Teil unserer Gemeinschaft von Reisenden, die
-            ihre unvergesslichen Erfahrungen in Berlin teilen. Von architektonischen Highlights
-            bis zu lokalen Entdeckungen - sehen Sie, wie unsere Gäste den authentischen
-            Charme von Kreuzberg erleben.
+            Folgen Sie unserer Reise und werden Sie Teil unserer Gemeinschaft
+            von Reisenden, die ihre unvergesslichen Erfahrungen in Berlin
+            teilen. Von architektonischen Highlights bis zu lokalen Entdeckungen
+            - sehen Sie, wie unsere Gäste den authentischen Charme von Kreuzberg
+            erleben.
           </p>
           <p>
             Teilen Sie Ihre eigenen Momente mit <strong
@@ -460,23 +493,6 @@
             <h3>TripAdvisor</h3>
             <p>Gästebewertungen & Bewertungen</p>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Engagement Section -->
-  <section class="social-engagement">
-    <div class="container">
-      <div class="engagement-content">
-        <h2 class="heading-accent-center">Teilen Sie Ihre Erfahrung</h2>
-        <p>
-          Hat Ihnen Ihr Aufenthalt im Hotel Ludwig van Beethoven gefallen? Wir würden gerne
-          Ihre Fotos sehen und von Ihren Berlin-Abenteuern hören!
-        </p>
-        <div class="engagement-actions">
-          <a href="/reviews" class="engagement-btn primary"> Bewertung schreiben </a>
-          <span class="engagement-hashtag">#HotelLudwigVanBeethoven</span>
         </div>
       </div>
     </div>
@@ -976,6 +992,16 @@
     color: var(--color-text-light);
     cursor: not-allowed;
     transform: scale(0.95);
+  }
+
+  .carousel-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .carousel-btn-prev svg {
+    transform: rotate(180deg);
   }
 
   .carousel-indicators {

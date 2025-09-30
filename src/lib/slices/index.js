@@ -10,6 +10,7 @@ import FeatureSlice from './FeatureSlice.svelte';
 import CarouselSlice from './CarouselSlice.svelte';
 import JobSlice from './JobSlice.svelte';
 import FAQSlice from './FAQSlice.svelte';
+import RoomsSlice from './rooms_slice/index.svelte';
 
 export const components = {
   hero_slice: HeroSlice,
@@ -21,6 +22,7 @@ export const components = {
   carousel_slice: CarouselSlice,
   job_slice: JobSlice,
   faq_slice: FAQSlice,
+  rooms_slice: RoomsSlice,
 };
 
 export { NotFound };

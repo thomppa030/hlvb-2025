@@ -302,7 +302,7 @@
   /* Amenities Section */
   .amenities {
     padding: var(--space-4xl) 0;
-    background: var(--color-background-alt);
+    background: var(--color-background);
   }
 
   .amenities h2 {

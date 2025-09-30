@@ -276,7 +276,7 @@
     <div class="container">
       <div class="feed-header">
         <h2 class="heading-accent-center">Latest Posts</h2>
-        <p>Discover the latest posts and experiences from our guests.</p>
+        <p>Follow us on social media and stay updated on our news and offers.</p>
       </div>
       <div class="widget-container" class:debug-active={debugMode}>
         {#if !showWidget}
@@ -306,7 +306,22 @@
                 disabled={currentSlide === 0}
                 aria-label="Previous slide"
               >
-                ←
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 448.011 448.011"
+                  style="enable-background:new 0 0 448.011 448.011;"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M438.731,209.463l-416-192c-6.624-3.008-14.528-1.216-19.136,4.48c-4.64,5.696-4.8,13.792-0.384,19.648l136.8,182.4
+            l-136.8,182.4c-4.416,5.856-4.256,13.984,0.352,19.648c3.104,3.872,7.744,5.952,12.448,5.952c2.272,0,4.544-0.48,6.688-1.472
+            l416-192c5.696-2.624,9.312-8.288,9.312-14.528S444.395,212.087,438.731,209.463z"
+                  />
+                </svg>
               </button>
 
               <div class="carousel-indicators">
@@ -326,7 +341,22 @@
                 disabled={currentSlide === totalSlides - 1}
                 aria-label="Next slide"
               >
-                →
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 448.011 448.011"
+                  style="enable-background:new 0 0 448.011 448.011;"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M438.731,209.463l-416-192c-6.624-3.008-14.528-1.216-19.136,4.48c-4.64,5.696-4.8,13.792-0.384,19.648l136.8,182.4
+            l-136.8,182.4c-4.416,5.856-4.256,13.984,0.352,19.648c3.104,3.872,7.744,5.952,12.448,5.952c2.272,0,4.544-0.48,6.688-1.472
+            l416-192c5.696-2.624,9.312-8.288,9.312-14.528S444.395,212.087,438.731,209.463z"
+                  />
+                </svg>
               </button>
             </div>
           {/if}
@@ -460,23 +490,6 @@
             <h3>TripAdvisor</h3>
             <p>Guest reviews & ratings</p>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Engagement Section -->
-  <section class="social-engagement">
-    <div class="container">
-      <div class="engagement-content">
-        <h2 class="heading-accent-center">Share Your Experience</h2>
-        <p>
-          Did you enjoy your stay at Hotel Ludwig van Beethoven? We'd love to
-          see your photos and hear about your Berlin adventures!
-        </p>
-        <div class="engagement-actions">
-          <a href="/en/reviews" class="engagement-btn primary"> Write a Review </a>
-          <span class="engagement-hashtag">#HotelLudwigVanBeethoven</span>
         </div>
       </div>
     </div>
@@ -978,6 +991,16 @@
     transform: scale(0.95);
   }
 
+  .carousel-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .carousel-btn-prev svg {
+    transform: rotate(180deg);
+  }
+
   .carousel-indicators {
     display: flex;
     gap: var(--space-xs);
@@ -1067,3 +1090,4 @@
     }
   }
 </style>
+
