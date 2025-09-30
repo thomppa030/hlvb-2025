@@ -2,7 +2,9 @@
 <script>
   import { page } from "$app/stores";
   import LanguageSwitcher from "./LanguageSwitcher.svelte";
+  import NavigationLinks from "./NavigationLinks.svelte";
   import { t, currentLanguage } from "$lib/stores/i18n.js";
+  import { isActiveRoute, getLangLink as getLink } from "$lib/utils/navigation.js";
 
   // Mobile menu state
   let mobileMenuOpen = false;
@@ -15,36 +17,17 @@
   // Close mobile menu when navigating
   $: $page && (mobileMenuOpen = false);
 
-  // Check if current route is active - reactive to page changes
-  $: isActive = (route) => {
-    const currentPath = $page.url.pathname;
+  // Navigation links configuration
+  const navLinks = [
+    { path: '/', labelKey: 'nav.home' },
+    { path: '/reviews', labelKey: 'nav.reviews' },
+    { path: '/infos', labelKey: 'nav.infos' },
+    { path: '/aktuelles', labelKey: 'nav.aktuelles' }
+  ];
 
-    // Handle home page for both languages
-    if (route === "/") {
-      return currentPath === "/" || currentPath === "/en";
-    }
-
-    // For other routes, check if the path starts with the route
-    // considering language prefix
-    if ($currentLanguage === 'en') {
-      const langRoute = route === '/' ? '/en' : `/en${route}`;
-      return currentPath === langRoute || currentPath.startsWith(langRoute + '/');
-    }
-
-    return currentPath === route || currentPath.startsWith(route + '/');
-  };
-
-  // Generate language-aware links
-  $: getLangLink = (path) => {
-    if ($currentLanguage === 'en') {
-      // For home page, return /en instead of /en/
-      if (path === '/') {
-        return '/en';
-      }
-      return `/en${path}`;
-    }
-    return path;
-  };
+  // Simplified with utilities
+  $: isActive = (route) => isActiveRoute($page.url.pathname, route, $currentLanguage);
+  $: getLangLink = (path) => getLink(path, $currentLanguage);
 </script>
 
 <header class="header-centered">
@@ -54,16 +37,11 @@
       <div class="nav-group">
         <!-- Left side links -->
         <div class="nav-side nav-left">
-          <a href={getLangLink("/")} class="nav-link" class:active={isActive("/")}>
-            {$t("nav.home")}
-          </a>
-          <a
-            href={getLangLink("/reviews")}
-            class="nav-link"
-            class:active={isActive(getLangLink("/reviews"))}
-          >
-            {$t("nav.reviews")}
-          </a>
+          <NavigationLinks
+            links={navLinks.slice(0, 2)}
+            {getLangLink}
+            {isActive}
+          />
         </div>
 
         <!-- Centered Logo -->
@@ -93,20 +71,11 @@
 
         <!-- Right side links -->
         <div class="nav-side nav-right">
-          <a
-            href={getLangLink("/infos")}
-            class="nav-link"
-            class:active={isActive(getLangLink("/infos"))}
-          >
-            {$t("nav.infos")}
-          </a>
-          <a
-            href={getLangLink("/aktuelles")}
-            class="nav-link"
-            class:active={isActive(getLangLink("/aktuelles"))}
-          >
-            {$t("nav.aktuelles")}
-          </a>
+          <NavigationLinks
+            links={navLinks.slice(2)}
+            {getLangLink}
+            {isActive}
+          />
         </div>
       </div>
 
@@ -133,38 +102,13 @@
 
   <!-- Mobile Navigation Menu -->
   <nav class="mobile-nav" class:active={mobileMenuOpen}>
-    <a
-      href={getLangLink("/")}
-      class="mobile-nav-link"
-      class:active={isActive("/")}
-      on:click={() => mobileMenuOpen = false}
-    >
-      {$t("nav.home")}
-    </a>
-    <a
-      href={getLangLink("/reviews")}
-      class="mobile-nav-link"
-      class:active={isActive(getLangLink("/reviews"))}
-      on:click={() => mobileMenuOpen = false}
-    >
-      {$t("nav.reviews")}
-    </a>
-    <a
-      href={getLangLink("/infos")}
-      class="mobile-nav-link"
-      class:active={isActive(getLangLink("/infos"))}
-      on:click={() => mobileMenuOpen = false}
-    >
-      {$t("nav.infos")}
-    </a>
-    <a
-      href={getLangLink("/aktuelles")}
-      class="mobile-nav-link"
-      class:active={isActive(getLangLink("/aktuelles"))}
-      on:click={() => mobileMenuOpen = false}
-    >
-      {$t("nav.aktuelles")}
-    </a>
+    <NavigationLinks
+      links={navLinks}
+      {getLangLink}
+      {isActive}
+      isMobile={true}
+      onLinkClick={() => mobileMenuOpen = false}
+    />
   </nav>
 </header>
 
@@ -248,38 +192,6 @@
     transform: scale(1.05);
   }
 
-  .nav-link {
-    text-decoration: none;
-    color: var(--color-text);
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-base);
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-    position: relative;
-    white-space: nowrap;
-  }
-
-  .nav-link:hover {
-    color: var(--color-secondary);
-    background-color: var(--color-background-alt);
-  }
-
-  .nav-link.active {
-    color: var(--color-secondary);
-    background-color: var(--color-background-alt);
-  }
-
-  .nav-link.active::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: var(--space-md);
-    right: var(--space-md);
-    height: 2px;
-    background-color: var(--color-secondary);
-    border-radius: var(--radius-sm);
-  }
 
   /* Hamburger Menu Styles */
   .hamburger-menu {
@@ -359,27 +271,6 @@
     opacity: 1;
   }
 
-  .mobile-nav-link {
-    display: block;
-    padding: var(--space-md) var(--space-lg);
-    text-decoration: none;
-    color: var(--color-text);
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-base);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-    margin-bottom: var(--space-sm);
-  }
-
-  .mobile-nav-link:last-child {
-    margin-bottom: 0;
-  }
-
-  .mobile-nav-link:hover,
-  .mobile-nav-link.active {
-    background-color: var(--color-background-alt);
-    color: var(--color-secondary);
-  }
 
   /* Tablet responsive */
   @media (max-width: 1024px) {
@@ -423,9 +314,6 @@
       margin-right: 80px; /* Make room for actions */
     }
 
-    .nav-link {
-      display: none; /* Hide nav links on mobile */
-    }
 
     .brand {
       margin: 0;
