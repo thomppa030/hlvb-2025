@@ -9,7 +9,7 @@
       "name": "Default",
       "docURL": "...",
       "version": "initial",
-      "description": "Rooms with fixed features",
+      "description": "Four room types with repeatable common features",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -30,181 +30,6 @@
             "single": "paragraph"
           }
         },
-        "note_heading": {
-          "type": "Text",
-          "config": {
-            "label": "Note Heading",
-            "placeholder": "Alle Zimmer verfügen über:"
-          }
-        },
-        "single_room_title": {
-          "type": "Text",
-          "config": {
-            "label": "Single Room Title",
-            "placeholder": "Einzelzimmer"
-          }
-        },
-        "single_room_description": {
-          "type": "Text",
-          "config": {
-            "label": "Single Room Description",
-            "placeholder": "Perfekt für Alleinreisende"
-          }
-        },
-        "single_room_feature_1": {
-          "type": "Text",
-          "config": {
-            "label": "Single Room Feature 1",
-            "placeholder": "Einzelbett mit Federkernmatratze"
-          }
-        },
-        "single_room_feature_2": {
-          "type": "Text",
-          "config": {
-            "label": "Single Room Feature 2",
-            "placeholder": "Eigenes Badezimmer mit Dusche"
-          }
-        },
-        "single_room_feature_3": {
-          "type": "Text",
-          "config": {
-            "label": "Single Room Feature 3",
-            "placeholder": "Flachbildfernseher & kostenloses WLAN"
-          }
-        },
-        "single_room_feature_4": {
-          "type": "Text",
-          "config": {
-            "label": "Single Room Feature 4",
-            "placeholder": "Frühstück inklusive"
-          }
-        },
-        "double_room_title": {
-          "type": "Text",
-          "config": {
-            "label": "Double Room Title",
-            "placeholder": "Doppelzimmer"
-          }
-        },
-        "double_room_description": {
-          "type": "Text",
-          "config": {
-            "label": "Double Room Description",
-            "placeholder": "Für Paare und Freunde"
-          }
-        },
-        "double_room_feature_1": {
-          "type": "Text",
-          "config": {
-            "label": "Double Room Feature 1",
-            "placeholder": "Zwei Einzelbetten oder ein Doppelbett"
-          }
-        },
-        "double_room_feature_2": {
-          "type": "Text",
-          "config": {
-            "label": "Double Room Feature 2",
-            "placeholder": "Eigenes Badezimmer mit Dusche"
-          }
-        },
-        "double_room_feature_3": {
-          "type": "Text",
-          "config": {
-            "label": "Double Room Feature 3",
-            "placeholder": "Flachbildfernseher & kostenloses WLAN"
-          }
-        },
-        "double_room_feature_4": {
-          "type": "Text",
-          "config": {
-            "label": "Double Room Feature 4",
-            "placeholder": "Frühstück inklusive"
-          }
-        },
-        "triple_room_title": {
-          "type": "Text",
-          "config": {
-            "label": "Triple Room Title",
-            "placeholder": "Dreibettzimmer"
-          }
-        },
-        "triple_room_description": {
-          "type": "Text",
-          "config": {
-            "label": "Triple Room Description",
-            "placeholder": "Ideal für Familien und Freunde"
-          }
-        },
-        "triple_room_feature_1": {
-          "type": "Text",
-          "config": {
-            "label": "Triple Room Feature 1",
-            "placeholder": "Zwei Betten plus Zustellbett"
-          }
-        },
-        "triple_room_feature_2": {
-          "type": "Text",
-          "config": {
-            "label": "Triple Room Feature 2",
-            "placeholder": "Eigenes Badezimmer mit Dusche"
-          }
-        },
-        "triple_room_feature_3": {
-          "type": "Text",
-          "config": {
-            "label": "Triple Room Feature 3",
-            "placeholder": "Flachbildfernseher & kostenloses WLAN"
-          }
-        },
-        "triple_room_feature_4": {
-          "type": "Text",
-          "config": {
-            "label": "Triple Room Feature 4",
-            "placeholder": "Frühstück inklusive"
-          }
-        },
-        "quad_room_title": {
-          "type": "Text",
-          "config": {
-            "label": "Quad Room Title",
-            "placeholder": "Vierbettzimmer"
-          }
-        },
-        "quad_room_description": {
-          "type": "Text",
-          "config": {
-            "label": "Quad Room Description",
-            "placeholder": "Perfekt für Familien und Freunde"
-          }
-        },
-        "quad_room_feature_1": {
-          "type": "Text",
-          "config": {
-            "label": "Quad Room Feature 1",
-            "placeholder": "Zwei Betten plus zwei Zustellbetten"
-          }
-        },
-        "quad_room_feature_2": {
-          "type": "Text",
-          "config": {
-            "label": "Quad Room Feature 2",
-            "placeholder": "Eigenes Badezimmer mit Dusche"
-          }
-        },
-        "quad_room_feature_3": {
-          "type": "Text",
-          "config": {
-            "label": "Quad Room Feature 3",
-            "placeholder": "Flachbildfernseher & kostenloses WLAN"
-          }
-        },
-        "quad_room_feature_4": {
-          "type": "Text",
-          "config": {
-            "label": "Quad Room Feature 4",
-            "placeholder": "Frühstück inklusive"
-          }
-        },
         "booking_button_text": {
           "type": "Text",
           "config": {
@@ -217,6 +42,97 @@
           "config": {
             "label": "Booking URL",
             "placeholder": "/booking"
+          }
+        },
+        "note_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Common Features Heading",
+            "placeholder": "Alle Zimmer verfügen über:"
+          }
+        },
+        "single_room_title": {
+          "type": "Text",
+          "config": {
+            "label": "Single Room - Title",
+            "placeholder": "Einzelzimmer"
+          }
+        },
+        "single_room_description": {
+          "type": "Text",
+          "config": {
+            "label": "Single Room - Description",
+            "placeholder": "Perfekt für Alleinreisende"
+          }
+        },
+        "single_room_bed": {
+          "type": "Text",
+          "config": {
+            "label": "Single Room - Bed Info",
+            "placeholder": "Einzelbett mit Federkernmatratze"
+          }
+        },
+        "double_room_title": {
+          "type": "Text",
+          "config": {
+            "label": "Double Room - Title",
+            "placeholder": "Doppelzimmer"
+          }
+        },
+        "double_room_description": {
+          "type": "Text",
+          "config": {
+            "label": "Double Room - Description",
+            "placeholder": "Für Paare und Freunde"
+          }
+        },
+        "double_room_bed": {
+          "type": "Text",
+          "config": {
+            "label": "Double Room - Bed Info",
+            "placeholder": "Zwei Einzelbetten oder ein Doppelbett"
+          }
+        },
+        "triple_room_title": {
+          "type": "Text",
+          "config": {
+            "label": "Triple Room - Title",
+            "placeholder": "Dreibettzimmer"
+          }
+        },
+        "triple_room_description": {
+          "type": "Text",
+          "config": {
+            "label": "Triple Room - Description",
+            "placeholder": "Ideal für Familien und Freunde"
+          }
+        },
+        "triple_room_bed": {
+          "type": "Text",
+          "config": {
+            "label": "Triple Room - Bed Info",
+            "placeholder": "Zwei Betten plus Zustellbett"
+          }
+        },
+        "quad_room_title": {
+          "type": "Text",
+          "config": {
+            "label": "Quad Room - Title",
+            "placeholder": "Vierbettzimmer"
+          }
+        },
+        "quad_room_description": {
+          "type": "Text",
+          "config": {
+            "label": "Quad Room - Description",
+            "placeholder": "Perfekt für Familien und Freunde"
+          }
+        },
+        "quad_room_bed": {
+          "type": "Text",
+          "config": {
+            "label": "Quad Room - Bed Info",
+            "placeholder": "Zwei Betten plus zwei Zustellbetten"
           }
         }
       },

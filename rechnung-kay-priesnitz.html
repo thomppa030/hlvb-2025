@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rechnung - Kay Priesnitz</title>
+  <style>
+    :root {
+      --pure-white: #ffffff;
+      --off-white: #fafafa;
+      --light-gray: #f5f5f5;
+      --smoke: #666666;
+      --dark-gray: #333333;
+      --pitch-black: #000000;
+      --blood-red: #dc143c;
+      --border-light: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--pure-white);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+    }
+
+    .invoice-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 40px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Corner branding */
+    .corner-mark {
+      position: absolute;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      opacity: 0.4;
+    }
+
+    .corner-mark.top-left {
+      top: 30px;
+      left: 40px;
+    }
+
+    .corner-mark.top-right {
+      top: 30px;
+      right: 40px;
+      text-align: right;
+    }
+
+    /* Header with geometric element */
+    .invoice-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border-light);
+      position: relative;
+      text-align: center;
+    }
+
+    .geometric-accent {
+      width: 50px;
+      height: 50px;
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+
+    .company-identity {
+      width: 100%;
+    }
+
+    .company-name {
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--pitch-black);
+    }
+
+    .company-details {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--smoke);
+    }
+
+    .symbol {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .symbol-inner {
+      width: 100%;
+      height: 100%;
+      background: var(--pure-white);
+      border: 2px solid var(--blood-red);
+      transform: rotate(45deg);
+      position: relative;
+    }
+
+    .symbol-inner::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--blood-red);
+      transform: rotate(45deg);
+    }
+
+    .symbol-inner::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      background: var(--blood-red);
+    }
+
+    /* Invoice title section */
+    .invoice-title-section {
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .invoice-title {
+      font-size: 1.4rem;
+      font-weight: 100;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--pitch-black);
+      margin-bottom: 8px;
+    }
+
+    .invoice-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--smoke);
+    }
+
+    /* Client and invoice details */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+
+    .detail-block {
+      position: relative;
+    }
+
+    .detail-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .detail-label::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: var(--blood-red);
+      margin-right: 15px;
+      opacity: 0.5;
+    }
+
+    .detail-content {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--dark-gray);
+      padding-left: 35px;
+    }
+
+    /* Services table */
+    .services-section {
+      margin: 50px 0;
+    }
+
+    .services-header {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .service-description {
+      position: relative;
+    }
+
+    .service-title {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--pitch-black);
+      letter-spacing: 0.05em;
+    }
+
+    .service-details {
+      font-size: 0.8rem;
+      color: var(--smoke);
+      line-height: 1.5;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .service-details li {
+      list-style: none;
+      position: relative;
+      padding: 2px 0;
+    }
+
+    .service-details li::before {
+      content: "—";
+      position: absolute;
+      left: -20px;
+      color: var(--blood-red);
+      opacity: 0.5;
+    }
+
+    .service-amount {
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--pitch-black);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Totals section */
+    .totals-section {
+      margin-top: 40px;
+      padding-top: 20px;
+    }
+
+    .total-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      padding: 12px 0;
+      align-items: center;
+    }
+
+    .total-label {
+      text-align: right;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--smoke);
+    }
+
+    .total-amount {
+      font-size: 1rem;
+      text-align: right;
+      min-width: 150px;
+      color: var(--dark-gray);
+    }
+
+    .total-row.grand-total {
+      border-top: 2px solid var(--pitch-black);
+      margin-top: 15px;
+      padding-top: 15px;
+    }
+
+    .total-row.grand-total .total-label {
+      font-size: 0.95rem;
+      color: var(--pitch-black);
+      font-weight: 400;
+    }
+
+    .total-row.grand-total .total-amount {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--pitch-black);
+      letter-spacing: 0.05em;
+    }
+
+    .tax-note {
+      text-align: right;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--smoke);
+      letter-spacing: 0.05em;
+    }
+
+    /* Payment schedule */
+    .payment-schedule {
+      margin: 50px 0;
+      padding: 30px;
+      background: var(--light-gray);
+      border-left: 3px solid var(--blood-red);
+      position: relative;
+    }
+
+    .payment-schedule::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--blood-red);
+      transform: rotate(45deg);
+      opacity: 0.2;
+    }
+
+    .payment-schedule::after {
+      content: "";
+      position: absolute;
+      top: 26px;
+      right: 26px;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--blood-red);
+      transform: rotate(45deg);
+      opacity: 0.3;
+    }
+
+    .schedule-title {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 20px;
+    }
+
+    .payment-phase {
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .payment-phase:last-child {
+      border-bottom: none;
+    }
+
+    .phase-label {
+      font-weight: 400;
+      margin-bottom: 4px;
+      color: var(--pitch-black);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .phase-amount {
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .phase-description {
+      font-size: 0.8rem;
+      color: var(--smoke);
+      margin-top: 4px;
+      padding-left: 20px;
+    }
+
+    /* Payment info */
+    .payment-info {
+      margin: 40px 0;
+      padding: 30px;
+      background: var(--off-white);
+    }
+
+    .payment-title {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 18px;
+    }
+
+    .payment-details {
+      line-height: 1.6;
+      color: var(--dark-gray);
+      font-size: 0.9rem;
+    }
+
+    .payment-details strong {
+      font-weight: 500;
+      color: var(--pitch-black);
+    }
+
+    /* Footer */
+    .invoice-footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+      color: var(--smoke);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    .signature-line {
+      margin-top: 25px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 20mm 15mm 20mm 15mm;
+      }
+
+      body {
+        background: white;
+        font-size: 14px;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      .invoice-container {
+        padding: 20px 0;
+        max-width: 100%;
+        min-height: auto;
+      }
+
+      /* Corner marks only on first page */
+      .corner-mark {
+        font-size: 0.7rem;
+        opacity: 0.6;
+        position: absolute;
+      }
+
+      .corner-mark.top-left {
+        top: 8mm;
+        left: 8mm;
+      }
+
+      .corner-mark.top-right {
+        top: 8mm;
+        right: 8mm;
+      }
+
+      /* PAGE 1: Header and Details - Compact */
+      .invoice-header {
+        margin-bottom: 40px;
+        padding-bottom: 25px;
+        padding-top: 0;
+        border-bottom: 1px solid var(--border-light);
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .geometric-accent {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+        margin-top: 0;
+        opacity: 1;
+      }
+
+      /* Enhanced symbol for better print presence */
+      .symbol-inner {
+        border: 2px solid var(--blood-red);
+      }
+
+      .symbol-inner::before {
+        border: 1px solid var(--blood-red);
+        inset: 8px;
+      }
+
+      .symbol-inner::after {
+        inset: 16px;
+      }
+
+      .company-name {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.15em;
+      }
+
+      .company-details {
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+
+      /* Invoice title - compact */
+      .invoice-title-section {
+        margin: 40px 0;
+        text-align: center;
+      }
+
+      .invoice-title {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        letter-spacing: 0.3em;
+      }
+
+      .invoice-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+      }
+
+      /* Details grid - compact */
+      .details-grid {
+        gap: 40px;
+        margin: 40px 0;
+        min-height: auto;
+        page-break-after: auto;
+        break-inside: avoid;
+      }
+
+      .detail-label {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+        letter-spacing: 0.15em;
+      }
+
+      .detail-label::before {
+        width: 20px;
+        margin-right: 15px;
+      }
+
+      .detail-content {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        padding-left: 35px;
+      }
+
+      /* Services - compact */
+      .services-section {
+        margin: 40px 0;
+        padding-top: 0;
+      }
+
+      .services-header {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        letter-spacing: 0.2em;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .service-item {
+        padding: 25px 0;
+        gap: 40px;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .service-title {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        letter-spacing: 0.05em;
+      }
+
+      .service-details {
+        font-size: 0.8rem;
+        margin-top: 8px;
+        padding-left: 20px;
+        line-height: 1.5;
+      }
+
+      .service-details li {
+        padding: 2px 0;
+      }
+
+      .service-details li::before {
+        left: -20px;
+        opacity: 0.8;
+      }
+
+      .service-amount {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* Totals - compact */
+      .totals-section {
+        margin-top: 40px;
+        padding-top: 20px;
+      }
+
+      .total-row {
+        padding: 12px 0;
+        gap: 40px;
+      }
+
+      .total-label {
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+      }
+
+      .total-amount {
+        font-size: 1rem;
+      }
+
+      .total-row.grand-total {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 2px solid var(--pitch-black);
+      }
+
+      .total-row.grand-total .total-label {
+        font-size: 0.95rem;
+      }
+
+      .total-row.grand-total .total-amount {
+        font-size: 1.3rem;
+        letter-spacing: 0.05em;
+      }
+
+      .tax-note {
+        margin-top: 12px;
+        font-size: 0.8rem;
+      }
+
+      /* Payment schedule - compact */
+      .payment-schedule {
+        margin: 40px 0;
+        padding: 30px;
+        background: var(--light-gray);
+        border-left: 3px solid var(--blood-red);
+        border-radius: 2px;
+      }
+
+      .payment-schedule::before {
+        width: 30px;
+        height: 30px;
+        top: 20px;
+        right: 20px;
+        opacity: 0.4;
+        border: 1px solid var(--blood-red);
+      }
+
+      .payment-schedule::after {
+        width: 18px;
+        height: 18px;
+        top: 26px;
+        right: 26px;
+        opacity: 0.5;
+        border: 1px solid var(--blood-red);
+      }
+
+      .schedule-title {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+        letter-spacing: 0.2em;
+      }
+
+      .payment-phase {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .payment-phase:last-child {
+        border-bottom: none;
+      }
+
+      .phase-label {
+        margin-bottom: 4px;
+        font-size: 0.95rem;
+      }
+
+      .phase-amount {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .phase-description {
+        font-size: 0.8rem;
+        margin-top: 4px;
+        padding-left: 20px;
+        color: var(--smoke);
+      }
+
+      /* Payment info - compact */
+      .payment-info {
+        margin: 40px 0;
+        padding: 30px;
+        background: var(--off-white);
+        border-radius: 2px;
+      }
+
+      .payment-title {
+        font-size: 0.8rem;
+        margin-bottom: 18px;
+        letter-spacing: 0.2em;
+      }
+
+      .payment-details {
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+
+      .payment-details strong {
+        font-weight: 500;
+        color: var(--pitch-black);
+      }
+
+      /* Footer - compact */
+      .invoice-footer {
+        margin-top: 40px;
+        padding-top: 25px;
+        border-top: 1px solid var(--border-light);
+        text-align: center;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+      }
+
+      .signature-line {
+        margin-top: 20px;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+      }
+
+      /* Ensure backgrounds print */
+      .payment-schedule,
+      .payment-info {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      /* Prevent awkward breaks on page 2 */
+      .service-item {
+        break-inside: avoid;
+      }
+
+      .payment-phase {
+        break-inside: avoid;
+      }
+
+      .payment-schedule,
+      .payment-info {
+        break-inside: avoid;
+      }
+
+      .totals-section {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="invoice-container">
+    <!-- Corner marks -->
+    <div class="corner-mark top-left">EST. MMXXV</div>
+    <div class="corner-mark top-right">KAY PRIESNITZ</div>
+
+    <!-- Header -->
+    <header class="invoice-header">
+      <div class="geometric-accent">
+        <div class="symbol">
+          <div class="symbol-inner"></div>
+        </div>
+      </div>
+      <div class="company-identity">
+        <h1 class="company-name">Kay Priesnitz</h1>
+        <div class="company-details">
+          Softwareentwicklung & Digital Design<br>
+          Weitlingstraße 97<br>
+          10317 Berlin<br>
+          Deutschland<br><br>
+          Tel: +49 (0) 1575 6293428<br>
+          E-Mail: kpriesnitz@outlook.de
+        </div>
+      </div>
+    </header>
+
+    <!-- Invoice Title -->
+    <div class="invoice-title-section">
+      <h2 class="invoice-title">Rechnung</h2>
+      <div class="invoice-subtitle">Nr. 2025-001</div>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="details-grid">
+      <div class="detail-block">
+        <div class="detail-label">Kunde</div>
+        <div class="detail-content">
+          Hotel Ludwig van Beethoven<br>
+          z.Hd. Geschäftsführung<br>
+          Hasenheide 14<br>
+          10967 Berlin<br>
+          Deutschland
+        </div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-label">Details</div>
+        <div class="detail-content">
+          Rechnungsdatum: 28.09.2025<br>
+          Projektnummer: HLVB-2025-WEB<br>
+          Zahlungsziel: 14 Tage<br>
+          Status: Ausstehend
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Info -->
+    <div class="payment-info">
+      <div class="payment-title">Zahlungsinformationen</div>
+      <div class="payment-details">
+        Bitte überweisen Sie die jeweiligen Teilbeträge auf folgendes Konto:<br><br>
+        <strong>Kontoinhaber:</strong> Kay Priesnitz<br>
+        <strong>IBAN:</strong> DE69 1001 1001 2901 1565 37<br>
+        <strong>BIC:</strong> NTSBDEB1XXX<br>
+        <strong>Bank:</strong> N26 Bank<br>
+        <strong>Verwendungszweck:</strong> Rechnung 2025-001
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="services-section">
+      <div class="services-header">Leistungen</div>
+
+      <div class="service-item">
+        <div class="service-description">
+          <div class="service-title">App-Entwicklung Hotel Website</div>
+          <ul class="service-details">
+            <li>UI/UX Design & Konzeption</li>
+            <li>Frontend-Entwicklung (SvelteKit)</li>
+            <li>Backend-Integration</li>
+            <li>Responsive Design</li>
+            <li>Testing & Qualitätssicherung</li>
+            <li>Deployment & Go-Live</li>
+          </ul>
+        </div>
+        <div class="service-amount">2.500,00 EUR</div>
+      </div>
+    </div>
+
+    <!-- Totals -->
+    <div class="totals-section">
+      <div class="total-row">
+        <div class="total-label">Zwischensumme</div>
+        <div class="total-amount">2.500,00 EUR</div>
+      </div>
+      <div class="total-row grand-total">
+        <div class="total-label">Gesamtbetrag</div>
+        <div class="total-amount">2.500,00 EUR</div>
+      </div>
+      <div class="tax-note">
+        Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
+      </div>
+    </div>
+
+    <!-- Payment Schedule -->
+    <div class="payment-schedule">
+      <div class="schedule-title">Zahlungsplan</div>
+
+      <div class="payment-phase">
+        <div class="phase-label">
+          <span>1. Teilzahlung</span>
+          <span class="phase-amount">1.250,00 EUR</span>
+        </div>
+        <div class="phase-description">Nach Abschluss der Design-Phase</div>
+      </div>
+
+      <div class="payment-phase">
+        <div class="phase-label">
+          <span>2. Teilzahlung</span>
+          <span class="phase-amount">1.250,00 EUR</span>
+        </div>
+        <div class="phase-description">Nach Fertigstellung und Abnahme</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="invoice-footer">
+      Vielen Dank für Ihr Vertrauen und die Zusammenarbeit.
+      <div class="signature-line">
+        Kay Priesnitz | Kleinunternehmer gemäß § 19 UStG<br>
+        Steuernummer: 32/479/01916 | Finanzamt Berlin-Lichtenberg
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -19,42 +19,22 @@
     {
       title: slice.primary.single_room_title,
       description: slice.primary.single_room_description,
-      features: [
-        slice.primary.single_room_feature_1,
-        slice.primary.single_room_feature_2,
-        slice.primary.single_room_feature_3,
-        slice.primary.single_room_feature_4
-      ].filter(Boolean)
+      bed: slice.primary.single_room_bed
     },
     {
       title: slice.primary.double_room_title,
       description: slice.primary.double_room_description,
-      features: [
-        slice.primary.double_room_feature_1,
-        slice.primary.double_room_feature_2,
-        slice.primary.double_room_feature_3,
-        slice.primary.double_room_feature_4
-      ].filter(Boolean)
+      bed: slice.primary.double_room_bed
     },
     {
       title: slice.primary.triple_room_title,
       description: slice.primary.triple_room_description,
-      features: [
-        slice.primary.triple_room_feature_1,
-        slice.primary.triple_room_feature_2,
-        slice.primary.triple_room_feature_3,
-        slice.primary.triple_room_feature_4
-      ].filter(Boolean)
+      bed: slice.primary.triple_room_bed
     },
     {
       title: slice.primary.quad_room_title,
       description: slice.primary.quad_room_description,
-      features: [
-        slice.primary.quad_room_feature_1,
-        slice.primary.quad_room_feature_2,
-        slice.primary.quad_room_feature_3,
-        slice.primary.quad_room_feature_4
-      ].filter(Boolean)
+      bed: slice.primary.quad_room_bed
     }
   ].filter(room => room.title);
 
@@ -81,12 +61,8 @@
             {#if room.description}
               <p class="room-description">{room.description}</p>
             {/if}
-            {#if room.features.length > 0}
-              <ul class="room-features">
-                {#each room.features as feature}
-                  <li>{feature}</li>
-                {/each}
-              </ul>
+            {#if room.bed}
+              <p class="room-bed-info">{room.bed}</p>
             {/if}
             {#if primaryData.bookingUrl}
               <Button variant="primary" href={primaryData.bookingUrl}>
@@ -181,32 +157,15 @@
   .room-description {
     color: var(--color-text-light);
     font-size: var(--font-size-sm);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     font-style: italic;
   }
 
-  .room-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-xl) 0;
-    flex-grow: 1;
-  }
-
-  .room-features li {
-    padding: var(--space-sm) 0;
+  .room-bed-info {
     color: var(--color-text);
     font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-    position: relative;
-    padding-left: var(--space-lg);
-  }
-
-  .room-features li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-xl);
+    flex-grow: 1;
   }
 
   .rooms-note {
