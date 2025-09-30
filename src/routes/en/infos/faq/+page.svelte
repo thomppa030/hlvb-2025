@@ -248,7 +248,6 @@
                   {contactInfo.address.street}<br />{contactInfo.address
                     .city}<br />{contactInfo.address.countryEn}
                 </p>
-                <p class="hours">Reception: {contactInfo.hours.receptionEn}</p>
               </div>
             {/if}
           </div>
@@ -598,4 +597,3 @@
     }
   }
 </style>
-

@@ -247,7 +247,6 @@
                 <p>
                   {contactInfo.address.street}<br />{contactInfo.address.city}
                 </p>
-                <p class="hours">Rezeption: {contactInfo.hours.receptionDe}</p>
               </div>
             {/if}
           </div>

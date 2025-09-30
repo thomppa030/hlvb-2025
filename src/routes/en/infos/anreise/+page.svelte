@@ -37,14 +37,14 @@
                 <strong>U8 Hermannplatz</strong> - only 5 minutes walk from the hotel
               </p>
               <p>
-                Direct connection to Alexanderplatz, Friedrichstraße and other
-                central locations
+                Direct connection to Alexanderplatz, 15 minutes to the city
+                center.
               </p>
             </div>
 
             <div class="transport-item">
               <h3><!-- TODO: Add Bus icon SVG --> Bus</h3>
-              <p><strong>Fontanestraße stop:</strong> Lines M29, M41, 104</p>
+              <p><strong>Jahnstraße stop:</strong> Lines M41</p>
               <p><strong>Hermannplatz stop:</strong> Lines M29, M41, 194</p>
             </div>
 
@@ -66,7 +66,7 @@
                 <li>
                   S-Bahn S9 to <strong>Hermannstraße</strong> (approx. 45 min)
                 </li>
-                <li>Bus M41 to <strong>Fontanestraße</strong> (3 min)</li>
+                <li>Subway U8 to <strong>Hermannplatz</strong> (5 min)</li>
                 <li>2 minutes walk to the hotel</li>
               </ol>
               <p class="route-time">Total time: approx. 55 minutes</p>
@@ -75,7 +75,7 @@
             <div class="route">
               <h3>Alternative: Taxi/Uber</h3>
               <p>Travel time: 30-45 minutes (depending on traffic)</p>
-              <p>Cost: approx. €35-50</p>
+              <p>Cost: approx. €45-50</p>
             </div>
           </div>
         </section>
@@ -87,21 +87,22 @@
             <div class="parking-item">
               <h3><!-- TODO: Add Parking icon SVG --> Parking Options</h3>
               <p>
-                <strong>Note:</strong> The hotel does not have its own parking spaces.
+                The hotel has a <strong>limited</strong> number of parking spaces available on a first-come, first-served basis. You can obtain a parking permit at reception upon arrival, <strong>subject to availability</strong>, with a refundable deposit. <strong>Parking spaces cannot be reserved in advance.</strong>
+              </p>
+
+              <p>
+                <strong>Additional parking options:</strong>
               </p>
 
               <ul>
                 <li>
-                  <strong>Street parking:</strong> Hasenheide and surrounding areas
-                  (charged Mon-Sat 9am-7pm)
+                  <strong>Karstadt Parking Garage:</strong> €5.00 per day
                 </li>
                 <li>
-                  <strong>Hasenheide Parking Garage:</strong> 5 minutes walk, approx.
-                  €2/hour
+                  <strong>Huxleys neue Welt:</strong> €8.00 per day
                 </li>
                 <li>
-                  <strong>Park & Ride Hermannplatz:</strong> Affordable long-term
-                  parking
+                  <strong>Street parking:</strong> Hasenheide and surrounding areas, €27.00 per day
                 </li>
               </ul>
             </div>
@@ -136,7 +137,7 @@
               <p>Free luggage storage:</p>
               <ul>
                 <li>Before check-in: from 8:00 AM</li>
-                <li>After check-out: until 8:00 PM</li>
+                <li>After check-out: until 11:00 PM</li>
               </ul>
             </div>
           </div>
@@ -381,4 +382,3 @@
     }
   }
 </style>
-

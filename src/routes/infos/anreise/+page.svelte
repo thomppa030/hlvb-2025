@@ -28,18 +28,19 @@
             <div class="transport-item">
               <h3><Icon name="metro" size={48} /> U-Bahn</h3>
               <p>
-                <strong>U8 Hermannplatz</strong> - nur 5 Gehminuten vom Hotel entfernt
+                <strong>U8/U7 Hermannplatz</strong> - nur 5 Gehminuten vom Hotel
+                entfernt
               </p>
               <p>
-                Direktverbindung zu Alexanderplatz, Friedrichstraße und anderen
-                zentralen Punkten
+                Direktverbindung zu Alexanderplatz, nur 15 Minuten in die
+                Innenstadt.
               </p>
             </div>
 
             <div class="transport-item">
               <h3><Icon name="bus" size={48} /> Bus</h3>
               <p>
-                <strong>Haltestelle Fontanestraße:</strong> Linien M29, M41, 104
+                <strong>Haltestelle Jahnstraße:</strong> Linien M41
               </p>
               <p>
                 <strong>Haltestelle Hermannplatz:</strong> Linien M29, M41, 194
@@ -64,7 +65,7 @@
                 <li>
                   S-Bahn S9 bis <strong>Hermannstraße</strong> (ca. 45 Min.)
                 </li>
-                <li>Bus M41 bis <strong>Fontanestraße</strong> (3 Min.)</li>
+                <li>U-Bahn U8 bis <strong>Hermannplatz</strong> (3 Min.)</li>
                 <li>2 Minuten Fußweg zum Hotel</li>
               </ol>
               <p class="route-time">Gesamtzeit: ca. 55 Minuten</p>
@@ -73,7 +74,7 @@
             <div class="route">
               <h3>Alternative: Taxi/Uber</h3>
               <p>Fahrtzeit: 30-45 Minuten (je nach Verkehr)</p>
-              <p>Kosten: ca. 35-50€</p>
+              <p>Kosten: ca. 45-50€</p>
             </div>
           </div>
         </section>
@@ -85,19 +86,22 @@
             <div class="parking-item">
               <h3><Icon name="parking" size={48} /> Parkmöglichkeiten</h3>
               <p>
-                <strong>Hinweis:</strong> Das Hotel verfügt über keine eigenen Parkplätze.
+                Das Hotel verfügt über eine <strong>begrenzte</strong> Anzahl an Parkplätzen. Diese können <strong>nach Verfügbarkeit</strong> gegen Hinterlegung einer Kaution an der Rezeption genutzt werden. Bei Rückgabe des Parkausweises erhalten Sie Ihre Kaution zurück. <strong>Eine Reservierung der Parkplätze ist nicht möglich.</strong>
+              </p>
+
+              <p>
+                <strong>Weitere Parkmöglichkeiten:</strong>
               </p>
 
               <ul>
                 <li>
-                  <strong>Straßenparkplätze:</strong> Hasenheide und Umgebung (gebührenpflichtig
-                  Mo-Sa 9-19 Uhr)
+                  <strong>Parkhaus Karstadt:</strong> 5,00 € pro Tag
                 </li>
                 <li>
-                  <strong>Parkhaus Hasenheide:</strong> 5 Gehminuten, ca. 2€/Stunde
+                  <strong>Huxleys neue Welt:</strong> 8,00 € pro Tag
                 </li>
                 <li>
-                  <strong>Park & Ride Hermannplatz:</strong> Günstige Langzeitparkplätze
+                  <strong>Straßenparkplätze:</strong> Hasenheide und Umgebung, 27,00 € pro Tag
                 </li>
               </ul>
             </div>
@@ -132,8 +136,8 @@
               <h3><!-- TODO: Add Luggage icon SVG --> Gepäckaufbewahrung</h3>
               <p>Kostenlose Gepäckaufbewahrung:</p>
               <ul>
-                <li>Vor Check-in: ab 8:00 Uhr</li>
-                <li>Nach Check-out: bis 20:00 Uhr</li>
+                <li>Vor Check-in: ab 7:00 Uhr</li>
+                <li>Nach Check-out: bis 23:00 Uhr</li>
               </ul>
             </div>
           </div>
