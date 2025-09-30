@@ -479,14 +479,6 @@
     text-align: center;
   }
 
-  .contact-item h3 {
-    font-family: var(--font-display);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
-  }
-
   .contact-item p {
     font-family: var(--font-primary);
     font-size: var(--font-size-base);

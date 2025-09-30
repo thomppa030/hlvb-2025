@@ -31,19 +31,19 @@
           <h2 class="heading-accent">Public Transportation</h2>
           <div class="transport-options">
             <div class="transport-item">
-              <h3>🚇 Underground (U-Bahn)</h3>
+              <h3><!-- TODO: Add U-Bahn icon SVG --> Underground (U-Bahn)</h3>
               <p><strong>U8 Hermannplatz</strong> - only 5 minutes walk from the hotel</p>
               <p>Direct connection to Alexanderplatz, Friedrichstraße and other central locations</p>
             </div>
 
             <div class="transport-item">
-              <h3>🚌 Bus</h3>
+              <h3><!-- TODO: Add Bus icon SVG --> Bus</h3>
               <p><strong>Fontanestraße stop:</strong> Lines M29, M41, 104</p>
               <p><strong>Hermannplatz stop:</strong> Lines M29, M41, 194</p>
             </div>
 
             <div class="transport-item">
-              <h3>🚊 S-Bahn</h3>
+              <h3><!-- TODO: Add S-Bahn icon SVG --> S-Bahn</h3>
               <p><strong>S41/S42 Hermannstraße</strong> - 10 minutes walk</p>
               <p>Ring line with connections in all directions</p>
             </div>
@@ -77,7 +77,7 @@
 
           <div class="parking-info">
             <div class="parking-item">
-              <h3>🅿️ Parking Options</h3>
+              <h3><!-- TODO: Add Parking icon SVG --> Parking Options</h3>
               <p><strong>Note:</strong> The hotel does not have its own parking spaces.</p>
 
               <ul>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="parking-item">
-              <h3>🛣️ Directions</h3>
+              <h3><!-- TODO: Add Road/Navigation icon SVG --> Directions</h3>
               <p><strong>Address for GPS:</strong></p>
               <address>
                 Hasenheide 14<br>
@@ -104,14 +104,14 @@
 
           <div class="checkin-info">
             <div class="info-box">
-              <h3>⏰ Times</h3>
+              <h3><!-- TODO: Add Clock icon SVG --> Times</h3>
               <p><strong>Check-in:</strong> from 3:00 PM</p>
               <p><strong>Check-out:</strong> until 11:00 AM</p>
               <p><em>Early check-in/late check-out available upon request</em></p>
             </div>
 
             <div class="info-box">
-              <h3>🧳 Luggage Storage</h3>
+              <h3><!-- TODO: Add Luggage icon SVG --> Luggage Storage</h3>
               <p>Free luggage storage:</p>
               <ul>
                 <li>Before check-in: from 8:00 AM</li>

@@ -24,19 +24,19 @@
           <h2 class="heading-accent">Mit öffentlichen Verkehrsmitteln</h2>
           <div class="transport-options">
             <div class="transport-item">
-              <h3>🚇 U-Bahn</h3>
+              <h3><!-- TODO: Add U-Bahn icon SVG --> U-Bahn</h3>
               <p><strong>U8 Hermannplatz</strong> - nur 5 Gehminuten vom Hotel entfernt</p>
               <p>Direktverbindung zu Alexanderplatz, Friedrichstraße und anderen zentralen Punkten</p>
             </div>
 
             <div class="transport-item">
-              <h3>🚌 Bus</h3>
+              <h3><!-- TODO: Add Bus icon SVG --> Bus</h3>
               <p><strong>Haltestelle Fontanestraße:</strong> Linien M29, M41, 104</p>
               <p><strong>Haltestelle Hermannplatz:</strong> Linien M29, M41, 194</p>
             </div>
 
             <div class="transport-item">
-              <h3>🚊 S-Bahn</h3>
+              <h3><!-- TODO: Add S-Bahn icon SVG --> S-Bahn</h3>
               <p><strong>S41/S42 Hermannstraße</strong> - 10 Gehminuten</p>
               <p>Ringbahn mit Verbindungen in alle Richtungen</p>
             </div>
@@ -70,7 +70,7 @@
 
           <div class="parking-info">
             <div class="parking-item">
-              <h3>🅿️ Parkmöglichkeiten</h3>
+              <h3><!-- TODO: Add Parking icon SVG --> Parkmöglichkeiten</h3>
               <p><strong>Hinweis:</strong> Das Hotel verfügt über keine eigenen Parkplätze.</p>
 
               <ul>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="parking-item">
-              <h3>🛣️ Anfahrt</h3>
+              <h3><!-- TODO: Add Road/Navigation icon SVG --> Anfahrt</h3>
               <p><strong>Adresse für Navigationssystem:</strong></p>
               <address>
                 Hasenheide 14<br>
@@ -96,14 +96,14 @@
 
           <div class="checkin-info">
             <div class="info-box">
-              <h3>⏰ Zeiten</h3>
+              <h3><!-- TODO: Add Clock icon SVG --> Zeiten</h3>
               <p><strong>Check-in:</strong> ab 15:00 Uhr</p>
               <p><strong>Check-out:</strong> bis 11:00 Uhr</p>
               <p><em>Früher Check-in/später Check-out nach Verfügbarkeit möglich</em></p>
             </div>
 
             <div class="info-box">
-              <h3>🧳 Gepäckaufbewahrung</h3>
+              <h3><!-- TODO: Add Luggage icon SVG --> Gepäckaufbewahrung</h3>
               <p>Kostenlose Gepäckaufbewahrung:</p>
               <ul>
                 <li>Vor Check-in: ab 8:00 Uhr</li>

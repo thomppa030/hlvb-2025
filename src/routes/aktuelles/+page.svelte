@@ -801,66 +801,6 @@
     background: rgba(255, 255, 0, 0.1) !important;
   }
 
-  /* Debug Info Panel */
-  .debug-info {
-    margin-top: var(--space-lg);
-    background: var(--color-background-elevated);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-  }
-
-  .debug-info h3 {
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
-    font-family: var(--font-display);
-  }
-
-  .structure-details p {
-    margin: var(--space-xs) 0;
-    color: var(--color-text);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-  }
-
-  .element-list {
-    max-height: 300px;
-    overflow-y: auto;
-    margin-top: var(--space-sm);
-  }
-
-  .element-item {
-    padding: var(--space-sm);
-    border-bottom: 1px solid var(--color-border-light);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-  }
-
-  .class-name {
-    color: var(--color-primary);
-    margin-left: var(--space-xs);
-  }
-
-  .id-name {
-    color: var(--color-accent);
-    margin-left: var(--space-xs);
-  }
-
-  .text-content {
-    color: var(--color-text-light);
-    font-size: var(--font-size-xs);
-    margin-top: var(--space-xs);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  details summary {
-    cursor: pointer;
-    padding: var(--space-sm) 0;
-    color: var(--color-primary);
-  }
-
   /* Carousel Theme - single item display with navigation */
   .theme-carousel :global(.ubw-social-post-wrapper) {
     overflow: hidden !important;
