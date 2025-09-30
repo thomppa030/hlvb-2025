@@ -149,13 +149,6 @@
             "placeholder": "Einzelbett mit Federkernmatratze"
           }
         },
-        "room_features": {
-          "type": "Text",
-          "config": {
-            "label": "Room Features",
-            "placeholder": "Schreibtisch, Safe, TV"
-          }
-        },
         "booking_button_text": {
           "type": "Text",
           "config": {
@@ -168,6 +161,21 @@
           "config": {
             "label": "Booking URL",
             "placeholder": "/booking"
+          }
+        },
+        "room_features": {
+          "type": "Group",
+          "config": {
+            "label": "Room Features",
+            "fields": {
+              "feature": {
+                "type": "Text",
+                "config": {
+                  "label": "Feature",
+                  "placeholder": "Schreibtisch"
+                }
+              }
+            }
           }
         }
       }
@@ -308,13 +316,6 @@
             "placeholder": "Einzelbett mit Federkernmatratze"
           }
         },
-        "room_features": {
-          "type": "Text",
-          "config": {
-            "label": "Room Features",
-            "placeholder": "Schreibtisch, Safe, TV"
-          }
-        },
         "booking_button_text": {
           "type": "Text",
           "config": {
@@ -327,6 +328,21 @@
           "config": {
             "label": "Booking URL",
             "placeholder": "/booking"
+          }
+        },
+        "room_features": {
+          "type": "Group",
+          "config": {
+            "label": "Room Features",
+            "fields": {
+              "feature": {
+                "type": "Text",
+                "config": {
+                  "label": "Feature",
+                  "placeholder": "Schreibtisch"
+                }
+              }
+            }
           }
         }
       }

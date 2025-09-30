@@ -30,14 +30,14 @@
     title: item.room_title || '',
     description: item.room_description || '',
     bedType: item.room_bed_type || '',
-    features: item.room_features || '',
+    features: (item.room_features || []).filter(f => f.feature).map(f => f.feature),
     bookingButtonText: item.booking_button_text || '',
     bookingUrl: item.booking_url || ''
   })) || [];
 
   // Current room info based on slide
   $: currentRoom = roomData[currentSlide] || {};
-  $: hasRoomInfo = currentRoom.title || currentRoom.description || currentRoom.bedType || currentRoom.features;
+  $: hasRoomInfo = currentRoom.title || currentRoom.description || currentRoom.bedType || (currentRoom.features && currentRoom.features.length > 0);
 
   // Section content
   $: sectionData = {
@@ -84,54 +84,61 @@
         </div>
       {/if}
       
-      <div class="carousel-content">
-        <div class="carousel-wrapper">
-          <ImageCarousel
-            images={carouselImages}
-            autoplay={carouselConfig.autoplay}
-            autoplayInterval={carouselConfig.autoplayInterval}
-            showThumbnails={carouselConfig.showThumbnails}
-            showIndicators={carouselConfig.showIndicators}
-            showNavigation={carouselConfig.showNavigation}
-            aspectRatio={carouselConfig.aspectRatio}
-            on:slideChange={handleSlideChange}
-          />
-        </div>
+      <div class="carousel-wrapper">
+        <ImageCarousel
+          images={carouselImages}
+          autoplay={carouselConfig.autoplay}
+          autoplayInterval={carouselConfig.autoplayInterval}
+          showThumbnails={carouselConfig.showThumbnails}
+          showIndicators={carouselConfig.showIndicators}
+          showNavigation={carouselConfig.showNavigation}
+          aspectRatio={carouselConfig.aspectRatio}
+          on:slideChange={handleSlideChange}
+        />
+      </div>
 
-        {#if hasRoomInfo}
-          <div class="room-info">
-            {#if currentRoom.title}
-              <h3 class="room-title">{currentRoom.title}</h3>
-            {/if}
+      {#if hasRoomInfo}
+        <div class="room-info">
+          <div class="room-info-grid">
+            <div class="room-header">
+              {#if currentRoom.title}
+                <h3 class="room-title">{currentRoom.title}</h3>
+              {/if}
+              {#if currentRoom.description}
+                <p class="room-description">{currentRoom.description}</p>
+              {/if}
+            </div>
 
-            {#if currentRoom.description}
-              <p class="room-description">{currentRoom.description}</p>
-            {/if}
+            <div class="room-details">
+              {#if currentRoom.bedType}
+                <div class="room-bed-info">
+                  <span class="bed-label">Bett:</span>
+                  <span class="bed-value">{currentRoom.bedType}</span>
+                </div>
+              {/if}
 
-            {#if currentRoom.bedType}
-              <div class="room-detail">
-                <span class="detail-label">Bett:</span>
-                <span class="detail-value">{currentRoom.bedType}</span>
-              </div>
-            {/if}
-
-            {#if currentRoom.features}
-              <div class="room-detail">
-                <span class="detail-label">Ausstattung:</span>
-                <span class="detail-value">{currentRoom.features}</span>
-              </div>
-            {/if}
+              {#if currentRoom.features && currentRoom.features.length > 0}
+                <div class="room-features">
+                  <span class="features-label">Ausstattung:</span>
+                  <ul class="features-list">
+                    {#each currentRoom.features as feature}
+                      <li>{feature}</li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
+            </div>
 
             {#if currentRoom.bookingUrl && currentRoom.bookingButtonText}
               <div class="room-booking">
-                <Button variant="primary" size="large" href={currentRoom.bookingUrl}>
+                <Button variant="primary" size="medium" href={currentRoom.bookingUrl}>
                   {currentRoom.bookingButtonText}
                 </Button>
               </div>
             {/if}
           </div>
-        {/if}
-      </div>
+        </div>
+      {/if}
     </div>
   </section>
 {/if}
@@ -190,12 +197,6 @@
     border-radius: var(--radius-full);
   }
 
-  .carousel-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-  }
-
   .carousel-wrapper {
     position: relative;
   }
@@ -208,65 +209,109 @@
 
   /* Room Information Panel */
   .room-info {
+    margin-top: var(--space-xl);
     background: var(--color-background-elevated);
-    padding: var(--space-2xl);
     border-radius: var(--radius-lg);
-    border: 2px solid var(--color-border);
-    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .room-info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: var(--space-xl) var(--space-2xl);
+  }
+
+  .room-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .room-title {
     font-family: var(--font-display);
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
-    margin: 0 0 var(--space-md);
+    margin: 0;
     letter-spacing: -0.02em;
+    line-height: var(--line-height-tight);
   }
 
   .room-description {
-    font-size: var(--font-size-lg);
-    color: var(--color-text);
-    line-height: var(--line-height-relaxed);
-    margin: 0 0 var(--space-xl);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    margin: 0;
     font-style: italic;
   }
 
-  .room-detail {
+  .room-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .room-bed-info {
     display: flex;
     gap: var(--space-sm);
-    margin-bottom: var(--space-md);
-    padding: var(--space-md);
-    background: var(--color-background);
-    border-radius: var(--radius-md);
-    border-left: 3px solid var(--color-accent);
+    align-items: baseline;
   }
 
-  .detail-label {
+  .bed-label {
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    min-width: 100px;
+    font-size: var(--font-size-sm);
   }
 
-  .detail-value {
+  .bed-value {
     color: var(--color-text-light);
-    flex: 1;
+    font-size: var(--font-size-sm);
+  }
+
+  .room-features {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .features-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-md);
+  }
+
+  .features-list li {
+    position: relative;
+    padding-left: var(--space-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+  }
+
+  .features-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
   }
 
   .room-booking {
-    margin-top: var(--space-xl);
-    padding-top: var(--space-xl);
-    border-top: 1px solid var(--color-border-light);
+    display: flex;
+    justify-content: flex-end;
   }
 
   /* Responsive design */
-  @media (min-width: 1200px) {
-    .carousel-content {
-      grid-template-columns: 1.5fr 1fr;
-      align-items: start;
-    }
-  }
-
   @media (max-width: 1024px) {
     .carousel-slice {
       padding: var(--space-3xl) 0;
@@ -293,12 +338,19 @@
       height: 2px;
     }
 
-    .room-title {
-      font-size: var(--font-size-2xl);
+    .room-info-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
     }
 
-    .room-info {
-      padding: var(--space-xl);
+    .room-booking {
+      justify-content: stretch;
+    }
+
+    .room-booking :global(a) {
+      width: 100%;
+      justify-content: center;
     }
   }
 
@@ -334,25 +386,18 @@
       width: 80px;
     }
 
-    .room-info {
-      padding: var(--space-lg);
+    .room-info-grid {
+      padding: var(--space-md);
+      gap: var(--space-md);
     }
 
     .room-title {
       font-size: var(--font-size-xl);
     }
 
-    .room-description {
-      font-size: var(--font-size-base);
-    }
-
-    .detail-label {
-      min-width: 80px;
-      font-size: var(--font-size-sm);
-    }
-
-    .detail-value {
-      font-size: var(--font-size-sm);
+    .features-list {
+      flex-direction: column;
+      gap: var(--space-xs);
     }
   }
 
@@ -370,16 +415,15 @@
     }
 
     .room-info {
-      padding: var(--space-md);
+      margin-top: var(--space-md);
     }
 
-    .room-detail {
-      flex-direction: column;
-      gap: var(--space-xs);
+    .room-title {
+      font-size: var(--font-size-lg);
     }
 
-    .detail-label {
-      min-width: auto;
+    .room-description {
+      font-size: var(--font-size-xs);
     }
   }
 </style>
