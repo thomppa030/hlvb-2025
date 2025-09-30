@@ -1,13 +1,18 @@
 <!-- src/routes/en/infos/faq/+page.svelte -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   import FAQItem from "$lib/components/ui/FAQItem.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchFAQ, getFAQCategories, fetchContactInfo } from "$lib/utils/content.js";
+  import {
+    fetchFAQ,
+    getFAQCategories,
+    fetchContactInfo,
+  } from "$lib/utils/content.js";
+  import Icon from "$lib/components/ui/Icon.svelte";
 
   let faqItems = [];
-  let selectedCategory = 'all';
-  let searchQuery = '';
+  let selectedCategory = "all";
+  let searchQuery = "";
   let expandedItems = new Set();
   let loading = true;
   let categories = [];
@@ -25,18 +30,18 @@
       // Fetch FAQ and contact info in parallel
       const [faqData, contact] = await Promise.all([
         fetchFAQ(lang),
-        fetchContactInfo()
+        fetchContactInfo(),
       ]);
 
       faqItems = faqData;
       contactInfo = contact;
 
       // Get unique categories
-      categories = ['all', ...(await getFAQCategories(lang))];
+      categories = ["all", ...(await getFAQCategories(lang))];
 
       loading = false;
     } catch (error) {
-      console.error('Error loading FAQ:', error);
+      console.error("Error loading FAQ:", error);
       loading = false;
     }
   }
@@ -44,15 +49,17 @@
   $: filteredItems = filterFAQItems();
 
   function filterFAQItems() {
-    let items = selectedCategory === 'all'
-      ? faqItems
-      : faqItems.filter(item => item.category === selectedCategory);
+    let items =
+      selectedCategory === "all"
+        ? faqItems
+        : faqItems.filter((item) => item.category === selectedCategory);
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      items = items.filter(item =>
-        item.question.toLowerCase().includes(query) ||
-        item.answer.toLowerCase().includes(query)
+      items = items.filter(
+        (item) =>
+          item.question.toLowerCase().includes(query) ||
+          item.answer.toLowerCase().includes(query),
       );
     }
 
@@ -69,7 +76,7 @@
   }
 
   function clearSearch() {
-    searchQuery = '';
+    searchQuery = "";
   }
 
   // React to language changes
@@ -91,10 +98,11 @@
 <div class="faq-container">
   <div class="container">
     <header class="faq-header">
-      <h1 class="heading-accent">Frequently Asked Questions</h1>
+      <h1 class="heading-accent-center">Frequently Asked Questions</h1>
       <p class="intro-text">
         Here you'll find answers to the most common questions about our hotel.
-        If you have additional questions, please feel free to contact us directly.
+        If you have additional questions, please feel free to contact us
+        directly.
       </p>
     </header>
 
@@ -135,9 +143,9 @@
               <button
                 class="filter-btn"
                 class:active={selectedCategory === category}
-                on:click={() => selectedCategory = category}
+                on:click={() => (selectedCategory = category)}
               >
-                {#if category === 'all'}
+                {#if category === "all"}
                   All Categories
                 {:else}
                   {category}
@@ -157,7 +165,8 @@
           </div>
         {:else if filteredItems.length > 0}
           <div class="items-count">
-            {filteredItems.length} {filteredItems.length === 1 ? 'question' : 'questions'} found
+            {filteredItems.length}
+            {filteredItems.length === 1 ? "question" : "questions"} found
           </div>
 
           {#each filteredItems as item}
@@ -173,19 +182,29 @@
         {:else if faqItems.length === 0}
           <div class="no-results">
             <h3>Currently No FAQ Entries Available</h3>
-            <p>Frequently asked questions will be added soon. For additional questions please contact us directly.</p>
+            <p>
+              Frequently asked questions will be added soon. For additional
+              questions please contact us directly.
+            </p>
           </div>
         {:else}
           <div class="no-results">
             <h3>No Results Found</h3>
             <p>
               {#if searchQuery}
-                Your search for "<strong>{searchQuery}</strong>" returned no results.
+                Your search for "<strong>{searchQuery}</strong>" returned no
+                results.
               {:else}
                 No questions are available in this category.
               {/if}
             </p>
-            <button class="reset-btn" on:click={() => { searchQuery = ''; selectedCategory = 'all'; }}>
+            <button
+              class="reset-btn"
+              on:click={() => {
+                searchQuery = "";
+                selectedCategory = "all";
+              }}
+            >
               Reset Filters
             </button>
           </div>
@@ -194,30 +213,41 @@
 
       <!-- Contact Section -->
       <div class="contact-section">
-        <h2 class="heading-accent">More Questions?</h2>
+        <h2 class="heading-accent-center">More Questions?</h2>
         <div class="contact-content">
           <div class="contact-text">
             <p>
               Do you have a question that wasn't answered here? Our friendly
-              team is happy to help! Contact us by phone, email or simply
-              visit us at our reception.
+              team is happy to help! Contact us by phone, email or simply visit
+              us at our reception.
             </p>
           </div>
           <div class="contact-info">
             {#if contactInfo}
               <div class="contact-item">
-                <h3>📞 Phone</h3>
-                <p><a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a></p>
+                <h3><Icon name="phone" size={32} />Phone</h3>
+                <p>
+                  <a href="tel:{contactInfo.phone.main}"
+                    >{contactInfo.phone.display}</a
+                  >
+                </p>
                 <p class="hours">{contactInfo.hours.phoneAvailableEn}</p>
               </div>
               <div class="contact-item">
-                <h3>✉️ Email</h3>
-                <p><a href="mailto:{contactInfo.email.main}">{contactInfo.email.main}</a></p>
+                <h3><Icon name="email" size={32} /> Email</h3>
+                <p>
+                  <a href="mailto:{contactInfo.email.main}"
+                    >{contactInfo.email.main}</a
+                  >
+                </p>
                 <p class="hours">{contactInfo.hours.emailResponseEn}</p>
               </div>
               <div class="contact-item">
-                <h3>🏨 On-site</h3>
-                <p>{contactInfo.address.street}<br>{contactInfo.address.city}<br>{contactInfo.address.countryEn}</p>
+                <h3><Icon name="address" size={32} /> On-site</h3>
+                <p>
+                  {contactInfo.address.street}<br />{contactInfo.address
+                    .city}<br />{contactInfo.address.countryEn}
+                </p>
                 <p class="hours">Reception: {contactInfo.hours.receptionEn}</p>
               </div>
             {/if}
@@ -470,6 +500,10 @@
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
   }
 
   .contact-item p {
@@ -564,3 +598,4 @@
     }
   }
 </style>
+

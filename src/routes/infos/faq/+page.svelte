@@ -3,7 +3,12 @@
   import { onMount } from "svelte";
   import FAQItem from "$lib/components/ui/FAQItem.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchFAQ, getFAQCategories, fetchContactInfo } from "$lib/utils/content.js";
+  import {
+    fetchFAQ,
+    getFAQCategories,
+    fetchContactInfo,
+  } from "$lib/utils/content.js";
+  import Icon from "$lib/components/ui/Icon.svelte";
 
   let faqItems = [];
   let selectedCategory = "all";
@@ -25,7 +30,7 @@
       // Fetch FAQ and contact info in parallel
       const [faqData, contact] = await Promise.all([
         fetchFAQ(lang),
-        fetchContactInfo()
+        fetchContactInfo(),
       ]);
 
       faqItems = faqData;
@@ -93,7 +98,7 @@
 <div class="faq-container">
   <div class="container">
     <header class="faq-header">
-      <h1 class="heading-accent">Häufig gestellte Fragen</h1>
+      <h1 class="heading-accent-center">Häufig gestellte Fragen</h1>
       <p class="intro-text">
         Hier finden Sie Antworten auf die häufigsten Fragen zu unserem Hotel.
         Falls Sie weitere Fragen haben, kontaktieren Sie uns gerne direkt.
@@ -207,7 +212,7 @@
 
       <!-- Contact Section -->
       <div class="contact-section">
-        <h2 class="heading-accent">Weitere Fragen?</h2>
+        <h2 class="heading-accent-center">Weitere Fragen?</h2>
         <div class="contact-content">
           <div class="contact-text">
             <p>
@@ -220,10 +225,16 @@
           <div class="contact-info">
             {#if contactInfo}
               <div class="contact-item">
-                <p><a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a></p>
+                <h3><Icon name="phone" size={32} />Phone</h3>
+                <p>
+                  <a href="tel:{contactInfo.phone.main}"
+                    >{contactInfo.phone.display}</a
+                  >
+                </p>
                 <p class="hours">{contactInfo.hours.phoneAvailableDe}</p>
               </div>
               <div class="contact-item">
+                <h3><Icon name="email" size={32} /> Email</h3>
                 <p>
                   <a href="mailto:{contactInfo.email.main}"
                     >{contactInfo.email.main}</a
@@ -232,7 +243,10 @@
                 <p class="hours">{contactInfo.hours.emailResponseDe}</p>
               </div>
               <div class="contact-item">
-                <p>{contactInfo.address.street}<br />{contactInfo.address.city}</p>
+                <h3><Icon name="address" size={32} /> On-site</h3>
+                <p>
+                  {contactInfo.address.street}<br />{contactInfo.address.city}
+                </p>
                 <p class="hours">Rezeption: {contactInfo.hours.receptionDe}</p>
               </div>
             {/if}
@@ -479,6 +493,18 @@
     text-align: center;
   }
 
+  .contact-item h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+
   .contact-item p {
     font-family: var(--font-primary);
     font-size: var(--font-size-base);
@@ -571,4 +597,3 @@
     }
   }
 </style>
-

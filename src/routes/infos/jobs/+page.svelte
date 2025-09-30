@@ -1,20 +1,26 @@
 <!-- src/routes/infos/jobs/+page.svelte -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   import JobCard from "$lib/components/ui/JobCard.svelte";
+  import Icon from "$lib/components/ui/Icon.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchJobs, getJobDepartments, fetchContactInfo } from "$lib/utils/content.js";
+  import {
+    fetchJobs,
+    getJobDepartments,
+    fetchContactInfo,
+  } from "$lib/utils/content.js";
 
   let jobs = [];
-  let selectedCategory = 'all';
+  let selectedCategory = "all";
   let expandedJobs = new Set();
   let loading = true;
-  let categories = ['all'];
+  let categories = ["all"];
   let contactInfo = null;
 
-  $: filteredJobs = selectedCategory === 'all'
-    ? jobs
-    : jobs.filter(job => job.department === selectedCategory);
+  $: filteredJobs =
+    selectedCategory === "all"
+      ? jobs
+      : jobs.filter((job) => job.department === selectedCategory);
 
   onMount(async () => {
     await loadJobs();
@@ -29,16 +35,16 @@
       const [jobsData, contact, departments] = await Promise.all([
         fetchJobs(lang),
         fetchContactInfo(),
-        getJobDepartments(lang)
+        getJobDepartments(lang),
       ]);
 
       jobs = jobsData;
       contactInfo = contact;
-      categories = ['all', ...departments];
+      categories = ["all", ...departments];
 
       loading = false;
     } catch (error) {
-      console.error('Error loading jobs:', error);
+      console.error("Error loading jobs:", error);
       jobs = [];
       loading = false;
     }
@@ -70,11 +76,11 @@
 <div class="jobs-container">
   <div class="container">
     <header class="jobs-header">
-      <h1 class="heading-accent">Stellenanzeigen</h1>
+      <h1 class="heading-accent-center">Stellenanzeigen</h1>
       <p class="intro-text">
-        Werden Sie Teil unseres Teams! Wir bieten Ihnen ein familiäres Arbeitsumfeld
-        in einem der charmantesten Hotels Berlins. Entdecken Sie unsere aktuellen
-        Stellenangebote und bewerben Sie sich noch heute.
+        Werden Sie Teil unseres Teams! Wir bieten Ihnen ein familiäres
+        Arbeitsumfeld in einem der charmantesten Hotels Berlins. Entdecken Sie
+        unsere aktuellen Stellenangebote und bewerben Sie sich noch heute.
       </p>
     </header>
 
@@ -87,9 +93,9 @@
             <button
               class="filter-btn"
               class:active={selectedCategory === category}
-              on:click={() => selectedCategory = category}
+              on:click={() => (selectedCategory = category)}
             >
-              {#if category === 'all'}
+              {#if category === "all"}
                 Alle Stellen
               {:else}
                 {category}
@@ -117,31 +123,42 @@
         {:else if jobs.length === 0}
           <div class="no-jobs">
             <h3>Derzeit keine Stellenanzeigen verfügbar</h3>
-            <p>Aktuell sind keine offenen Stellen ausgeschrieben. Schauen Sie gerne regelmäßig vorbei oder senden Sie uns eine Initiativbewerbung!</p>
+            <p>
+              Aktuell sind keine offenen Stellen ausgeschrieben. Schauen Sie
+              gerne regelmäßig vorbei oder senden Sie uns eine
+              Initiativbewerbung!
+            </p>
           </div>
         {:else}
           <div class="no-jobs">
             <h3>Keine Stellen in dieser Kategorie</h3>
-            <p>In der Kategorie "{selectedCategory}" sind aktuell keine Stellen verfügbar. Wählen Sie eine andere Kategorie oder schauen Sie unter "Alle Stellen".</p>
+            <p>
+              In der Kategorie "{selectedCategory}" sind aktuell keine Stellen
+              verfügbar. Wählen Sie eine andere Kategorie oder schauen Sie unter
+              "Alle Stellen".
+            </p>
           </div>
         {/if}
       </div>
 
       <!-- Contact Section -->
       <div class="contact-section">
-        <h2 class="heading-accent">Initiativbewerbung</h2>
+        <h2 class="heading-accent-center">Initiativbewerbung</h2>
         <div class="contact-content">
           <div class="contact-text">
             <p>
-              Sie haben die passende Stelle nicht gefunden? Wir freuen uns auch über
-              Initiativbewerbungen! Senden Sie uns Ihre vollständigen Bewerbungsunterlagen
-              und wir melden uns bei Ihnen, sobald eine passende Position frei wird.
+              Sie haben die passende Stelle nicht gefunden? Wir freuen uns auch
+              über Initiativbewerbungen! Senden Sie uns Ihre vollständigen
+              Bewerbungsunterlagen und wir melden uns bei Ihnen, sobald eine
+              passende Position frei wird.
             </p>
             <p>
               <strong>Was wir bieten:</strong>
             </p>
             <ul>
-              <li>Familiäres Arbeitsklima in einem traditionellen Berliner Hotel</li>
+              <li>
+                Familiäres Arbeitsklima in einem traditionellen Berliner Hotel
+              </li>
               <li>Flexible Arbeitszeiten und Work-Life-Balance</li>
               <li>Fortbildungsmöglichkeiten und Karriereentwicklung</li>
               <li>Attraktive Vergütung nach Tarif</li>
@@ -152,23 +169,39 @@
             <h3>Kontakt für Bewerbungen</h3>
             <div class="contact-details">
               {#if contactInfo}
-                <p>
-                  <strong>E-Mail:</strong><br>
-                  <a href="mailto:{contactInfo.email.jobs}">
-                    {contactInfo.email.jobs}
-                  </a>
-                </p>
-                <p>
-                  <strong>Telefon:</strong><br>
-                  <a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a>
-                </p>
-                <p>
-                  <strong>Post:</strong><br>
-                  {contactInfo.hotelName}<br>
-                  Personalabteilung<br>
-                  {contactInfo.address.street}<br>
-                  {contactInfo.address.city}
-                </p>
+                <div class="contact-detail-item">
+                  <div class="contact-icon">
+                    <Icon name="email" size={24} />
+                  </div>
+                  <div class="contact-detail-text">
+                    <strong>E-Mail:</strong><br />
+                    <a href="mailto:{contactInfo.email.jobs}">
+                      {contactInfo.email.jobs}
+                    </a>
+                  </div>
+                </div>
+                <div class="contact-detail-item">
+                  <div class="contact-icon">
+                    <Icon name="phone" size={24} />
+                  </div>
+                  <div class="contact-detail-text">
+                    <strong>Telefon:</strong><br />
+                    <a href="tel:{contactInfo.phone.main}"
+                      >{contactInfo.phone.display}</a
+                    >
+                  </div>
+                </div>
+                <div class="contact-detail-item">
+                  <div class="contact-icon">
+                    <Icon name="address" size={24} />
+                  </div>
+                  <div class="contact-detail-text">
+                    <strong>Post:</strong><br />
+                    {contactInfo.hotelName}<br />
+                    {contactInfo.address.street}<br />
+                    {contactInfo.address.city}
+                  </div>
+                </div>
               {/if}
             </div>
           </div>
@@ -350,12 +383,28 @@
     margin-bottom: var(--space-lg);
   }
 
-  .contact-details p {
+  .contact-detail-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-detail-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-icon {
+    flex-shrink: 0;
+    color: var(--color-secondary);
+    margin-top: 2px;
+  }
+
+  .contact-detail-text {
     font-family: var(--font-primary);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
-    margin-bottom: var(--space-md);
   }
 
   .contact-details a {
@@ -430,3 +479,4 @@
     }
   }
 </style>
+

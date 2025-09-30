@@ -1,20 +1,26 @@
 <!-- src/routes/en/infos/jobs/+page.svelte -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   import JobCard from "$lib/components/ui/JobCard.svelte";
+  import Icon from "$lib/components/ui/Icon.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchJobs, getJobDepartments, fetchContactInfo } from "$lib/utils/content.js";
+  import {
+    fetchJobs,
+    getJobDepartments,
+    fetchContactInfo,
+  } from "$lib/utils/content.js";
 
   let jobs = [];
-  let selectedCategory = 'all';
+  let selectedCategory = "all";
   let expandedJobs = new Set();
   let loading = true;
-  let categories = ['all'];
+  let categories = ["all"];
   let contactInfo = null;
 
-  $: filteredJobs = selectedCategory === 'all'
-    ? jobs
-    : jobs.filter(job => job.department === selectedCategory);
+  $: filteredJobs =
+    selectedCategory === "all"
+      ? jobs
+      : jobs.filter((job) => job.department === selectedCategory);
 
   onMount(async () => {
     await loadJobs();
@@ -29,16 +35,16 @@
       const [jobsData, contact, departments] = await Promise.all([
         fetchJobs(lang),
         fetchContactInfo(),
-        getJobDepartments(lang)
+        getJobDepartments(lang),
       ]);
 
       jobs = jobsData;
       contactInfo = contact;
-      categories = ['all', ...departments];
+      categories = ["all", ...departments];
 
       loading = false;
     } catch (error) {
-      console.error('Error loading jobs:', error);
+      console.error("Error loading jobs:", error);
       jobs = [];
       loading = false;
     }
@@ -70,11 +76,11 @@
 <div class="jobs-container">
   <div class="container">
     <header class="jobs-header">
-      <h1 class="heading-accent">Job Opportunities</h1>
+      <h1 class="heading-accent-center">Job Opportunities</h1>
       <p class="intro-text">
-        Become part of our team! We offer you a family-friendly working environment
-        in one of Berlin's most charming hotels. Discover our current job openings
-        and apply today.
+        Become part of our team! We offer you a family-friendly working
+        environment in one of Berlin's most charming hotels. Discover our
+        current job openings and apply today.
       </p>
     </header>
 
@@ -87,9 +93,9 @@
             <button
               class="filter-btn"
               class:active={selectedCategory === category}
-              on:click={() => selectedCategory = category}
+              on:click={() => (selectedCategory = category)}
             >
-              {#if category === 'all'}
+              {#if category === "all"}
                 All Positions
               {:else}
                 {category}
@@ -117,31 +123,40 @@
         {:else if jobs.length === 0}
           <div class="no-jobs">
             <h3>No Job Opportunities Available</h3>
-            <p>Currently there are no open positions available. Please check back regularly or send us a speculative application!</p>
+            <p>
+              Currently there are no open positions available. Please check back
+              regularly or send us a speculative application!
+            </p>
           </div>
         {:else}
           <div class="no-jobs">
             <h3>No Positions in This Category</h3>
-            <p>There are currently no positions available in the "{selectedCategory}" category. Please select another category or check "All Positions".</p>
+            <p>
+              There are currently no positions available in the "{selectedCategory}"
+              category. Please select another category or check "All Positions".
+            </p>
           </div>
         {/if}
       </div>
 
       <!-- Contact Section -->
       <div class="contact-section">
-        <h2 class="heading-accent">Speculative Applications</h2>
+        <h2 class="heading-accent-center">Speculative Applications</h2>
         <div class="contact-content">
           <div class="contact-text">
             <p>
-              Didn't find the right position? We also welcome speculative applications!
-              Send us your complete application documents and we will get back to you
-              as soon as a suitable position becomes available.
+              Didn't find the right position? We also welcome speculative
+              applications! Send us your complete application documents and we
+              will get back to you as soon as a suitable position becomes
+              available.
             </p>
             <p>
               <strong>What we offer:</strong>
             </p>
             <ul>
-              <li>Family-like working atmosphere in a traditional Berlin hotel</li>
+              <li>
+                Family-like working atmosphere in a traditional Berlin hotel
+              </li>
               <li>Flexible working hours and work-life balance</li>
               <li>Training opportunities and career development</li>
               <li>Attractive compensation according to tariff</li>
@@ -152,24 +167,40 @@
             <h3>Application Contact</h3>
             <div class="contact-details">
               {#if contactInfo}
-                <p>
-                  <strong>Email:</strong><br>
-                  <a href="mailto:{contactInfo.email.jobsEn}">
-                    {contactInfo.email.jobsEn}
-                  </a>
-                </p>
-                <p>
-                  <strong>Phone:</strong><br>
-                  <a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a>
-                </p>
-                <p>
-                  <strong>Mail:</strong><br>
-                  {contactInfo.hotelName}<br>
-                  Human Resources<br>
-                  {contactInfo.address.street}<br>
-                  {contactInfo.address.city}<br>
-                  {contactInfo.address.countryEn}
-                </p>
+                <div class="contact-detail-item">
+                  <div class="contact-icon">
+                    <Icon name="email" size={24} />
+                  </div>
+                  <div class="contact-detail-text">
+                    <strong>Email:</strong><br />
+                    <a href="mailto:{contactInfo.email.jobsEn}">
+                      {contactInfo.email.jobsEn}
+                    </a>
+                  </div>
+                </div>
+                <div class="contact-detail-item">
+                  <div class="contact-icon">
+                    <Icon name="phone" size={24} />
+                  </div>
+                  <div class="contact-detail-text">
+                    <strong>Phone:</strong><br />
+                    <a href="tel:{contactInfo.phone.main}"
+                      >{contactInfo.phone.display}</a
+                    >
+                  </div>
+                </div>
+                <div class="contact-detail-item">
+                  <div class="contact-icon">
+                    <Icon name="address" size={24} />
+                  </div>
+                  <div class="contact-detail-text">
+                    <strong>Mail:</strong><br />
+                    {contactInfo.hotelName}<br />
+                    {contactInfo.address.street}<br />
+                    {contactInfo.address.city}<br />
+                    {contactInfo.address.countryEn}
+                  </div>
+                </div>
               {/if}
             </div>
           </div>
@@ -351,12 +382,28 @@
     margin-bottom: var(--space-lg);
   }
 
-  .contact-details p {
+  .contact-detail-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-detail-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-icon {
+    flex-shrink: 0;
+    color: var(--color-secondary);
+    margin-top: 2px;
+  }
+
+  .contact-detail-text {
     font-family: var(--font-primary);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
-    margin-bottom: var(--space-md);
   }
 
   .contact-details a {
@@ -431,3 +478,4 @@
     }
   }
 </style>
+

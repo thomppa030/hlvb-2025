@@ -3,13 +3,14 @@
   import GoogleMap from "$lib/components/ui/GoogleMap.svelte";
   import { t } from "$lib/stores/i18n.js";
 
-  const hotelEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.5298860995995!2d13.418470313162233!3d52.487647138506624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fb7f0b53161%3A0xfc1c52db79cab366!2sHotel%20Ludwig%20Van%20Beethoven!5e0!3m2!1sen!2sde!4v1759056233091!5m2!1sen!2sde";
+  const hotelEmbedUrl =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.5298860995995!2d13.418470313162233!3d52.487647138506624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fb7f0b53161%3A0xfc1c52db79cab366!2sHotel%20Ludwig%20Van%20Beethoven!5e0!3m2!1sen!2sde!4v1759056233091!5m2!1sen!2sde";
 
   const addressLines = [
     "Hotel Ludwig van Beethoven",
     "Hasenheide 14",
     "10967 Berlin",
-    "Germany"
+    "Germany",
   ];
 </script>
 
@@ -23,7 +24,7 @@
 
 <div class="arrival-container">
   <div class="container">
-    <h1 class="heading-accent">Getting Here</h1>
+    <h1 class="heading-accent-center">Getting Here</h1>
 
     <div class="content-grid">
       <div class="info-section">
@@ -32,8 +33,13 @@
           <div class="transport-options">
             <div class="transport-item">
               <h3><!-- TODO: Add U-Bahn icon SVG --> Underground (U-Bahn)</h3>
-              <p><strong>U8 Hermannplatz</strong> - only 5 minutes walk from the hotel</p>
-              <p>Direct connection to Alexanderplatz, Friedrichstraße and other central locations</p>
+              <p>
+                <strong>U8 Hermannplatz</strong> - only 5 minutes walk from the hotel
+              </p>
+              <p>
+                Direct connection to Alexanderplatz, Friedrichstraße and other
+                central locations
+              </p>
             </div>
 
             <div class="transport-item">
@@ -57,7 +63,9 @@
             <div class="route">
               <h3>Berlin Brandenburg Airport (BER)</h3>
               <ol>
-                <li>S-Bahn S9 to <strong>Hermannstraße</strong> (approx. 45 min)</li>
+                <li>
+                  S-Bahn S9 to <strong>Hermannstraße</strong> (approx. 45 min)
+                </li>
                 <li>Bus M41 to <strong>Fontanestraße</strong> (3 min)</li>
                 <li>2 minutes walk to the hotel</li>
               </ol>
@@ -78,12 +86,23 @@
           <div class="parking-info">
             <div class="parking-item">
               <h3><!-- TODO: Add Parking icon SVG --> Parking Options</h3>
-              <p><strong>Note:</strong> The hotel does not have its own parking spaces.</p>
+              <p>
+                <strong>Note:</strong> The hotel does not have its own parking spaces.
+              </p>
 
               <ul>
-                <li><strong>Street parking:</strong> Hasenheide and surrounding areas (charged Mon-Sat 9am-7pm)</li>
-                <li><strong>Hasenheide Parking Garage:</strong> 5 minutes walk, approx. €2/hour</li>
-                <li><strong>Park & Ride Hermannplatz:</strong> Affordable long-term parking</li>
+                <li>
+                  <strong>Street parking:</strong> Hasenheide and surrounding areas
+                  (charged Mon-Sat 9am-7pm)
+                </li>
+                <li>
+                  <strong>Hasenheide Parking Garage:</strong> 5 minutes walk, approx.
+                  €2/hour
+                </li>
+                <li>
+                  <strong>Park & Ride Hermannplatz:</strong> Affordable long-term
+                  parking
+                </li>
               </ul>
             </div>
 
@@ -91,8 +110,8 @@
               <h3><!-- TODO: Add Road/Navigation icon SVG --> Directions</h3>
               <p><strong>Address for GPS:</strong></p>
               <address>
-                Hasenheide 14<br>
-                10967 Berlin<br>
+                Hasenheide 14<br />
+                10967 Berlin<br />
                 Germany
               </address>
             </div>
@@ -107,7 +126,9 @@
               <h3><!-- TODO: Add Clock icon SVG --> Times</h3>
               <p><strong>Check-in:</strong> from 3:00 PM</p>
               <p><strong>Check-out:</strong> until 11:00 AM</p>
-              <p><em>Early check-in/late check-out available upon request</em></p>
+              <p>
+                <em>Early check-in/late check-out available upon request</em>
+              </p>
             </div>
 
             <div class="info-box">
@@ -360,3 +381,4 @@
     }
   }
 </style>
+

@@ -200,12 +200,13 @@ input:focus, textarea:focus, select:focus {
 .heading-accent-center {
   position: relative;
   padding-bottom: var(--space-lg);
+  text-align: center;
 }
 
 .heading-accent-center::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: var(--space-md);
   left: 50%;
   transform: translateX(-50%);
   width: 60px;

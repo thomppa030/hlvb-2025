@@ -18,7 +18,7 @@
 
 <div class="arrival-container">
   <div class="container">
-    <h1 class="heading-accent">Anreise</h1>
+    <h1 class="heading-accent-center">Anreise</h1>
 
     <div class="content-grid">
       <div class="info-section">
@@ -164,13 +164,12 @@
     padding: 0 var(--space-lg);
   }
 
-  h1.heading-accent {
+  h1.heading-accent-center {
     font-family: var(--font-display);
     font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
     margin-bottom: var(--space-4xl);
-    text-align: center;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
