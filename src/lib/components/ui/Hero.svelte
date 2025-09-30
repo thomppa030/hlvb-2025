@@ -3,10 +3,10 @@
   import BookingWidget from "./BookingWidget.svelte";
   import { t } from "$lib/stores/i18n.js";
 
-  // Image configuration props
-  export let desktopImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=75&w=1920&h=799&fm=webp";
-  export let mobileImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp";
-  export let fallbackImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp";
+  // Image configuration props - optimized compression
+  export let desktopImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=65&w=1920&h=799&fm=webp";
+  export let mobileImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=55&w=390&h=203&fm=webp";
+  export let fallbackImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=55&w=390&h=203&fm=webp";
   export let imageAlt = "Hotel Ludwig van Beethoven Berlin - Exterior view";
   export let imageWidth = 390;
   export let imageHeight = 203;

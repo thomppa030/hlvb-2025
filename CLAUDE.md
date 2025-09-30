@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a luxury hotel homepage project (hlvb-2025) built with SvelteKit and npm. It features a comprehensive design system with dark/light theme support and component-based architecture.
+This is the Hotel Ludwig van Beethoven Website (hlvb-2025) built with SvelteKit and npm. It features a comprehensive design system with dark/light theme support and component-based architecture.
 
 ## Tech Stack
 
