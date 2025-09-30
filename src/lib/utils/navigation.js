@@ -42,8 +42,7 @@ export const ROUTES = {
   reviews: { de: '/reviews', en: '/en/reviews' },
   infos: { de: '/infos', en: '/en/infos' },
   aktuelles: { de: '/aktuelles', en: '/en/aktuelles' },
-  social: { de: '/social', en: '/en/social' },
-  test: { de: '/test', en: '/en/test' }
+  social: { de: '/social', en: '/en/social' }
 };
 
 /**

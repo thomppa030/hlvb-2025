@@ -1,0 +1,159 @@
+/* Global Typography Hierarchy */
+/* Standardized heading styles for consistent brand experience across all pages */
+
+/* Global heading accent styles - overrides component-specific styling */
+h1.heading-accent,
+.heading-accent h1 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl)) !important;
+  font-weight: var(--font-weight-bold) !important;
+  color: var(--color-text) !important;
+  margin-bottom: var(--space-4xl) !important;
+  text-align: center !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+}
+
+h2.heading-accent,
+.heading-accent h2 {
+  font-family: var(--font-display) !important;
+  font-size: var(--font-size-2xl) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text) !important;
+  margin-top: var(--space-4xl) !important;
+  margin-bottom: var(--space-xl) !important;
+  letter-spacing: -0.01em !important;
+}
+
+h3.heading-accent,
+.heading-accent h3 {
+  font-family: var(--font-display) !important;
+  font-size: var(--font-size-xl) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text) !important;
+  margin-top: var(--space-3xl) !important;
+  margin-bottom: var(--space-lg) !important;
+  letter-spacing: -0.01em !important;
+}
+
+h4.heading-accent,
+.heading-accent h4 {
+  font-family: var(--font-display) !important;
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text) !important;
+  margin-top: var(--space-2xl) !important;
+  margin-bottom: var(--space-md) !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Global page container styles */
+.page-container {
+  background-color: var(--color-background);
+  padding: var(--space-5xl) 0;
+  min-height: 80vh;
+}
+
+.page-container .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.page-content {
+  /* Remove any background styling - elegant document approach */
+}
+
+.page-content section {
+  padding: var(--space-3xl) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.page-content section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.page-content p {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+  max-width: 70ch;
+}
+
+.page-content ul {
+  margin: var(--space-lg) 0;
+  padding-left: var(--space-xl);
+  max-width: 70ch;
+}
+
+.page-content li {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+.page-content strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-content a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-secondary-light);
+  transition: var(--transition-fast);
+}
+
+.page-content a:hover {
+  color: var(--color-secondary-light);
+  border-bottom-color: var(--color-secondary-light);
+  transform: translateY(-1px);
+}
+
+/* Mobile responsive overrides */
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--space-4xl) 0;
+  }
+
+  .page-container .container {
+    padding: 0 var(--space-md);
+  }
+
+  .page-content section {
+    padding: var(--space-2xl) 0;
+  }
+
+  h1.heading-accent,
+  .heading-accent h1 {
+    margin-bottom: var(--space-3xl) !important;
+  }
+
+  h2.heading-accent,
+  .heading-accent h2 {
+    font-size: var(--font-size-xl) !important;
+    margin-top: var(--space-3xl) !important;
+  }
+
+  h3.heading-accent,
+  .heading-accent h3 {
+    font-size: var(--font-size-lg) !important;
+    margin-top: var(--space-2xl) !important;
+  }
+
+  .page-content p,
+  .page-content li {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container .container {
+    padding: 0 var(--space-sm);
+  }
+}

@@ -53,52 +53,55 @@
 <style>
   .impressum-page {
     background-color: var(--color-background);
-    padding: var(--space-4xl) 0;
+    padding: var(--space-5xl) 0;
+    min-height: 80vh;
   }
 
   .container {
-    max-width: var(--container-lg);
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 var(--space-lg);
   }
 
-  .impressum-content {
-    background: var(--color-background-elevated);
-    padding: var(--space-3xl);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border-light);
-    box-shadow: 0 2px 8px rgba(90, 78, 71, 0.08);
+
+  h1.heading-accent {
+    font-family: var(--font-display);
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-4xl);
+    text-align: center;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 
-  h1 {
+  h2.heading-accent {
     font-family: var(--font-display);
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-bottom: var(--space-2xl);
-    padding-bottom: var(--space-lg);
-    border-bottom: 2px solid var(--color-border);
-  }
-
-  h2 {
-    font-family: var(--font-display);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-    margin-top: var(--space-2xl);
-    margin-bottom: var(--space-lg);
+    margin-top: var(--space-4xl);
+    margin-bottom: var(--space-xl);
+    letter-spacing: -0.01em;
   }
 
   section {
-    margin-bottom: var(--space-2xl);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   p {
     font-family: var(--font-primary);
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
+    max-width: 70ch;
   }
 
   strong {
@@ -114,25 +117,42 @@
   }
 
   a:hover {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
+    color: var(--color-secondary-light);
+    border-bottom-color: var(--color-secondary-light);
+    transform: translateY(-1px);
   }
 
+  /* Mobile responsive */
   @media (max-width: 768px) {
     .impressum-page {
+      padding: var(--space-4xl) 0;
+    }
+
+    .container {
+      padding: 0 var(--space-md);
+    }
+
+    section {
       padding: var(--space-2xl) 0;
     }
 
-    .impressum-content {
-      padding: var(--space-xl);
+    h1.heading-accent {
+      margin-bottom: var(--space-3xl);
     }
 
-    h1 {
-      font-size: var(--font-size-2xl);
+    h2.heading-accent {
+      font-size: var(--font-size-xl);
+      margin-top: var(--space-3xl);
     }
 
-    h2 {
-      font-size: var(--font-size-lg);
+    p {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 var(--space-sm);
     }
   }
 </style>

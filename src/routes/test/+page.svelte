@@ -3,6 +3,12 @@
   import Button from "$lib/components/ui/Button.svelte";
   import Card from "$lib/components/ui/Card.svelte";
   import ImageCarousel from "$lib/components/ui/ImageCarousel.svelte";
+  import { dev } from '$app/environment';
+
+  // Redirect to home if in production
+  if (!dev && typeof window !== 'undefined') {
+    window.location.href = '/';
+  }
 
   let theme = "light";
   let currentSection = "typography";

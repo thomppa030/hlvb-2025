@@ -1,6 +1,7 @@
 /* src/app.css */
 
 @import './lib/styles/variables.css';
+@import './lib/styles/global-typography.css';
 
 /* CSS Reset & Base Styles */
 *,

@@ -10,7 +10,7 @@
   let mobileMenuOpen = false;
 
   // Toggle mobile menu
-  function toggleMobileMenu() {
+  function toggleMobileMenu(event) {
     mobileMenuOpen = !mobileMenuOpen;
   }
 
@@ -85,9 +85,10 @@
         <button
           class="hamburger-menu"
           class:active={mobileMenuOpen}
-          on:click={toggleMobileMenu}
+          on:click|preventDefault|stopPropagation={toggleMobileMenu}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
+          type="button"
         >
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
@@ -168,6 +169,7 @@
     right: var(--space-lg);
     display: flex;
     align-items: center;
+    z-index: 101;
   }
 
   .brand {
@@ -200,14 +202,26 @@
     border: none;
     cursor: pointer;
     padding: var(--space-sm);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
     margin-right: var(--space-md);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+    touch-action: manipulation;
+  }
+
+  .hamburger-menu:hover {
+    background-color: var(--color-background-alt);
+  }
+
+  .hamburger-menu:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
   }
 
   .hamburger-line {
@@ -311,12 +325,17 @@
 
     .nav-group {
       gap: var(--space-md);
-      margin-right: 80px; /* Make room for actions */
+      margin-right: 90px; /* Make room for actions */
     }
 
+    /* Hide desktop nav sides on mobile */
+    .nav-side {
+      display: none;
+    }
 
     .brand {
       margin: 0;
+      justify-self: start;
     }
 
     .nav-actions {
