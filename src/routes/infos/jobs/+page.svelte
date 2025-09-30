@@ -1,0 +1,376 @@
+<!-- src/routes/infos/jobs/+page.svelte -->
+<script>
+  import JobCard from "$lib/components/ui/JobCard.svelte";
+  import { jobs, jobsByCategory } from "$lib/data/jobs.js";
+  import { t } from "$lib/stores/i18n.js";
+
+  let selectedCategory = 'all';
+  let expandedJobs = new Set();
+
+  $: filteredJobs = selectedCategory === 'all'
+    ? jobs
+    : jobsByCategory[selectedCategory] || [];
+
+  $: categories = ['all', ...Object.keys(jobsByCategory)];
+
+  function toggleJobExpansion(jobId) {
+    if (expandedJobs.has(jobId)) {
+      expandedJobs.delete(jobId);
+    } else {
+      expandedJobs.add(jobId);
+    }
+    expandedJobs = expandedJobs;
+  }
+</script>
+
+<svelte:head>
+  <title>Stellenanzeigen - Hotel Ludwig van Beethoven</title>
+  <meta
+    name="description"
+    content="Aktuelle Stellenanzeigen im Hotel Ludwig van Beethoven Berlin. Bewerbungen für Rezeption, Service und Housekeeping."
+  />
+</svelte:head>
+
+<div class="jobs-container">
+  <div class="container">
+    <header class="jobs-header">
+      <h1 class="heading-accent">Stellenanzeigen</h1>
+      <p class="intro-text">
+        Werden Sie Teil unseres Teams! Wir bieten Ihnen ein familiäres Arbeitsumfeld
+        in einem der charmantesten Hotels Berlins. Entdecken Sie unsere aktuellen
+        Stellenangebote und bewerben Sie sich noch heute.
+      </p>
+    </header>
+
+    <div class="jobs-content">
+      <!-- Filter Section -->
+      <div class="filter-section">
+        <h2>Filter nach Bereich</h2>
+        <div class="filter-buttons">
+          {#each categories as category}
+            <button
+              class="filter-btn"
+              class:active={selectedCategory === category}
+              on:click={() => selectedCategory = category}
+            >
+              {#if category === 'all'}
+                Alle Stellen
+              {:else}
+                {category}
+              {/if}
+            </button>
+          {/each}
+        </div>
+      </div>
+
+      <!-- Jobs List -->
+      <div class="jobs-list">
+        {#if filteredJobs.length > 0}
+          {#each filteredJobs as job}
+            <JobCard
+              {job}
+              expanded={expandedJobs.has(job.id)}
+              on:click={() => toggleJobExpansion(job.id)}
+            />
+          {/each}
+        {:else}
+          <div class="no-jobs">
+            <h3>Keine Stellen verfügbar</h3>
+            <p>In dieser Kategorie sind aktuell keine Stellen verfügbar. Schauen Sie gerne zu einem späteren Zeitpunkt wieder vorbei.</p>
+          </div>
+        {/if}
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-section">
+        <h2 class="heading-accent">Initiativbewerbung</h2>
+        <div class="contact-content">
+          <div class="contact-text">
+            <p>
+              Sie haben die passende Stelle nicht gefunden? Wir freuen uns auch über
+              Initiativbewerbungen! Senden Sie uns Ihre vollständigen Bewerbungsunterlagen
+              und wir melden uns bei Ihnen, sobald eine passende Position frei wird.
+            </p>
+            <p>
+              <strong>Was wir bieten:</strong>
+            </p>
+            <ul>
+              <li>Familiäres Arbeitsklima in einem traditionellen Berliner Hotel</li>
+              <li>Flexible Arbeitszeiten und Work-Life-Balance</li>
+              <li>Fortbildungsmöglichkeiten und Karriereentwicklung</li>
+              <li>Attraktive Vergütung nach Tarif</li>
+              <li>Betriebliche Zusatzleistungen</li>
+            </ul>
+          </div>
+          <div class="contact-info">
+            <h3>Kontakt für Bewerbungen</h3>
+            <div class="contact-details">
+              <p>
+                <strong>E-Mail:</strong><br>
+                <a href="mailto:bewerbung@hotel-ludwig-van-beethoven.de">
+                  bewerbung@hotel-ludwig-van-beethoven.de
+                </a>
+              </p>
+              <p>
+                <strong>Telefon:</strong><br>
+                <a href="tel:+4930695066-0">+49 30 695 066 0</a>
+              </p>
+              <p>
+                <strong>Post:</strong><br>
+                Hotel Ludwig van Beethoven<br>
+                Personalabteilung<br>
+                Hasenheide 14<br>
+                10967 Berlin
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .jobs-container {
+    background-color: var(--color-background);
+    padding: var(--space-5xl) 0;
+    min-height: 80vh;
+  }
+
+  .container {
+    max-width: var(--container-lg);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .jobs-header {
+    text-align: center;
+    margin-bottom: var(--space-5xl);
+  }
+
+  h1.heading-accent {
+    font-family: var(--font-display);
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-xl);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .intro-text {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .filter-section {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .filter-section h2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: var(--color-background-elevated);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-btn:hover {
+    background: var(--color-background-alt);
+    border-color: var(--color-secondary-light);
+  }
+
+  .filter-btn.active {
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+  }
+
+  .jobs-list {
+    margin-bottom: var(--space-5xl);
+  }
+
+  .no-jobs {
+    text-align: center;
+    padding: var(--space-5xl) var(--space-xl);
+    background: var(--color-background-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .no-jobs h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .no-jobs p {
+    font-family: var(--font-primary);
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .contact-section {
+    background: var(--color-background-elevated);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4xl);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .contact-section h2.heading-accent {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+
+  .contact-text p {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-text ul {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-xl);
+  }
+
+  .contact-text li {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .contact-info {
+    background: var(--color-background-alt);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .contact-info h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-details p {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-details a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-secondary-light);
+    transition: var(--transition-fast);
+  }
+
+  .contact-details a:hover {
+    color: var(--color-secondary-light);
+    border-bottom-color: var(--color-secondary-light);
+  }
+
+  strong {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .jobs-container {
+      padding: var(--space-4xl) 0;
+    }
+
+    .container {
+      padding: 0 var(--space-md);
+    }
+
+    .jobs-header {
+      margin-bottom: var(--space-4xl);
+    }
+
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+    }
+
+    .contact-section {
+      padding: var(--space-3xl);
+    }
+
+    .filter-buttons {
+      justify-content: center;
+    }
+
+    h1.heading-accent {
+      margin-bottom: var(--space-lg);
+    }
+
+    .intro-text {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 var(--space-sm);
+    }
+
+    .contact-section {
+      padding: var(--space-2xl);
+    }
+
+    .contact-info {
+      padding: var(--space-lg);
+    }
+
+    .filter-btn {
+      padding: var(--space-xs) var(--space-md);
+      font-size: var(--font-size-xs);
+    }
+  }
+</style>

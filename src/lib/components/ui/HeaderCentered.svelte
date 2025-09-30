@@ -3,6 +3,7 @@
   import { page } from "$app/stores";
   import LanguageSwitcher from "./LanguageSwitcher.svelte";
   import NavigationLinks from "./NavigationLinks.svelte";
+  import NavigationDropdown from "./NavigationDropdown.svelte";
   import { t, currentLanguage } from "$lib/stores/i18n.js";
   import { isActiveRoute, getLangLink as getLink } from "$lib/utils/navigation.js";
 
@@ -21,13 +22,24 @@
   const navLinks = [
     { path: '/', labelKey: 'nav.home' },
     { path: '/reviews', labelKey: 'nav.reviews' },
-    { path: '/infos', labelKey: 'nav.infos' },
     { path: '/aktuelles', labelKey: 'nav.aktuelles' }
+  ];
+
+  // Infos dropdown configuration
+  const infosDropdownItems = [
+    { path: '/infos', labelKey: 'nav.infos.overview' },
+    { path: '/infos/anreise', labelKey: 'nav.infos.arrival' },
+    { path: '/infos/jobs', labelKey: 'nav.infos.jobs' },
+    { path: '/infos/faq', labelKey: 'nav.infos.faq' }
   ];
 
   // Simplified with utilities
   $: isActive = (route) => isActiveRoute($page.url.pathname, route, $currentLanguage);
   $: getLangLink = (path) => getLink(path, $currentLanguage);
+
+  // Check if any infos path is active
+  $: isInfosActive = $page.url.pathname.includes('/infos') ||
+                   ($currentLanguage === 'en' && $page.url.pathname.includes('/en/infos'));
 </script>
 
 <header class="header-centered">
@@ -71,6 +83,13 @@
 
         <!-- Right side links -->
         <div class="nav-side nav-right">
+          <NavigationDropdown
+            label={$t('nav.infos.label')}
+            items={infosDropdownItems}
+            isActive={isInfosActive}
+            {getLangLink}
+            isMobile={false}
+          />
           <NavigationLinks
             links={navLinks.slice(2)}
             {getLangLink}
@@ -104,7 +123,22 @@
   <!-- Mobile Navigation Menu -->
   <nav class="mobile-nav" class:active={mobileMenuOpen}>
     <NavigationLinks
-      links={navLinks}
+      links={navLinks.slice(0, 2)}
+      {getLangLink}
+      {isActive}
+      isMobile={true}
+      onLinkClick={() => mobileMenuOpen = false}
+    />
+    <NavigationDropdown
+      label={$t('nav.infos.label')}
+      items={infosDropdownItems}
+      isActive={isInfosActive}
+      {getLangLink}
+      isMobile={true}
+      onLinkClick={() => mobileMenuOpen = false}
+    />
+    <NavigationLinks
+      links={navLinks.slice(2)}
       {getLangLink}
       {isActive}
       isMobile={true}
@@ -336,6 +370,8 @@
     .brand {
       margin: 0;
       justify-self: start;
+      position: relative;
+      z-index: 102;
     }
 
     .nav-actions {

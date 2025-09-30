@@ -90,7 +90,11 @@ const translations = {
     // Navigation
     'nav.home': 'Startseite',
     'nav.reviews': 'Bewertungen',
-    'nav.infos': 'Infos',
+    'nav.infos.label': 'Infos',
+    'nav.infos.overview': 'Übersicht',
+    'nav.infos.arrival': 'Anreise',
+    'nav.infos.jobs': 'Stellenanzeigen',
+    'nav.infos.faq': 'FAQ',
     'nav.aktuelles': 'Aktuelles',
     'nav.style': 'Style',
     'nav.book_now': 'Jetzt buchen',
@@ -167,6 +171,22 @@ const translations = {
     'booking.children_2': '2 Kinder',
     'booking.children_3': '3 Kinder',
 
+    // Jobs
+    'jobs.description': 'Beschreibung',
+    'jobs.responsibilities': 'Aufgaben',
+    'jobs.requirements': 'Anforderungen',
+    'jobs.benefits': 'Leistungen',
+    'jobs.apply_now': 'Jetzt bewerben',
+    'jobs.contact_email': 'Kontakt E-Mail',
+    'jobs.application_subject': 'Bewerbung: {0}',
+    'jobs.show_more': 'Mehr anzeigen',
+    'jobs.show_less': 'Weniger anzeigen',
+
+    // FAQ & Map
+    'map.location': 'Unsere Lage',
+    'map.address': 'Adresse',
+    'map.loading': 'Karte wird geladen...',
+
     // Footer
     'footer.impressum': 'Impressum'
   },
@@ -175,7 +195,11 @@ const translations = {
     // Navigation
     'nav.home': 'Home',
     'nav.reviews': 'Reviews',
-    'nav.infos': 'Info',
+    'nav.infos.label': 'Info',
+    'nav.infos.overview': 'Overview',
+    'nav.infos.arrival': 'Getting Here',
+    'nav.infos.jobs': 'Jobs',
+    'nav.infos.faq': 'FAQ',
     'nav.aktuelles': 'News',
     'nav.style': 'Style',
     'nav.book_now': 'Book Now',
@@ -251,6 +275,22 @@ const translations = {
     'booking.children_1': '1 Child',
     'booking.children_2': '2 Children',
     'booking.children_3': '3 Children',
+
+    // Jobs
+    'jobs.description': 'Description',
+    'jobs.responsibilities': 'Responsibilities',
+    'jobs.requirements': 'Requirements',
+    'jobs.benefits': 'Benefits',
+    'jobs.apply_now': 'Apply Now',
+    'jobs.contact_email': 'Contact Email',
+    'jobs.application_subject': 'Application: {0}',
+    'jobs.show_more': 'Show More',
+    'jobs.show_less': 'Show Less',
+
+    // FAQ & Map
+    'map.location': 'Our Location',
+    'map.address': 'Address',
+    'map.loading': 'Loading map...',
 
     // Footer
     'footer.impressum': 'Legal Notice'
