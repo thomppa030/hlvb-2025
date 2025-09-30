@@ -30,6 +30,9 @@
             },
             "carousel_slice": {
               "type": "SharedSlice"
+            },
+            "rooms_slice": {
+              "type": "SharedSlice"
             }
           }
         }
