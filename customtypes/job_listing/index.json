@@ -1,0 +1,120 @@
+{
+  "id": "job_listing",
+  "label": "Job Listing",
+  "format": "page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "rezeption-vollzeit"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Job Title",
+          "placeholder": "Rezeptionist/in"
+        }
+      },
+      "department": {
+        "type": "Select",
+        "config": {
+          "label": "Department",
+          "placeholder": "Select department",
+          "options": [
+            "Front Office",
+            "Housekeeping",
+            "Service",
+            "Kitchen",
+            "Management"
+          ]
+        }
+      },
+      "job_type": {
+        "type": "Select",
+        "config": {
+          "label": "Job Type",
+          "placeholder": "Select job type",
+          "options": [
+            "Vollzeit",
+            "Teilzeit",
+            "Minijob",
+            "Praktikum"
+          ]
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Job Description",
+          "placeholder": "Enter the job description...",
+          "allowTargetBlank": false,
+          "multi": "paragraph,strong,em"
+        }
+      },
+      "responsibilities": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Responsibilities",
+          "placeholder": "List job responsibilities...",
+          "allowTargetBlank": false,
+          "multi": "paragraph,list-item"
+        }
+      },
+      "requirements": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Requirements",
+          "placeholder": "List job requirements...",
+          "allowTargetBlank": false,
+          "multi": "paragraph,list-item"
+        }
+      },
+      "benefits": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Benefits",
+          "placeholder": "List job benefits...",
+          "allowTargetBlank": false,
+          "multi": "paragraph,list-item"
+        }
+      },
+      "contact_email": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Email",
+          "placeholder": "bewerbung@hotel-ludwig-van-beethoven.de"
+        }
+      },
+      "is_active": {
+        "type": "Boolean",
+        "config": {
+          "label": "Job Active",
+          "default_value": true,
+          "placeholder_true": "Active",
+          "placeholder_false": "Inactive"
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "SEO title for this job listing"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "SEO description for this job listing"
+        }
+      }
+    }
+  }
+}

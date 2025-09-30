@@ -1,0 +1,80 @@
+{
+  "id": "faq_item",
+  "label": "FAQ Item",
+  "format": "page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "check-in-out"
+        }
+      },
+      "question": {
+        "type": "Text",
+        "config": {
+          "label": "Question",
+          "placeholder": "Wann sind die Check-in und Check-out Zeiten?"
+        }
+      },
+      "answer": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Answer",
+          "placeholder": "Enter the answer to this question...",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink,list-item"
+        }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Category",
+          "placeholder": "Select category",
+          "options": [
+            "Allgemein",
+            "Anreise",
+            "Ausstattung",
+            "Service",
+            "Buchung"
+          ]
+        }
+      },
+      "order": {
+        "type": "Number",
+        "config": {
+          "label": "Display Order",
+          "placeholder": "1"
+        }
+      },
+      "is_featured": {
+        "type": "Boolean",
+        "config": {
+          "label": "Featured FAQ",
+          "default_value": false,
+          "placeholder_true": "Featured",
+          "placeholder_false": "Not Featured"
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "SEO title for this FAQ"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "SEO description for this FAQ"
+        }
+      }
+    }
+  }
+}

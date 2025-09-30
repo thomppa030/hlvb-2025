@@ -1,0 +1,46 @@
+{
+  "type": "SharedSlice",
+  "id": "job_slice",
+  "name": "JobSlice",
+  "description": "Job listings display with filtering options",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Job Opportunities",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Join our team at Hotel Ludwig van Beethoven",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "show_filters": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Department Filters",
+            "default_value": true,
+            "placeholder_true": "Show",
+            "placeholder_false": "Hide"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

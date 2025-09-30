@@ -1,17 +1,43 @@
 <!-- src/routes/en/infos/jobs/+page.svelte -->
 <script>
+  import { onMount } from 'svelte';
   import JobCard from "$lib/components/ui/JobCard.svelte";
-  import { jobs, jobsByCategory } from "$lib/data/jobs-en.js";
-  import { t } from "$lib/stores/i18n.js";
+  import { currentLanguage, t } from "$lib/stores/i18n.js";
+  import { fetchJobs, getJobDepartments } from "$lib/utils/content.js";
 
+  let jobs = [];
   let selectedCategory = 'all';
   let expandedJobs = new Set();
+  let loading = true;
+  let categories = ['all'];
 
   $: filteredJobs = selectedCategory === 'all'
     ? jobs
-    : jobsByCategory[selectedCategory] || [];
+    : jobs.filter(job => job.department === selectedCategory);
 
-  $: categories = ['all', ...Object.keys(jobsByCategory)];
+  onMount(async () => {
+    await loadJobs();
+  });
+
+  async function loadJobs() {
+    loading = true;
+    try {
+      const lang = $currentLanguage;
+
+      // Only fetch from Prismic - no fallback for real job openings
+      jobs = await fetchJobs(lang);
+
+      // Get available departments
+      const departments = await getJobDepartments(lang);
+      categories = ['all', ...departments];
+
+      loading = false;
+    } catch (error) {
+      console.error('Error loading jobs:', error);
+      jobs = [];
+      loading = false;
+    }
+  }
 
   function toggleJobExpansion(jobId) {
     if (expandedJobs.has(jobId)) {
@@ -20,6 +46,11 @@
       expandedJobs.add(jobId);
     }
     expandedJobs = expandedJobs;
+  }
+
+  // React to language changes
+  $: if ($currentLanguage) {
+    loadJobs();
   }
 </script>
 
@@ -65,7 +96,12 @@
 
       <!-- Jobs List -->
       <div class="jobs-list">
-        {#if filteredJobs.length > 0}
+        {#if loading}
+          <div class="loading-jobs">
+            <h3>Loading job opportunities...</h3>
+            <p>Please wait a moment.</p>
+          </div>
+        {:else if filteredJobs.length > 0}
           {#each filteredJobs as job}
             <JobCard
               {job}
@@ -73,10 +109,15 @@
               on:click={() => toggleJobExpansion(job.id)}
             />
           {/each}
+        {:else if jobs.length === 0}
+          <div class="no-jobs">
+            <h3>No Job Opportunities Available</h3>
+            <p>Currently there are no open positions available. Please check back regularly or send us a speculative application!</p>
+          </div>
         {:else}
           <div class="no-jobs">
-            <h3>No Positions Available</h3>
-            <p>There are currently no positions available in this category. Please check back at a later time.</p>
+            <h3>No Positions in This Category</h3>
+            <p>There are currently no positions available in the "{selectedCategory}" category. Please select another category or check "All Positions".</p>
           </div>
         {/if}
       </div>
@@ -214,7 +255,8 @@
     margin-bottom: var(--space-5xl);
   }
 
-  .no-jobs {
+  .no-jobs,
+  .loading-jobs {
     text-align: center;
     padding: var(--space-5xl) var(--space-xl);
     background: var(--color-background-elevated);
@@ -222,17 +264,24 @@
     border: 1px solid var(--color-border-light);
   }
 
-  .no-jobs h3 {
+  .no-jobs h3,
+  .loading-jobs h3 {
     font-family: var(--font-display);
     font-size: var(--font-size-xl);
     color: var(--color-text);
     margin-bottom: var(--space-md);
   }
 
-  .no-jobs p {
+  .no-jobs p,
+  .loading-jobs p {
     font-family: var(--font-primary);
     color: var(--color-text-light);
     line-height: var(--line-height-relaxed);
+  }
+
+  .loading-jobs {
+    border-color: var(--color-secondary-light);
+    background: var(--color-background-alt);
   }
 
   .contact-section {

@@ -8,6 +8,8 @@ import ReviewsSlice from './ReviewsSlice.svelte';
 import HeadingSlice from './HeadingSlice.svelte';
 import FeatureSlice from './FeatureSlice.svelte';
 import CarouselSlice from './CarouselSlice.svelte';
+import JobSlice from './JobSlice.svelte';
+import FAQSlice from './FAQSlice.svelte';
 
 export const components = {
   hero_slice: HeroSlice,
@@ -17,6 +19,8 @@ export const components = {
   heading_slice: HeadingSlice,
   feature_slice: FeatureSlice,
   carousel_slice: CarouselSlice,
+  job_slice: JobSlice,
+  faq_slice: FAQSlice,
 };
 
 export { NotFound };

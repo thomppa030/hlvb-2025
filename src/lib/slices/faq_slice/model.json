@@ -1,0 +1,46 @@
+{
+  "type": "SharedSlice",
+  "id": "faq_slice",
+  "name": "FAQSlice",
+  "description": "FAQ section with collapsible items and categorization",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Frequently Asked Questions",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Find answers to common questions about our hotel",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "show_categories": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Category Filters",
+            "default_value": true,
+            "placeholder_true": "Show",
+            "placeholder_false": "Hide"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
