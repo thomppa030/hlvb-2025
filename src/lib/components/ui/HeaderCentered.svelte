@@ -6,9 +6,24 @@
   import NavigationDropdown from "./NavigationDropdown.svelte";
   import { t, currentLanguage } from "$lib/stores/i18n.js";
   import { isActiveRoute, getLangLink as getLink } from "$lib/utils/navigation.js";
+  import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
   // Mobile menu state
   let mobileMenuOpen = false;
+  let isMobile = false;
+
+  function checkIfMobile() {
+    if (browser) {
+      isMobile = window.innerWidth <= 768;
+    }
+  }
+
+  onMount(() => {
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
+  });
 
   // Toggle mobile menu
   function toggleMobileMenu(event) {
@@ -47,14 +62,16 @@
     <nav class="nav">
       <!-- Centered navigation group -->
       <div class="nav-group">
-        <!-- Left side links -->
-        <div class="nav-side nav-left">
-          <NavigationLinks
-            links={navLinks.slice(0, 2)}
-            {getLangLink}
-            {isActive}
-          />
-        </div>
+        <!-- Left side links - only render on desktop -->
+        {#if !isMobile}
+          <div class="nav-side nav-left">
+            <NavigationLinks
+              links={navLinks.slice(0, 2)}
+              {getLangLink}
+              {isActive}
+            />
+          </div>
+        {/if}
 
         <!-- Centered Logo -->
         <a href={getLangLink("/")} class="brand" class:active={isActive("/")}>
@@ -81,21 +98,23 @@
           </picture>
         </a>
 
-        <!-- Right side links -->
-        <div class="nav-side nav-right">
-          <NavigationDropdown
-            label={$t('nav.infos.label')}
-            items={infosDropdownItems}
-            isActive={isInfosActive}
-            {getLangLink}
-            isMobile={false}
-          />
-          <NavigationLinks
-            links={navLinks.slice(2)}
-            {getLangLink}
-            {isActive}
-          />
-        </div>
+        <!-- Right side links - only render on desktop -->
+        {#if !isMobile}
+          <div class="nav-side nav-right">
+            <NavigationDropdown
+              label={$t('nav.infos.label')}
+              items={infosDropdownItems}
+              isActive={isInfosActive}
+              {getLangLink}
+              isMobile={false}
+            />
+            <NavigationLinks
+              links={navLinks.slice(2)}
+              {getLangLink}
+              {isActive}
+            />
+          </div>
+        {/if}
       </div>
 
       <!-- Right side actions (further away) -->
@@ -182,6 +201,11 @@
     gap: var(--space-lg);
     width: 100%;
     max-width: 800px;
+    pointer-events: none;
+  }
+
+  .nav-group > * {
+    pointer-events: auto;
   }
 
   .nav-side {
@@ -360,11 +384,14 @@
     .nav-group {
       gap: var(--space-md);
       margin-right: 90px; /* Make room for actions */
+      grid-template-columns: auto;
+      justify-content: start;
     }
 
     /* Hide desktop nav sides on mobile */
     .nav-side {
-      display: none;
+      display: none !important;
+      pointer-events: none !important;
     }
 
     .brand {
