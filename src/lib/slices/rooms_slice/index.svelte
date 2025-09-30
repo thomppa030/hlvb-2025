@@ -9,11 +9,57 @@
   $: primaryData = {
     heading: slice.primary.heading || [{ type: 'heading2', text: 'Our Rooms', spans: [] }],
     description: slice.primary.description || [{ type: 'paragraph', text: '68 comfortable rooms', spans: [] }],
-    note: slice.primary.note || [{ type: 'paragraph', text: '', spans: [] }]
+    noteHeading: slice.primary.note_heading || '',
+    bookingButtonText: slice.primary.booking_button_text || 'Book Now',
+    bookingUrl: slice.primary.booking_url || '/booking'
   };
 
-  // Room items from repeatable zone
-  $: rooms = slice.items || [];
+  // Build rooms array from primary fields
+  $: rooms = [
+    {
+      title: slice.primary.single_room_title,
+      description: slice.primary.single_room_description,
+      features: [
+        slice.primary.single_room_feature_1,
+        slice.primary.single_room_feature_2,
+        slice.primary.single_room_feature_3,
+        slice.primary.single_room_feature_4
+      ].filter(Boolean)
+    },
+    {
+      title: slice.primary.double_room_title,
+      description: slice.primary.double_room_description,
+      features: [
+        slice.primary.double_room_feature_1,
+        slice.primary.double_room_feature_2,
+        slice.primary.double_room_feature_3,
+        slice.primary.double_room_feature_4
+      ].filter(Boolean)
+    },
+    {
+      title: slice.primary.triple_room_title,
+      description: slice.primary.triple_room_description,
+      features: [
+        slice.primary.triple_room_feature_1,
+        slice.primary.triple_room_feature_2,
+        slice.primary.triple_room_feature_3,
+        slice.primary.triple_room_feature_4
+      ].filter(Boolean)
+    },
+    {
+      title: slice.primary.quad_room_title,
+      description: slice.primary.quad_room_description,
+      features: [
+        slice.primary.quad_room_feature_1,
+        slice.primary.quad_room_feature_2,
+        slice.primary.quad_room_feature_3,
+        slice.primary.quad_room_feature_4
+      ].filter(Boolean)
+    }
+  ].filter(room => room.title);
+
+  // Note features from items (repeatable)
+  $: noteFeatures = (slice.items || []).filter(item => item.note_feature).map(item => item.note_feature);
 </script>
 
 <section class="rooms-section">
@@ -31,25 +77,20 @@
       <div class="rooms-grid">
         {#each rooms as room}
           <div class="room-card">
-            <h3>{room.room_title || 'Room'}</h3>
-            <p class="room-description">{room.room_description || ''}</p>
-            <ul class="room-features">
-              {#if room.feature_1}
-                <li>{room.feature_1}</li>
-              {/if}
-              {#if room.feature_2}
-                <li>{room.feature_2}</li>
-              {/if}
-              {#if room.feature_3}
-                <li>{room.feature_3}</li>
-              {/if}
-              {#if room.feature_4}
-                <li>{room.feature_4}</li>
-              {/if}
-            </ul>
-            {#if room.booking_url}
-              <Button variant="primary" href={room.booking_url}>
-                {room.button_text || 'Book Now'}
+            <h3>{room.title}</h3>
+            {#if room.description}
+              <p class="room-description">{room.description}</p>
+            {/if}
+            {#if room.features.length > 0}
+              <ul class="room-features">
+                {#each room.features as feature}
+                  <li>{feature}</li>
+                {/each}
+              </ul>
+            {/if}
+            {#if primaryData.bookingUrl}
+              <Button variant="primary" href={primaryData.bookingUrl}>
+                {primaryData.bookingButtonText}
               </Button>
             {/if}
           </div>
@@ -57,9 +98,16 @@
       </div>
     {/if}
 
-    {#if primaryData.note && primaryData.note[0]?.text}
+    {#if noteFeatures.length > 0}
       <div class="rooms-note">
-        <PrismicRichText field={primaryData.note} />
+        {#if primaryData.noteHeading}
+          <p class="note-heading">{primaryData.noteHeading}</p>
+        {/if}
+        <ul class="note-features">
+          {#each noteFeatures as feature}
+            <li>{feature}</li>
+          {/each}
+        </ul>
       </div>
     {/if}
   </div>
@@ -163,13 +211,46 @@
 
   .rooms-note {
     text-align: center;
-    margin-top: var(--space-xl);
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl);
+    background: var(--color-background-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .rooms-note :global(p) {
+  .note-heading {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .note-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .note-features li {
     font-size: var(--font-size-sm);
     color: var(--color-text-light);
-    font-style: italic;
+    position: relative;
+    padding-left: var(--space-lg);
+  }
+
+  .note-features li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
   }
 
   /* Responsive Design */
