@@ -220,16 +220,18 @@
 
   .room-info-grid {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 250px 1fr 200px;
     gap: var(--space-xl);
     align-items: center;
     padding: var(--space-xl) var(--space-2xl);
+    justify-content: space-evenly;
   }
 
   .room-header {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
+    min-width: 0;
   }
 
   .room-title {
@@ -240,6 +242,9 @@
     margin: 0;
     letter-spacing: -0.02em;
     line-height: var(--line-height-tight);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .room-description {
@@ -247,12 +252,19 @@
     color: var(--color-text-light);
     margin: 0;
     font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
   }
 
   .room-details {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+    min-width: 0;
   }
 
   .room-bed-info {
@@ -289,8 +301,8 @@
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs) var(--space-md);
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .features-list li {
@@ -298,6 +310,7 @@
     padding-left: var(--space-md);
     font-size: var(--font-size-sm);
     color: var(--color-text-light);
+    line-height: 1.4;
   }
 
   .features-list li::before {
