@@ -30,7 +30,9 @@
     title: item.room_title || '',
     description: item.room_description || '',
     bedType: item.room_bed_type || '',
-    features: (item.room_features || []).filter(f => f.feature).map(f => f.feature),
+    features: item.room_features
+      ? item.room_features.split(',').map(f => f.trim()).filter(f => f.length > 0)
+      : [],
     bookingButtonText: item.booking_button_text || '',
     bookingUrl: item.booking_url || ''
   })) || [];

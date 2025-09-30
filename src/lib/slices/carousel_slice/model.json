@@ -164,18 +164,10 @@
           }
         },
         "room_features": {
-          "type": "Group",
+          "type": "Text",
           "config": {
-            "label": "Room Features",
-            "fields": {
-              "feature": {
-                "type": "Text",
-                "config": {
-                  "label": "Feature",
-                  "placeholder": "Schreibtisch"
-                }
-              }
-            }
+            "label": "Room Features (comma-separated)",
+            "placeholder": "Schreibtisch, Safe, TV, WLAN"
           }
         }
       }
@@ -331,18 +323,10 @@
           }
         },
         "room_features": {
-          "type": "Group",
+          "type": "Text",
           "config": {
-            "label": "Room Features",
-            "fields": {
-              "feature": {
-                "type": "Text",
-                "config": {
-                  "label": "Feature",
-                  "placeholder": "Schreibtisch"
-                }
-              }
-            }
+            "label": "Room Features (comma-separated)",
+            "placeholder": "Schreibtisch, Safe, TV, WLAN"
           }
         }
       }
