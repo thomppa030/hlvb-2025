@@ -1,7 +1,9 @@
 <!-- src/lib/components/ui/BookingWidget.svelte -->
 <script>
   import Button from "./Button.svelte";
+  import FormField from "./FormField.svelte";
   import { t, currentLanguage } from '$lib/stores/i18n.js';
+  import { getTodayDate, getTomorrowDate, formatDateForBooking, getMinimumDeparture } from '$lib/utils/dates.js';
 
   // Hotel ID for OnePageBooking
   export let hotelId = "beethoven";
@@ -16,24 +18,26 @@
   let rooms = 1;
   let children = 0;
 
-  // Get today's date in YYYY-MM-DD format
-  function getTodayDate() {
-    return new Date().toISOString().split("T")[0];
-  }
+  // Form field options
+  const adultsOptions = [
+    { value: 1, label: $t('booking.adults_1') },
+    { value: 2, label: $t('booking.adults_2') },
+    { value: 3, label: $t('booking.adults_3') },
+    { value: 4, label: $t('booking.adults_4') }
+  ];
 
-  // Get tomorrow's date in YYYY-MM-DD format
-  function getTomorrowDate(fromDate = null) {
-    const baseDate = fromDate ? new Date(fromDate) : new Date();
-    baseDate.setDate(baseDate.getDate() + 1);
-    return baseDate.toISOString().split("T")[0];
-  }
+  const roomsOptions = [
+    { value: 1, label: $t('booking.rooms_1') },
+    { value: 2, label: $t('booking.rooms_2') },
+    { value: 3, label: $t('booking.rooms_3') }
+  ];
 
-  // Format date for OnePageBooking (DD.MM.YYYY)
-  function formatDateForBooking(dateString) {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1).toString().padStart(2, "0")}.${date.getFullYear()}`;
-  }
+  const childrenOptions = [
+    { value: 0, label: $t('booking.children_0') },
+    { value: 1, label: $t('booking.children_1') },
+    { value: 2, label: $t('booking.children_2') },
+    { value: 3, label: $t('booking.children_3') }
+  ];
 
   // Generate booking URL
   function getBookingUrl() {
@@ -80,7 +84,7 @@
 
   // Reactive date validation: ensure departure is after arrival
   $: if (arrival && departure && new Date(arrival) >= new Date(departure)) {
-    departure = getTomorrowDate(arrival);
+    departure = getMinimumDeparture(arrival);
   }
 </script>
 
@@ -101,56 +105,47 @@
     <form on:submit|preventDefault={handleBooking} class="booking-form">
       <!-- Single Line Form Row -->
       <div class="form-row single-line">
-        <div class="form-group">
-          <label for="arrival">{$t('booking.checkin')}</label>
-          <input
-            type="date"
-            id="arrival"
-            bind:value={arrival}
-            min={getTodayDate()}
-            required
-          />
-        </div>
+        <FormField
+          id="arrival"
+          label={$t('booking.checkin')}
+          type="date"
+          bind:value={arrival}
+          min={getTodayDate()}
+          required
+        />
 
-        <div class="form-group">
-          <label for="departure">{$t('booking.checkout')}</label>
-          <input
-            type="date"
-            id="departure"
-            bind:value={departure}
-            min={arrival || getTodayDate()}
-            required
-          />
-        </div>
+        <FormField
+          id="departure"
+          label={$t('booking.checkout')}
+          type="date"
+          bind:value={departure}
+          min={getMinimumDeparture(arrival)}
+          required
+        />
 
-        <div class="form-group">
-          <label for="adults">{$t('booking.adults')}</label>
-          <select id="adults" bind:value={adults}>
-            <option value={1}>{$t('booking.adults_1')}</option>
-            <option value={2}>{$t('booking.adults_2')}</option>
-            <option value={3}>{$t('booking.adults_3')}</option>
-            <option value={4}>{$t('booking.adults_4')}</option>
-          </select>
-        </div>
+        <FormField
+          id="adults"
+          label={$t('booking.adults')}
+          type="select"
+          bind:value={adults}
+          options={adultsOptions}
+        />
 
-        <div class="form-group">
-          <label for="rooms">{$t('booking.rooms')}</label>
-          <select id="rooms" bind:value={rooms}>
-            <option value={1}>{$t('booking.rooms_1')}</option>
-            <option value={2}>{$t('booking.rooms_2')}</option>
-            <option value={3}>{$t('booking.rooms_3')}</option>
-          </select>
-        </div>
+        <FormField
+          id="rooms"
+          label={$t('booking.rooms')}
+          type="select"
+          bind:value={rooms}
+          options={roomsOptions}
+        />
 
-        <div class="form-group">
-          <label for="children">{$t('booking.children')}</label>
-          <select id="children" bind:value={children}>
-            <option value={0}>{$t('booking.children_0')}</option>
-            <option value={1}>{$t('booking.children_1')}</option>
-            <option value={2}>{$t('booking.children_2')}</option>
-            <option value={3}>{$t('booking.children_3')}</option>
-          </select>
-        </div>
+        <FormField
+          id="children"
+          label={$t('booking.children')}
+          type="select"
+          bind:value={children}
+          options={childrenOptions}
+        />
       </div>
 
       <Button
@@ -209,60 +204,6 @@
     grid-template-columns: repeat(5, 1fr);
   }
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px; /* Reduced gap */
-    min-width: 0;
-  }
-
-  .form-group label {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text);
-    cursor: pointer;
-    transition: color var(--transition-fast);
-  }
-
-  .form-group:hover label {
-    color: var(--color-secondary);
-  }
-
-  .form-group input,
-  .form-group select {
-    padding: var(--space-sm) var(--space-md); /* Reduced padding */
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-background);
-    color: var(--color-text);
-    font-size: var(--font-size-sm); /* Smaller font */
-    font-weight: var(--font-weight-medium);
-    transition: all var(--transition-fast);
-    min-height: 40px; /* Reduced height */
-    width: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
-
-  /* Fix select padding for native arrow */
-  .form-group select {
-    padding-right: var(--space-2xl);
-  }
-
-  .form-group input:hover,
-  .form-group select:hover {
-    border-color: var(--color-secondary);
-    background-color: var(--color-background-elevated);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(26, 74, 107, 0.08);
-  }
-
-  .form-group input:focus,
-  .form-group select:focus {
-    outline: none;
-    border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(26, 74, 107, 0.1);
-  }
 
   :global(.booking-submit) {
     width: auto;
@@ -324,16 +265,6 @@
       gap: var(--space-md);
     }
 
-    .form-group input,
-    .form-group select {
-      padding: var(--space-sm) var(--space-md);
-      font-size: var(--font-size-sm);
-      min-height: 44px;
-    }
-
-    .form-group label {
-      font-size: var(--font-size-xs);
-    }
   }
 
   @media (max-width: 480px) {

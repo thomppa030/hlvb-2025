@@ -4,6 +4,7 @@
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import BookingWidget from './BookingWidget.svelte';
+  import Button from './Button.svelte';
   
   let isVisible = false;
   let isUserClosed = false;
@@ -84,16 +85,17 @@
     <div class="sticky-form-content">
       <BookingWidget type="form" hotelId="beethoven" />
     </div>
-    <button 
-      class="close-button"
+    <Button
+      variant="ghost"
+      size="small"
       on:click={handleClose}
-      aria-label="Close booking form"
-      title="Close booking form"
+      ariaLabel="Close booking form"
+      class="close-button"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-    </button>
+    </Button>
   </div>
 </div>
 
@@ -141,35 +143,13 @@
     width: 100%;
   }
 
-  .close-button {
-    position: absolute;
+  :global(.close-button) {
+    position: absolute !important;
     top: var(--space-md);
     right: var(--space-md);
-    background: none;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-sm);
-    cursor: pointer;
-    color: var(--color-text-light);
-    transition: all var(--transition-fast);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 32px;
     height: 32px;
     z-index: 10;
-  }
-
-  .close-button:hover {
-    background-color: var(--color-background-alt);
-    border-color: var(--color-border);
-    color: var(--color-text);
-  }
-
-  .close-button:focus {
-    outline: none;
-    border-color: var(--color-secondary);
-    box-shadow: 0 0 0 3px rgba(26, 74, 107, 0.1);
   }
   
   /* Compact form styling for sticky version */
@@ -204,7 +184,7 @@
       padding: var(--space-sm);
     }
 
-    .close-button {
+    :global(.close-button) {
       top: var(--space-sm);
       right: var(--space-sm);
       width: 28px;

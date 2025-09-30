@@ -2,33 +2,46 @@
 <script>
   import BookingWidget from "./BookingWidget.svelte";
   import { t } from "$lib/stores/i18n.js";
+
+  // Image configuration props
+  export let desktopImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=75&w=1920&h=799&fm=webp";
+  export let mobileImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp";
+  export let fallbackImage = "https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp";
+  export let imageAlt = "Hotel Ludwig van Beethoven Berlin - Exterior view";
+  export let imageWidth = 390;
+  export let imageHeight = 203;
+
+  // Content props
+  export let title = "Hotel Ludwig van Beethoven";
+  export let subtitle = "hero.subtitle";
+  export let subtitleFallback = "Your luxury retreat in the heart of the city";
+
+  // Widget configuration
+  export let showBookingWidget = true;
+  export let bookingType = "form";
+  export let hotelId = "beethoven";
 </script>
 
 <div class="hero-wrapper">
   <section class="hero">
     <div class="hero-image-container">
-      <!-- Use picture element for better responsive image support -->
       <picture>
-        <source 
-          media="(max-width: 768px)" 
-          srcset="https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp"
+        <source
+          media="(max-width: 768px)"
+          srcset={mobileImage}
           type="image/webp"
-          width="390"
-          height="203"
         />
-        <source 
-          media="(min-width: 769px)" 
-          srcset="https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=75&w=1920&h=799&fm=webp"
+        <source
+          media="(min-width: 769px)"
+          srcset={desktopImage}
           type="image/webp"
-          width="1920"
-          height="799"
         />
         <img
-          src="https://images.prismic.io/hotel-ludwig-van-beethoven/aKRlHaTt2nPbadSU_hlvb_backside_header.webp?auto=format%2Ccompress&fit=crop&q=60&w=390&h=203&fm=webp"
-          alt="Hotel Ludwig van Beethoven Berlin - Exterior view"
+          src={fallbackImage}
+          alt={imageAlt}
           class="hero-image"
-          width="390"
-          height="203"
+          width={imageWidth}
+          height={imageHeight}
           loading="eager"
           fetchpriority="high"
           decoding="sync"
@@ -39,20 +52,21 @@
 
     <div class="hero-content">
       <div class="container">
-        <h1 class="hero-title">Hotel Ludwig van Beethoven</h1>
+        <h1 class="hero-title">{title}</h1>
         <p class="hero-subtitle">
-          {$t("hero.subtitle", "Your luxury retreat in the heart of the city")}
+          {$t(subtitle, subtitleFallback)}
         </p>
-
       </div>
     </div>
     
-    <!-- Booking Widget positioned at bottom of hero -->
-    <div class="hero-booking">
-      <div class="booking-container">
-        <BookingWidget type="form" hotelId="beethoven" />
+    {#if showBookingWidget}
+      <!-- Booking Widget positioned at bottom of hero -->
+      <div class="hero-booking">
+        <div class="booking-container">
+          <BookingWidget type={bookingType} {hotelId} />
+        </div>
       </div>
-    </div>
+    {/if}
   </section>
 </div>
 
