@@ -1,7 +1,9 @@
 <!-- src/lib/components/ui/ImageCarousel.svelte -->
 <script>
-  import { onMount } from 'svelte';
-  
+  import { onMount, createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
   // Props
   export let images = []; // Array of image objects: { src, alt, caption? }
   export let autoplay = false;
@@ -10,7 +12,7 @@
   export let showIndicators = true;
   export let showNavigation = true;
   export let aspectRatio = '16/9'; // CSS aspect-ratio value
-  
+
   // State
   let currentIndex = 0;
   let isAutoplayActive = autoplay;
@@ -18,16 +20,16 @@
   let carouselContainer = null;
   let touchStartX = 0;
   let touchEndX = 0;
-  
+
   // Reactive statements
   $: totalImages = images.length;
   $: hasImages = totalImages > 0;
   $: canNavigate = totalImages > 1;
-  
+
   // Get preview images (left and right)
   $: leftPreview = totalImages > 1 ? images[currentIndex === 0 ? totalImages - 1 : currentIndex - 1] : null;
   $: rightPreview = totalImages > 1 ? images[currentIndex === totalImages - 1 ? 0 : currentIndex + 1] : null;
-  
+
   // Navigation functions
   function goToSlide(index) {
     if (index < 0) {
@@ -37,6 +39,7 @@
     } else {
       currentIndex = index;
     }
+    dispatch('slideChange', { index: currentIndex });
     resetAutoplay();
   }
   

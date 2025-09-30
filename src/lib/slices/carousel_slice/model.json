@@ -127,6 +127,48 @@
             "allowTargetBlank": false,
             "single": "paragraph"
           }
+        },
+        "room_title": {
+          "type": "Text",
+          "config": {
+            "label": "Room Title",
+            "placeholder": "Einzelzimmer"
+          }
+        },
+        "room_description": {
+          "type": "Text",
+          "config": {
+            "label": "Room Description",
+            "placeholder": "Perfekt für Alleinreisende"
+          }
+        },
+        "room_bed_type": {
+          "type": "Text",
+          "config": {
+            "label": "Bed Type",
+            "placeholder": "Einzelbett mit Federkernmatratze"
+          }
+        },
+        "room_features": {
+          "type": "Text",
+          "config": {
+            "label": "Room Features",
+            "placeholder": "Schreibtisch, Safe, TV"
+          }
+        },
+        "booking_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Booking Button Text",
+            "placeholder": "Jetzt Buchen"
+          }
+        },
+        "booking_url": {
+          "type": "Text",
+          "config": {
+            "label": "Booking URL",
+            "placeholder": "/booking"
+          }
         }
       }
     },
@@ -243,6 +285,48 @@
             "placeholder": "Enter image caption...",
             "allowTargetBlank": false,
             "single": "paragraph"
+          }
+        },
+        "room_title": {
+          "type": "Text",
+          "config": {
+            "label": "Room Title",
+            "placeholder": "Einzelzimmer"
+          }
+        },
+        "room_description": {
+          "type": "Text",
+          "config": {
+            "label": "Room Description",
+            "placeholder": "Perfekt für Alleinreisende"
+          }
+        },
+        "room_bed_type": {
+          "type": "Text",
+          "config": {
+            "label": "Bed Type",
+            "placeholder": "Einzelbett mit Federkernmatratze"
+          }
+        },
+        "room_features": {
+          "type": "Text",
+          "config": {
+            "label": "Room Features",
+            "placeholder": "Schreibtisch, Safe, TV"
+          }
+        },
+        "booking_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Booking Button Text",
+            "placeholder": "Jetzt Buchen"
+          }
+        },
+        "booking_url": {
+          "type": "Text",
+          "config": {
+            "label": "Booking URL",
+            "placeholder": "/booking"
           }
         }
       }

@@ -1,10 +1,13 @@
 <!-- src/lib/slices/CarouselSlice.svelte -->
 <script>
-  import { PrismicRichText, PrismicImage } from '@prismicio/svelte';
+  import { PrismicRichText } from '@prismicio/svelte';
   import ImageCarousel from '$lib/components/ui/ImageCarousel.svelte';
-  
+  import Button from '$lib/components/ui/Button.svelte';
+
   export let slice;
-  
+
+  let currentSlide = 0;
+
   // Extract carousel configuration from slice primary fields
   $: carouselConfig = {
     autoplay: slice.primary.autoplay ?? false,
@@ -14,26 +17,44 @@
     showNavigation: slice.primary.show_navigation ?? true,
     aspectRatio: slice.primary.aspect_ratio || '16/9'
   };
-  
-  // Convert Prismic image items to carousel format
+
+  // Convert Prismic image items to carousel format and include room data
   $: carouselImages = slice.items?.map(item => ({
     src: item.image?.url || '',
     alt: item.image?.alt || item.caption?.[0]?.text || 'Carousel image',
     caption: item.caption?.[0]?.text || ''
   })).filter(img => img.src) || [];
-  
+
+  // Extract room information from items
+  $: roomData = slice.items?.map(item => ({
+    title: item.room_title || '',
+    description: item.room_description || '',
+    bedType: item.room_bed_type || '',
+    features: item.room_features || '',
+    bookingButtonText: item.booking_button_text || '',
+    bookingUrl: item.booking_url || ''
+  })) || [];
+
+  // Current room info based on slide
+  $: currentRoom = roomData[currentSlide] || {};
+  $: hasRoomInfo = currentRoom.title || currentRoom.description || currentRoom.bedType || currentRoom.features;
+
   // Section content
   $: sectionData = {
     heading: slice.primary.section_heading,
     subheading: slice.primary.section_subheading,
     description: slice.primary.section_description
   };
-  
+
   // Check if we have any content to show
   $: hasContent = carouselImages.length > 0;
   $: hasHeading = sectionData.heading?.[0]?.text;
   $: hasSubheading = sectionData.subheading?.[0]?.text;
   $: hasDescription = sectionData.description?.[0]?.text;
+
+  function handleSlideChange(event) {
+    currentSlide = event.detail.index;
+  }
 </script>
 
 {#if hasContent}
@@ -63,16 +84,53 @@
         </div>
       {/if}
       
-      <div class="carousel-wrapper">
-        <ImageCarousel 
-          images={carouselImages}
-          autoplay={carouselConfig.autoplay}
-          autoplayInterval={carouselConfig.autoplayInterval}
-          showThumbnails={carouselConfig.showThumbnails}
-          showIndicators={carouselConfig.showIndicators}
-          showNavigation={carouselConfig.showNavigation}
-          aspectRatio={carouselConfig.aspectRatio}
-        />
+      <div class="carousel-content">
+        <div class="carousel-wrapper">
+          <ImageCarousel
+            images={carouselImages}
+            autoplay={carouselConfig.autoplay}
+            autoplayInterval={carouselConfig.autoplayInterval}
+            showThumbnails={carouselConfig.showThumbnails}
+            showIndicators={carouselConfig.showIndicators}
+            showNavigation={carouselConfig.showNavigation}
+            aspectRatio={carouselConfig.aspectRatio}
+            on:slideChange={handleSlideChange}
+          />
+        </div>
+
+        {#if hasRoomInfo}
+          <div class="room-info">
+            {#if currentRoom.title}
+              <h3 class="room-title">{currentRoom.title}</h3>
+            {/if}
+
+            {#if currentRoom.description}
+              <p class="room-description">{currentRoom.description}</p>
+            {/if}
+
+            {#if currentRoom.bedType}
+              <div class="room-detail">
+                <span class="detail-label">Bett:</span>
+                <span class="detail-value">{currentRoom.bedType}</span>
+              </div>
+            {/if}
+
+            {#if currentRoom.features}
+              <div class="room-detail">
+                <span class="detail-label">Ausstattung:</span>
+                <span class="detail-value">{currentRoom.features}</span>
+              </div>
+            {/if}
+
+            {#if currentRoom.bookingUrl && currentRoom.bookingButtonText}
+              <div class="room-booking">
+                <Button variant="primary" size="large" href={currentRoom.bookingUrl}>
+                  {currentRoom.bookingButtonText}
+                </Button>
+              </div>
+            {/if}
+          </div>
+        {/if}
       </div>
     </div>
   </section>
@@ -132,6 +190,12 @@
     border-radius: var(--radius-full);
   }
 
+  .carousel-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
   .carousel-wrapper {
     position: relative;
   }
@@ -142,7 +206,67 @@
     margin: 0 auto;
   }
 
+  /* Room Information Panel */
+  .room-info {
+    background: var(--color-background-elevated);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .room-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-md);
+    letter-spacing: -0.02em;
+  }
+
+  .room-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
+    margin: 0 0 var(--space-xl);
+    font-style: italic;
+  }
+
+  .room-detail {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-background);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    min-width: 100px;
+  }
+
+  .detail-value {
+    color: var(--color-text-light);
+    flex: 1;
+  }
+
+  .room-booking {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border-light);
+  }
+
   /* Responsive design */
+  @media (min-width: 1200px) {
+    .carousel-content {
+      grid-template-columns: 1.5fr 1fr;
+      align-items: start;
+    }
+  }
+
   @media (max-width: 1024px) {
     .carousel-slice {
       padding: var(--space-3xl) 0;
@@ -167,6 +291,14 @@
     .carousel-divider {
       width: 100px;
       height: 2px;
+    }
+
+    .room-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .room-info {
+      padding: var(--space-xl);
     }
   }
 
@@ -201,6 +333,27 @@
     .carousel-divider {
       width: 80px;
     }
+
+    .room-info {
+      padding: var(--space-lg);
+    }
+
+    .room-title {
+      font-size: var(--font-size-xl);
+    }
+
+    .room-description {
+      font-size: var(--font-size-base);
+    }
+
+    .detail-label {
+      min-width: 80px;
+      font-size: var(--font-size-sm);
+    }
+
+    .detail-value {
+      font-size: var(--font-size-sm);
+    }
   }
 
   @media (max-width: 480px) {
@@ -214,6 +367,19 @@
 
     .carousel-divider {
       width: 60px;
+    }
+
+    .room-info {
+      padding: var(--space-md);
+    }
+
+    .room-detail {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .detail-label {
+      min-width: auto;
     }
   }
 </style>
