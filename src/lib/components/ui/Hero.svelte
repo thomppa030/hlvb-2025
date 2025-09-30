@@ -14,7 +14,7 @@
   // Content props
   export let title = "Hotel Ludwig van Beethoven";
   export let subtitle = "hero.subtitle";
-  export let subtitleFallback = "Your luxury retreat in the heart of the city";
+  export let subtitleFallback = "Your home in Berlin Kreuzberg";
 
   // Widget configuration
   export let showBookingWidget = true;

@@ -57,6 +57,13 @@
       "@type": "Rating",
       ratingValue: "3",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.2",
+      reviewCount: "523",
+      bestRating: "5",
+      worstRating: "1"
+    },
     numberOfRooms: 68,
     checkinTime: "14:00",
     checkoutTime: "11:00",
@@ -98,6 +105,11 @@
     content="hotel berlin kreuzberg, 3 star hotel berlin, garni hotel, budget hotel kreuzberg, hotel hasenheide, hotel ludwig van beethoven"
   />
   <link rel="canonical" href="https://hotellvb.de/" />
+
+  <!-- Hreflang for international SEO -->
+  <link rel="alternate" hreflang="de" href="https://hotellvb.de/" />
+  <link rel="alternate" hreflang="en" href="https://hotellvb.de/en" />
+  <link rel="alternate" hreflang="x-default" href="https://hotellvb.de/" />
   <meta name="geo.region" content="DE-BE" />
   <meta name="geo.placename" content="Berlin" />
   <meta name="geo.position" content="52.4861;13.4105" />

@@ -7,7 +7,7 @@
     <loc>https://hotellvb.de/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en"/>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2025-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -17,7 +17,7 @@
     <loc>https://hotellvb.de/en</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en"/>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2025-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -27,7 +27,7 @@
     <loc>https://hotellvb.de/reviews</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/reviews"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/reviews"/>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2025-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,7 +37,7 @@
     <loc>https://hotellvb.de/en/reviews</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/reviews"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/reviews"/>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2025-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -45,8 +45,140 @@
   <!-- Impressum (Legal) -->
   <url>
     <loc>https://hotellvb.de/impressum</loc>
-    <lastmod>2024-01-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/impressum"/>
+    <lastmod>2025-09-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+
+  <!-- English Impressum -->
+  <url>
+    <loc>https://hotellvb.de/en/impressum</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/impressum"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Datenschutz (Privacy Policy) -->
+  <url>
+    <loc>https://hotellvb.de/datenschutz</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/datenschutz"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- English Datenschutz -->
+  <url>
+    <loc>https://hotellvb.de/en/datenschutz</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/datenschutz"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Infos Page -->
+  <url>
+    <loc>https://hotellvb.de/infos</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- English Infos Page -->
+  <url>
+    <loc>https://hotellvb.de/en/infos</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Anreise (Directions) -->
+  <url>
+    <loc>https://hotellvb.de/infos/anreise</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos/anreise"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos/anreise"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- English Anreise -->
+  <url>
+    <loc>https://hotellvb.de/en/infos/anreise</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos/anreise"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos/anreise"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://hotellvb.de/infos/faq</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos/faq"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- English FAQ -->
+  <url>
+    <loc>https://hotellvb.de/en/infos/faq</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos/faq"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Jobs -->
+  <url>
+    <loc>https://hotellvb.de/infos/jobs</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos/jobs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos/jobs"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- English Jobs -->
+  <url>
+    <loc>https://hotellvb.de/en/infos/jobs</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/infos/jobs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/infos/jobs"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Aktuelles (News) -->
+  <url>
+    <loc>https://hotellvb.de/aktuelles</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/aktuelles"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/aktuelles"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- English Aktuelles -->
+  <url>
+    <loc>https://hotellvb.de/en/aktuelles</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hotellvb.de/aktuelles"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hotellvb.de/en/aktuelles"/>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
