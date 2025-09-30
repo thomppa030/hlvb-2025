@@ -28,23 +28,25 @@
       <picture>
         <source
           media="(max-width: 768px)"
-          srcset={mobileImage}
+          srcset="{mobileImage} 390w"
+          sizes="100vw"
           type="image/webp"
         />
         <source
           media="(min-width: 769px)"
-          srcset={desktopImage}
+          srcset="{desktopImage} 1920w"
+          sizes="100vw"
           type="image/webp"
         />
         <img
           src={fallbackImage}
           alt={imageAlt}
           class="hero-image"
-          width={imageWidth}
-          height={imageHeight}
+          width="1920"
+          height="799"
           loading="eager"
           fetchpriority="high"
-          decoding="sync"
+          decoding="async"
         />
       </picture>
       <div class="hero-overlay"></div>

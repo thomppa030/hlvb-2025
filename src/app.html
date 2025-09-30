@@ -10,7 +10,17 @@
   <link rel="icon" type="image/png" sizes="48x48" href="%sveltekit.assets%/favicon-48x48.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
+
+  <!-- Critical CSS - inline for hero visibility -->
+  <style>
+    :root{--color-background:#f6f4f3;--color-text:#5a4e47;--color-text-inverse:#f6f4f3;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--color-background);}
+    body{background-color:var(--color-background);color:var(--color-text);min-height:100vh;}
+    .hero{position:relative;width:100%;height:80vh;min-height:600px;display:flex;align-items:center;justify-content:center;}
+    .hero-image{width:100%;height:100%;object-fit:cover;display:block;}
+  </style>
+
   <!-- Basic SEO -->
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Hotel Ludwig van Beethoven Berlin" />
