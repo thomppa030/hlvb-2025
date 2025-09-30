@@ -1,19 +1,45 @@
 <!-- src/routes/infos/faq/+page.svelte -->
 <script>
+  import { onMount } from 'svelte';
   import FAQItem from "$lib/components/ui/FAQItem.svelte";
-  import { faqItems, faqByCategory, faqCategories } from "$lib/data/faq.js";
-  import { t } from "$lib/stores/i18n.js";
+  import { currentLanguage, t } from "$lib/stores/i18n.js";
+  import { fetchFAQ, getFAQCategories } from "$lib/utils/content.js";
 
+  let faqItems = [];
   let selectedCategory = 'all';
   let searchQuery = '';
   let expandedItems = new Set();
+  let loading = true;
+  let categories = [];
+
+  onMount(async () => {
+    await loadFAQ();
+  });
+
+  async function loadFAQ() {
+    loading = true;
+    try {
+      const lang = $currentLanguage;
+
+      // Fetch FAQ using the new content utility
+      faqItems = await fetchFAQ(lang);
+
+      // Get unique categories
+      categories = ['all', ...(await getFAQCategories(lang))];
+
+      loading = false;
+    } catch (error) {
+      console.error('Error loading FAQ:', error);
+      loading = false;
+    }
+  }
 
   $: filteredItems = filterFAQItems();
 
   function filterFAQItems() {
     let items = selectedCategory === 'all'
       ? faqItems
-      : faqByCategory[selectedCategory] || [];
+      : faqItems.filter(item => item.category === selectedCategory);
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -39,7 +65,12 @@
     searchQuery = '';
   }
 
-  $: allCategories = ['all', ...faqCategories];
+  // React to language changes
+  $: if ($currentLanguage) {
+    loadFAQ();
+  }
+
+  $: allCategories = categories;
 </script>
 
 <svelte:head>
@@ -112,7 +143,12 @@
 
       <!-- FAQ Items -->
       <div class="faq-items">
-        {#if filteredItems.length > 0}
+        {#if loading}
+          <div class="loading">
+            <h3>FAQ werden geladen...</h3>
+            <p>Bitte warten Sie einen Moment.</p>
+          </div>
+        {:else if filteredItems.length > 0}
           <div class="items-count">
             {filteredItems.length} {filteredItems.length === 1 ? 'Frage' : 'Fragen'} gefunden
           </div>
@@ -127,6 +163,11 @@
               on:click={() => toggleItemExpansion(item.id)}
             />
           {/each}
+        {:else if faqItems.length === 0}
+          <div class="no-results">
+            <h3>Derzeit keine FAQ-Einträge verfügbar</h3>
+            <p>Die häufig gestellten Fragen werden in Kürze hinzugefügt. Bei weiteren Fragen kontaktieren Sie uns gerne direkt.</p>
+          </div>
         {:else}
           <div class="no-results">
             <h3>Keine Ergebnisse gefunden</h3>
@@ -322,6 +363,7 @@
     text-align: center;
   }
 
+  .loading,
   .no-results {
     text-align: center;
     padding: var(--space-5xl) var(--space-xl);
@@ -330,6 +372,7 @@
     border: 1px solid var(--color-border-light);
   }
 
+  .loading h3,
   .no-results h3 {
     font-family: var(--font-display);
     font-size: var(--font-size-xl);
@@ -337,11 +380,17 @@
     margin-bottom: var(--space-md);
   }
 
+  .loading p,
   .no-results p {
     font-family: var(--font-primary);
     color: var(--color-text-light);
     line-height: var(--line-height-relaxed);
     margin-bottom: var(--space-lg);
+  }
+
+  .loading {
+    border-color: var(--color-secondary-light);
+    background: var(--color-background-alt);
   }
 
   .reset-btn {

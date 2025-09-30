@@ -86,9 +86,15 @@
           <FAQItem {faqItem} />
         {/each}
       </div>
+    {:else if faqItems.length === 0}
+      <div class="no-faq">
+        <p>Derzeit sind keine FAQ-Einträge verfügbar.</p>
+        <p class="sub-message">Die häufig gestellten Fragen werden in Kürze hinzugefügt. Bei weiteren Fragen kontaktieren Sie uns gerne direkt.</p>
+      </div>
     {:else}
       <div class="no-faq">
-        <p>Keine FAQ-Einträge in dieser Kategorie gefunden.</p>
+        <p>Keine FAQ-Einträge in der Kategorie "{selectedCategory}" verfügbar.</p>
+        <p class="sub-message">Wählen Sie eine andere Kategorie oder schauen Sie unter "Alle Kategorien".</p>
       </div>
     {/if}
   </div>
@@ -178,6 +184,12 @@
     font-size: var(--font-size-lg);
     color: var(--color-text-muted);
     margin: 0;
+  }
+
+  .no-faq .sub-message {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    margin-top: var(--space-sm);
   }
 
   @media (max-width: 768px) {

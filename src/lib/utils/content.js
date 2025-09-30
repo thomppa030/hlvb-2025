@@ -45,13 +45,13 @@ export async function fetchJobs(lang = 'de') {
 }
 
 /**
- * Fetch all FAQ items from Prismic with fallback to static data
+ * Fetch all FAQ items from Prismic - NO FALLBACK for FAQ content
  * @param {string} lang - Language code ('de' or 'en')
- * @returns {Promise<Array>} Array of FAQ items
+ * @returns {Promise<Array>} Array of FAQ items (empty if none available)
  */
 export async function fetchFAQ(lang = 'de') {
   try {
-    // Try to fetch from Prismic first
+    // Only fetch from Prismic - no fallback for FAQ content
     const prismicFAQ = await getAllDocuments('faq_item', lang);
 
     if (prismicFAQ && prismicFAQ.length > 0) {
@@ -73,17 +73,12 @@ export async function fetchFAQ(lang = 'de') {
         }))
         .sort((a, b) => a.order - b.order || a.question.localeCompare(b.question));
     }
-  } catch (error) {
-    console.warn('Failed to fetch FAQ from Prismic, falling back to static data:', error);
-  }
 
-  // Fallback to static data
-  try {
-    const { faqItems } = await import('$lib/data/faq.js');
-    console.info('Using fallback FAQ data');
-    return faqItems;
-  } catch (fallbackError) {
-    console.error('Failed to load fallback FAQ data:', fallbackError);
+    // Return empty array if no FAQ items in Prismic
+    console.info('No FAQ items found in Prismic');
+    return [];
+  } catch (error) {
+    console.warn('Failed to fetch FAQ from Prismic:', error);
     return [];
   }
 }
