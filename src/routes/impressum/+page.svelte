@@ -1,5 +1,13 @@
 <script>
+  import { onMount } from 'svelte';
   import { t } from '$lib/stores/i18n.js';
+  import { fetchContactInfo } from '$lib/utils/content.js';
+
+  let contactInfo = null;
+
+  onMount(async () => {
+    contactInfo = await fetchContactInfo();
+  });
 </script>
 
 <svelte:head>
@@ -13,38 +21,44 @@
 
       <section>
         <h2 class="heading-accent">Angaben gemäß § 5 TMG</h2>
-        <p>
-          <strong>Hotel Ludwig van Beethoven</strong><br>
-          Hasenheide 14<br>
-          10967 Berlin<br>
-          Deutschland
-        </p>
+        {#if contactInfo}
+          <p>
+            <strong>{contactInfo.hotelName}</strong><br>
+            {contactInfo.address.street}<br>
+            {contactInfo.address.city}<br>
+            {contactInfo.address.countryDe}
+          </p>
+        {/if}
       </section>
 
       <section>
         <h2 class="heading-accent">Kontakt</h2>
-        <p>
-          Telefon: +49 30 695 066 0<br>
-          E-Mail: info@hotel-ludwig-van-beethoven.de<br>
-          Website: <a href="https://hotellvb.de">hotellvb.de</a>
-        </p>
+        {#if contactInfo}
+          <p>
+            Telefon: {contactInfo.phone.display}<br>
+            E-Mail: {contactInfo.email.main}<br>
+            Website: <a href="{contactInfo.website}">{contactInfo.website}</a>
+          </p>
+        {/if}
       </section>
 
       <section>
         <h2 class="heading-accent">Umsatzsteuer-ID</h2>
         <p>
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
-          DE123456789
+          DE164840221
         </p>
       </section>
 
       <section>
         <h2 class="heading-accent">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-        <p>
-          Hotel Ludwig van Beethoven<br>
-          Hasenheide 14<br>
-          10967 Berlin
-        </p>
+        {#if contactInfo}
+          <p>
+            {contactInfo.hotelName}<br>
+            {contactInfo.address.street}<br>
+            {contactInfo.address.city}
+          </p>
+        {/if}
       </section>
     </div>
   </div>
@@ -53,7 +67,7 @@
 <style>
   .impressum-page {
     background-color: var(--color-background);
-    padding: var(--space-5xl) 0;
+    padding: var(--space-3xl) 0;
     min-height: 80vh;
   }
 
@@ -69,7 +83,7 @@
     font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
-    margin-bottom: var(--space-4xl);
+    margin-bottom: var(--space-2xl);
     text-align: center;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -80,13 +94,13 @@
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--space-4xl);
-    margin-bottom: var(--space-xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
     letter-spacing: -0.01em;
   }
 
   section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border-light);
   }
 
@@ -100,7 +114,7 @@
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     max-width: 70ch;
   }
 
@@ -125,7 +139,7 @@
   /* Mobile responsive */
   @media (max-width: 768px) {
     .impressum-page {
-      padding: var(--space-4xl) 0;
+      padding: var(--space-2xl) 0;
     }
 
     .container {
@@ -133,16 +147,16 @@
     }
 
     section {
-      padding: var(--space-2xl) 0;
+      padding: var(--space-lg) 0;
     }
 
     h1.heading-accent {
-      margin-bottom: var(--space-3xl);
+      margin-bottom: var(--space-xl);
     }
 
     h2.heading-accent {
       font-size: var(--font-size-xl);
-      margin-top: var(--space-3xl);
+      margin-top: var(--space-xl);
     }
 
     p {

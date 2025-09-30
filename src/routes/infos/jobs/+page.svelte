@@ -3,13 +3,14 @@
   import { onMount } from 'svelte';
   import JobCard from "$lib/components/ui/JobCard.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchJobs, getJobDepartments } from "$lib/utils/content.js";
+  import { fetchJobs, getJobDepartments, fetchContactInfo } from "$lib/utils/content.js";
 
   let jobs = [];
   let selectedCategory = 'all';
   let expandedJobs = new Set();
   let loading = true;
   let categories = ['all'];
+  let contactInfo = null;
 
   $: filteredJobs = selectedCategory === 'all'
     ? jobs
@@ -24,11 +25,15 @@
     try {
       const lang = $currentLanguage;
 
-      // Only fetch from Prismic - no fallback for real job openings
-      jobs = await fetchJobs(lang);
+      // Fetch jobs and contact info in parallel
+      const [jobsData, contact, departments] = await Promise.all([
+        fetchJobs(lang),
+        fetchContactInfo(),
+        getJobDepartments(lang)
+      ]);
 
-      // Get available departments
-      const departments = await getJobDepartments(lang);
+      jobs = jobsData;
+      contactInfo = contact;
       categories = ['all', ...departments];
 
       loading = false;
@@ -146,23 +151,25 @@
           <div class="contact-info">
             <h3>Kontakt für Bewerbungen</h3>
             <div class="contact-details">
-              <p>
-                <strong>E-Mail:</strong><br>
-                <a href="mailto:bewerbung@hotel-ludwig-van-beethoven.de">
-                  bewerbung@hotel-ludwig-van-beethoven.de
-                </a>
-              </p>
-              <p>
-                <strong>Telefon:</strong><br>
-                <a href="tel:+4930695066-0">+49 30 695 066 0</a>
-              </p>
-              <p>
-                <strong>Post:</strong><br>
-                Hotel Ludwig van Beethoven<br>
-                Personalabteilung<br>
-                Hasenheide 14<br>
-                10967 Berlin
-              </p>
+              {#if contactInfo}
+                <p>
+                  <strong>E-Mail:</strong><br>
+                  <a href="mailto:{contactInfo.email.jobs}">
+                    {contactInfo.email.jobs}
+                  </a>
+                </p>
+                <p>
+                  <strong>Telefon:</strong><br>
+                  <a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a>
+                </p>
+                <p>
+                  <strong>Post:</strong><br>
+                  {contactInfo.hotelName}<br>
+                  Personalabteilung<br>
+                  {contactInfo.address.street}<br>
+                  {contactInfo.address.city}
+                </p>
+              {/if}
             </div>
           </div>
         </div>

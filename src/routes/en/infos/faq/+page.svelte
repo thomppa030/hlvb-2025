@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
   import FAQItem from "$lib/components/ui/FAQItem.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchFAQ, getFAQCategories } from "$lib/utils/content.js";
+  import { fetchFAQ, getFAQCategories, fetchContactInfo } from "$lib/utils/content.js";
 
   let faqItems = [];
   let selectedCategory = 'all';
@@ -11,6 +11,7 @@
   let expandedItems = new Set();
   let loading = true;
   let categories = [];
+  let contactInfo = null;
 
   onMount(async () => {
     await loadFAQ();
@@ -21,8 +22,14 @@
     try {
       const lang = $currentLanguage;
 
-      // Fetch FAQ using the new content utility
-      faqItems = await fetchFAQ(lang);
+      // Fetch FAQ and contact info in parallel
+      const [faqData, contact] = await Promise.all([
+        fetchFAQ(lang),
+        fetchContactInfo()
+      ]);
+
+      faqItems = faqData;
+      contactInfo = contact;
 
       // Get unique categories
       categories = ['all', ...(await getFAQCategories(lang))];
@@ -197,21 +204,23 @@
             </p>
           </div>
           <div class="contact-info">
-            <div class="contact-item">
-              <h3>📞 Phone</h3>
-              <p><a href="tel:+4930695066-0">+49 30 695 066 0</a></p>
-              <p class="hours">Available 24 hours daily</p>
-            </div>
-            <div class="contact-item">
-              <h3>✉️ Email</h3>
-              <p><a href="mailto:info@hotel-ludwig-van-beethoven.de">info@hotel-ludwig-van-beethoven.de</a></p>
-              <p class="hours">We respond within 24 hours</p>
-            </div>
-            <div class="contact-item">
-              <h3>🏨 On-site</h3>
-              <p>Hasenheide 14<br>10967 Berlin<br>Germany</p>
-              <p class="hours">Reception: Open 24 hours</p>
-            </div>
+            {#if contactInfo}
+              <div class="contact-item">
+                <h3>📞 Phone</h3>
+                <p><a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a></p>
+                <p class="hours">{contactInfo.hours.phoneAvailableEn}</p>
+              </div>
+              <div class="contact-item">
+                <h3>✉️ Email</h3>
+                <p><a href="mailto:{contactInfo.email.main}">{contactInfo.email.main}</a></p>
+                <p class="hours">{contactInfo.hours.emailResponseEn}</p>
+              </div>
+              <div class="contact-item">
+                <h3>🏨 On-site</h3>
+                <p>{contactInfo.address.street}<br>{contactInfo.address.city}<br>{contactInfo.address.countryEn}</p>
+                <p class="hours">Reception: {contactInfo.hours.receptionEn}</p>
+              </div>
+            {/if}
           </div>
         </div>
       </div>

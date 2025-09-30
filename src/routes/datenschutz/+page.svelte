@@ -2,12 +2,17 @@
 <script>
   import { currentLanguage } from '$lib/stores/i18n.js';
   import { onMount } from 'svelte';
+  import { fetchContactInfo } from '$lib/utils/content.js';
 
-  onMount(() => {
+  let contactInfo = null;
+
+  onMount(async () => {
     // Redirect English users to English version
     if ($currentLanguage === 'en') {
       window.location.href = '/en/datenschutz';
     }
+
+    contactInfo = await fetchContactInfo();
   });
 </script>
 
@@ -25,12 +30,14 @@
       <h2 class="heading-accent">1. Verantwortlicher</h2>
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br><br>
-        Hotel Ludwig van Beethoven<br>
-        Hasenheide 14<br>
-        10967 Berlin<br>
-        Deutschland<br><br>
-        Telefon: +49 30 695 066 0<br>
-        E-Mail: info@hotel-ludwig-van-beethoven.de
+        {#if contactInfo}
+          {contactInfo.hotelName}<br>
+          {contactInfo.address.street}<br>
+          {contactInfo.address.city}<br>
+          {contactInfo.address.countryDe}<br><br>
+          Telefon: {contactInfo.phone.display}<br>
+          E-Mail: {contactInfo.email.main}
+        {/if}
       </p>
     </section>
 
@@ -132,13 +139,15 @@
       <p>
         Bei Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer personenbezogenen Daten, bei Auskünften, Berichtigung, Einschränkung oder Löschung von Daten sowie Widerruf erteilter Einwilligungen kontaktieren Sie uns bitte unter:
       </p>
-      <p>
-        Hotel Ludwig van Beethoven<br>
-        Hasenheide 14<br>
-        10967 Berlin<br>
-        E-Mail: info@hotel-ludwig-van-beethoven.de<br>
-        Telefon: +49 30 695 066 0
-      </p>
+      {#if contactInfo}
+        <p>
+          {contactInfo.hotelName}<br>
+          {contactInfo.address.street}<br>
+          {contactInfo.address.city}<br>
+          E-Mail: {contactInfo.email.main}<br>
+          Telefon: {contactInfo.phone.display}
+        </p>
+      {/if}
     </section>
 
     <section>
@@ -156,7 +165,7 @@
 <style>
   .privacy-container {
     background-color: var(--color-background);
-    padding: var(--space-5xl) 0;
+    padding: var(--space-3xl) 0;
     min-height: 80vh;
   }
 
@@ -172,7 +181,7 @@
     font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
-    margin-bottom: var(--space-4xl);
+    margin-bottom: var(--space-2xl);
     text-align: center;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -183,8 +192,8 @@
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--space-4xl);
-    margin-bottom: var(--space-xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
     letter-spacing: -0.01em;
   }
 
@@ -193,13 +202,13 @@
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--space-3xl);
-    margin-bottom: var(--space-lg);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
     letter-spacing: -0.01em;
   }
 
   section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border-light);
   }
 
@@ -213,7 +222,7 @@
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     max-width: 70ch;
   }
 
@@ -237,8 +246,8 @@
   }
 
   .privacy-date {
-    margin-top: var(--space-4xl);
-    padding-top: var(--space-2xl);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
     border-top: 1px solid var(--color-border-light);
     font-style: italic;
     color: var(--color-text-light);
@@ -249,7 +258,7 @@
   /* Mobile responsive */
   @media (max-width: 768px) {
     .privacy-container {
-      padding: var(--space-4xl) 0;
+      padding: var(--space-2xl) 0;
     }
 
     .container {
@@ -257,21 +266,21 @@
     }
 
     section {
-      padding: var(--space-2xl) 0;
+      padding: var(--space-lg) 0;
     }
 
     h1.heading-accent {
-      margin-bottom: var(--space-3xl);
+      margin-bottom: var(--space-xl);
     }
 
     h2.heading-accent {
       font-size: var(--font-size-xl);
-      margin-top: var(--space-3xl);
+      margin-top: var(--space-xl);
     }
 
     h3.heading-accent {
       font-size: var(--font-size-lg);
-      margin-top: var(--space-2xl);
+      margin-top: var(--space-lg);
     }
 
     p, li {

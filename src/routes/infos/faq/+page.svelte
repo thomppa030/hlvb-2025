@@ -1,16 +1,17 @@
 <!-- src/routes/infos/faq/+page.svelte -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   import FAQItem from "$lib/components/ui/FAQItem.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
-  import { fetchFAQ, getFAQCategories } from "$lib/utils/content.js";
+  import { fetchFAQ, getFAQCategories, fetchContactInfo } from "$lib/utils/content.js";
 
   let faqItems = [];
-  let selectedCategory = 'all';
-  let searchQuery = '';
+  let selectedCategory = "all";
+  let searchQuery = "";
   let expandedItems = new Set();
   let loading = true;
   let categories = [];
+  let contactInfo = null;
 
   onMount(async () => {
     await loadFAQ();
@@ -21,15 +22,21 @@
     try {
       const lang = $currentLanguage;
 
-      // Fetch FAQ using the new content utility
-      faqItems = await fetchFAQ(lang);
+      // Fetch FAQ and contact info in parallel
+      const [faqData, contact] = await Promise.all([
+        fetchFAQ(lang),
+        fetchContactInfo()
+      ]);
+
+      faqItems = faqData;
+      contactInfo = contact;
 
       // Get unique categories
-      categories = ['all', ...(await getFAQCategories(lang))];
+      categories = ["all", ...(await getFAQCategories(lang))];
 
       loading = false;
     } catch (error) {
-      console.error('Error loading FAQ:', error);
+      console.error("Error loading FAQ:", error);
       loading = false;
     }
   }
@@ -37,15 +44,17 @@
   $: filteredItems = filterFAQItems();
 
   function filterFAQItems() {
-    let items = selectedCategory === 'all'
-      ? faqItems
-      : faqItems.filter(item => item.category === selectedCategory);
+    let items =
+      selectedCategory === "all"
+        ? faqItems
+        : faqItems.filter((item) => item.category === selectedCategory);
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      items = items.filter(item =>
-        item.question.toLowerCase().includes(query) ||
-        item.answer.toLowerCase().includes(query)
+      items = items.filter(
+        (item) =>
+          item.question.toLowerCase().includes(query) ||
+          item.answer.toLowerCase().includes(query),
       );
     }
 
@@ -62,7 +71,7 @@
   }
 
   function clearSearch() {
-    searchQuery = '';
+    searchQuery = "";
   }
 
   // React to language changes
@@ -128,9 +137,9 @@
               <button
                 class="filter-btn"
                 class:active={selectedCategory === category}
-                on:click={() => selectedCategory = category}
+                on:click={() => (selectedCategory = category)}
               >
-                {#if category === 'all'}
+                {#if category === "all"}
                   Alle Kategorien
                 {:else}
                   {category}
@@ -150,7 +159,8 @@
           </div>
         {:else if filteredItems.length > 0}
           <div class="items-count">
-            {filteredItems.length} {filteredItems.length === 1 ? 'Frage' : 'Fragen'} gefunden
+            {filteredItems.length}
+            {filteredItems.length === 1 ? "Frage" : "Fragen"} gefunden
           </div>
 
           {#each filteredItems as item}
@@ -166,19 +176,29 @@
         {:else if faqItems.length === 0}
           <div class="no-results">
             <h3>Derzeit keine FAQ-Einträge verfügbar</h3>
-            <p>Die häufig gestellten Fragen werden in Kürze hinzugefügt. Bei weiteren Fragen kontaktieren Sie uns gerne direkt.</p>
+            <p>
+              Die häufig gestellten Fragen werden in Kürze hinzugefügt. Bei
+              weiteren Fragen kontaktieren Sie uns gerne direkt.
+            </p>
           </div>
         {:else}
           <div class="no-results">
             <h3>Keine Ergebnisse gefunden</h3>
             <p>
               {#if searchQuery}
-                Ihre Suche nach "<strong>{searchQuery}</strong>" ergab keine Treffer.
+                Ihre Suche nach "<strong>{searchQuery}</strong>" ergab keine
+                Treffer.
               {:else}
                 In dieser Kategorie sind keine Fragen verfügbar.
               {/if}
             </p>
-            <button class="reset-btn" on:click={() => { searchQuery = ''; selectedCategory = 'all'; }}>
+            <button
+              class="reset-btn"
+              on:click={() => {
+                searchQuery = "";
+                selectedCategory = "all";
+              }}
+            >
               Filter zurücksetzen
             </button>
           </div>
@@ -191,27 +211,31 @@
         <div class="contact-content">
           <div class="contact-text">
             <p>
-              Haben Sie eine Frage, die hier nicht beantwortet wurde? Unser freundliches
-              Team hilft Ihnen gerne weiter! Kontaktieren Sie uns per Telefon, E-Mail
-              oder kommen Sie einfach an unserer Rezeption vorbei.
+              Haben Sie eine Frage, die hier nicht beantwortet wurde? Unser
+              freundliches Team hilft Ihnen gerne weiter! Kontaktieren Sie uns
+              per Telefon, E-Mail oder kommen Sie einfach an unserer Rezeption
+              vorbei.
             </p>
           </div>
           <div class="contact-info">
-            <div class="contact-item">
-              <h3>📞 Telefon</h3>
-              <p><a href="tel:+4930695066-0">+49 30 695 066 0</a></p>
-              <p class="hours">Täglich 24 Stunden erreichbar</p>
-            </div>
-            <div class="contact-item">
-              <h3>✉️ E-Mail</h3>
-              <p><a href="mailto:info@hotel-ludwig-van-beethoven.de">info@hotel-ludwig-van-beethoven.de</a></p>
-              <p class="hours">Wir antworten innerhalb von 24 Stunden</p>
-            </div>
-            <div class="contact-item">
-              <h3>🏨 Vor Ort</h3>
-              <p>Hasenheide 14<br>10967 Berlin</p>
-              <p class="hours">Rezeption: 24 Stunden geöffnet</p>
-            </div>
+            {#if contactInfo}
+              <div class="contact-item">
+                <p><a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a></p>
+                <p class="hours">{contactInfo.hours.phoneAvailableDe}</p>
+              </div>
+              <div class="contact-item">
+                <p>
+                  <a href="mailto:{contactInfo.email.main}"
+                    >{contactInfo.email.main}</a
+                  >
+                </p>
+                <p class="hours">{contactInfo.hours.emailResponseDe}</p>
+              </div>
+              <div class="contact-item">
+                <p>{contactInfo.address.street}<br />{contactInfo.address.city}</p>
+                <p class="hours">Rezeption: {contactInfo.hours.receptionDe}</p>
+              </div>
+            {/if}
           </div>
         </div>
       </div>
@@ -555,3 +579,4 @@
     }
   }
 </style>
+

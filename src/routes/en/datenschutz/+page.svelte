@@ -2,12 +2,17 @@
 <script>
   import { currentLanguage } from "$lib/stores/i18n.js";
   import { onMount } from "svelte";
+  import { fetchContactInfo } from '$lib/utils/content.js';
 
-  onMount(() => {
+  let contactInfo = null;
+
+  onMount(async () => {
     // Redirect German users to German version
     if ($currentLanguage === "de") {
       window.location.href = "/datenschutz";
     }
+
+    contactInfo = await fetchContactInfo();
   });
 </script>
 
@@ -28,12 +33,14 @@
       <h2 class="heading-accent">1. Data Controller</h2>
       <p>
         Responsible for data processing on this website:<br /><br />
-        Hotel Ludwig van Beethoven<br />
-        Hasenheide 14<br />
-        10967 Berlin<br />
-        Germany<br /><br />
-        Phone: +49 30 695 066 0<br />
-        Email: info@hotel-ludwig-van-beethoven.de
+        {#if contactInfo}
+          {contactInfo.hotelName}<br />
+          {contactInfo.address.street}<br />
+          {contactInfo.address.city}<br />
+          {contactInfo.address.countryEn}<br /><br />
+          Phone: {contactInfo.phone.display}<br />
+          Email: {contactInfo.email.main}
+        {/if}
       </p>
     </section>
 
@@ -194,13 +201,15 @@
         your personal data, for information, correction, restriction or deletion
         of data, as well as revocation of consent granted, please contact us at:
       </p>
-      <p>
-        Hotel Ludwig van Beethoven<br />
-        Hasenheide 14<br />
-        10967 Berlin<br />
-        Email: info@hotel-ludwig-van-beethoven.de<br />
-        Phone: +49 30 695 066 0
-      </p>
+      {#if contactInfo}
+        <p>
+          {contactInfo.hotelName}<br />
+          {contactInfo.address.street}<br />
+          {contactInfo.address.city}<br />
+          Email: {contactInfo.email.main}<br />
+          Phone: {contactInfo.phone.display}
+        </p>
+      {/if}
     </section>
 
     <section>
@@ -221,7 +230,7 @@
 <style>
   .privacy-container {
     background-color: var(--color-background);
-    padding: var(--space-5xl) 0;
+    padding: var(--space-3xl) 0;
     min-height: 80vh;
   }
 
@@ -237,7 +246,7 @@
     font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
-    margin-bottom: var(--space-4xl);
+    margin-bottom: var(--space-2xl);
     text-align: center;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -248,8 +257,8 @@
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--space-4xl);
-    margin-bottom: var(--space-xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
     letter-spacing: -0.01em;
   }
 
@@ -258,13 +267,13 @@
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-top: var(--space-3xl);
-    margin-bottom: var(--space-lg);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
     letter-spacing: -0.01em;
   }
 
   section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border-light);
   }
 
@@ -278,7 +287,7 @@
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     max-width: 70ch;
   }
 
@@ -302,8 +311,8 @@
   }
 
   .privacy-date {
-    margin-top: var(--space-4xl);
-    padding-top: var(--space-2xl);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
     border-top: 1px solid var(--color-border-light);
     font-style: italic;
     color: var(--color-text-light);
@@ -314,7 +323,7 @@
   /* Mobile responsive */
   @media (max-width: 768px) {
     .privacy-container {
-      padding: var(--space-4xl) 0;
+      padding: var(--space-2xl) 0;
     }
 
     .container {
@@ -322,21 +331,21 @@
     }
 
     section {
-      padding: var(--space-2xl) 0;
+      padding: var(--space-lg) 0;
     }
 
     h1.heading-accent {
-      margin-bottom: var(--space-3xl);
+      margin-bottom: var(--space-xl);
     }
 
     h2.heading-accent {
       font-size: var(--font-size-xl);
-      margin-top: var(--space-3xl);
+      margin-top: var(--space-xl);
     }
 
     h3.heading-accent {
       font-size: var(--font-size-lg);
-      margin-top: var(--space-2xl);
+      margin-top: var(--space-lg);
     }
 
     p, li {

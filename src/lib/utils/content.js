@@ -260,6 +260,59 @@ function applySpans(text, spans) {
 }
 
 /**
+ * Fetch centralized contact information from Prismic - NO FALLBACK
+ * @returns {Promise<Object|null>} Contact information object or null if not available
+ */
+export async function fetchContactInfo() {
+  try {
+    const contactInfo = await getAllDocuments('contact_info', 'de', { pageSize: 1 });
+
+    if (contactInfo && contactInfo.length > 0) {
+      const data = contactInfo[0].data;
+      return {
+        hotelName: data.hotel_name,
+        phone: {
+          main: data.phone_main,
+          display: data.phone_display
+        },
+        email: {
+          main: data.email_main,
+          jobs: data.email_jobs,
+          jobsEn: data.email_jobs_en
+        },
+        address: {
+          street: data.address_street,
+          city: data.address_city,
+          countryDe: data.address_country_de,
+          countryEn: data.address_country_en
+        },
+        website: data.website_url,
+        hours: {
+          receptionDe: data.reception_hours_de,
+          receptionEn: data.reception_hours_en,
+          phoneAvailableDe: data.phone_available_de,
+          phoneAvailableEn: data.phone_available_en,
+          emailResponseDe: data.email_response_de,
+          emailResponseEn: data.email_response_en
+        },
+        // Add Prismic metadata
+        _prismic: {
+          id: contactInfo[0].id,
+          last_publication_date: contactInfo[0].last_publication_date
+        }
+      };
+    }
+
+    // Return null if no data in Prismic - NO FALLBACK
+    console.info('No contact info found in Prismic');
+    return null;
+  } catch (error) {
+    console.warn('Failed to fetch contact info from Prismic:', error);
+    return null;
+  }
+}
+
+/**
  * Check if content management is available (Prismic is working)
  * @returns {Promise<boolean>} True if CMS is available
  */

@@ -1,7 +1,15 @@
 <!-- src/lib/components/ui/Footer.svelte -->
 <script>
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { currentLanguage, t } from '$lib/stores/i18n.js';
+  import { fetchContactInfo } from '$lib/utils/content.js';
+
+  let contactInfo = null;
+
+  onMount(async () => {
+    contactInfo = await fetchContactInfo();
+  });
 
   $: isEnglish = $page.url.pathname.startsWith('/en') || $currentLanguage === 'en';
   $: impressumLink = isEnglish ? '/en/impressum' : '/impressum';
@@ -13,12 +21,14 @@
   <div class="container">
     <div class="footer-content">
       <div class="hotel-info">
-        <h3 class="brand-name">Hotel Ludwig van Beethoven</h3>
-        <p class="address">Hasenheide 14, 10967 Berlin</p>
-        <p class="contact">
-          <a href="tel:+49306957000">+49 (0)30 69 57 00-0</a> •
-          <a href="mailto:info@hotellvb.de">info@hotellvb.de</a>
-        </p>
+        {#if contactInfo}
+          <h3 class="brand-name">{contactInfo.hotelName}</h3>
+          <p class="address">{contactInfo.address.street}, {contactInfo.address.city}</p>
+          <p class="contact">
+            <a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a> •
+            <a href="mailto:{contactInfo.email.main}">{contactInfo.email.main}</a>
+          </p>
+        {/if}
       </div>
 
       <div class="footer-links">
@@ -30,7 +40,11 @@
 
     <div class="footer-bottom">
       <p>
-        &copy; {new Date().getFullYear()} Hotel Ludwig van Beethoven - Berlin
+        {#if contactInfo}
+          &copy; {new Date().getFullYear()} {contactInfo.hotelName} - Berlin
+        {:else}
+          &copy; {new Date().getFullYear()} Hotel Ludwig van Beethoven - Berlin
+        {/if}
       </p>
     </div>
   </div>

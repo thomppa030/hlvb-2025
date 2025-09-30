@@ -1,0 +1,146 @@
+{
+  "format": "page",
+  "id": "contact_info",
+  "label": "Contact Information",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "hotel_name": {
+        "type": "Text",
+        "config": {
+          "label": "Hotel Name",
+          "placeholder": "Hotel Ludwig van Beethoven"
+        }
+      },
+      "phone_main": {
+        "type": "Text",
+        "config": {
+          "label": "Main Phone Number",
+          "placeholder": "+49 30 695 066 0"
+        }
+      },
+      "phone_display": {
+        "type": "Text",
+        "config": {
+          "label": "Phone Display Format",
+          "placeholder": "+49 30 695 066 0"
+        }
+      },
+      "email_main": {
+        "type": "Text",
+        "config": {
+          "label": "Main Email",
+          "placeholder": "info@hotel-ludwig-van-beethoven.de"
+        }
+      },
+      "email_jobs": {
+        "type": "Text",
+        "config": {
+          "label": "Jobs Email (German)",
+          "placeholder": "bewerbung@hotel-ludwig-van-beethoven.de"
+        }
+      },
+      "email_jobs_en": {
+        "type": "Text",
+        "config": {
+          "label": "Jobs Email (English)",
+          "placeholder": "jobs@hotel-ludwig-van-beethoven.de"
+        }
+      },
+      "address_street": {
+        "type": "Text",
+        "config": {
+          "label": "Street Address",
+          "placeholder": "Hasenheide 14"
+        }
+      },
+      "address_city": {
+        "type": "Text",
+        "config": {
+          "label": "City and Postal Code",
+          "placeholder": "10967 Berlin"
+        }
+      },
+      "address_country_de": {
+        "type": "Text",
+        "config": {
+          "label": "Country (German)",
+          "placeholder": "Deutschland"
+        }
+      },
+      "address_country_en": {
+        "type": "Text",
+        "config": {
+          "label": "Country (English)",
+          "placeholder": "Germany"
+        }
+      },
+      "website_url": {
+        "type": "Text",
+        "config": {
+          "label": "Website URL",
+          "placeholder": "https://hotel-ludwig-van-beethoven.de"
+        }
+      },
+      "reception_hours_de": {
+        "type": "Text",
+        "config": {
+          "label": "Reception Hours (German)",
+          "placeholder": "24 Stunden geöffnet"
+        }
+      },
+      "reception_hours_en": {
+        "type": "Text",
+        "config": {
+          "label": "Reception Hours (English)",
+          "placeholder": "Open 24 hours"
+        }
+      },
+      "phone_available_de": {
+        "type": "Text",
+        "config": {
+          "label": "Phone Availability (German)",
+          "placeholder": "Täglich 24 Stunden erreichbar"
+        }
+      },
+      "phone_available_en": {
+        "type": "Text",
+        "config": {
+          "label": "Phone Availability (English)",
+          "placeholder": "Available 24 hours daily"
+        }
+      },
+      "email_response_de": {
+        "type": "Text",
+        "config": {
+          "label": "Email Response Time (German)",
+          "placeholder": "Wir antworten innerhalb von 24 Stunden"
+        }
+      },
+      "email_response_en": {
+        "type": "Text",
+        "config": {
+          "label": "Email Response Time (English)",
+          "placeholder": "We respond within 24 hours"
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "Contact Information for Hotel Ludwig van Beethoven"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "Centralized contact information for Hotel Ludwig van Beethoven"
+        }
+      }
+    }
+  }
+}
