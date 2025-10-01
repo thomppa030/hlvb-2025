@@ -198,6 +198,9 @@
                   <div class="contact-detail-text">
                     <strong>Post:</strong><br />
                     {contactInfo.hotelName}<br />
+                    {#if contactInfo.ownerName}
+                      Inhaber: {contactInfo.ownerName}<br />
+                    {/if}
                     {contactInfo.address.street}<br />
                     {contactInfo.address.city}
                   </div>

@@ -196,6 +196,9 @@
                   <div class="contact-detail-text">
                     <strong>Mail:</strong><br />
                     {contactInfo.hotelName}<br />
+                    {#if contactInfo.ownerName}
+                      Owner: {contactInfo.ownerName}<br />
+                    {/if}
                     {contactInfo.address.street}<br />
                     {contactInfo.address.city}<br />
                     {contactInfo.address.countryEn}

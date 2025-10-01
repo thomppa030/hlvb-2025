@@ -13,6 +13,13 @@
           "placeholder": "Hotel Ludwig van Beethoven"
         }
       },
+      "owner_name": {
+        "type": "Text",
+        "config": {
+          "label": "Owner Name",
+          "placeholder": "Per Reul"
+        }
+      },
       "phone_main": {
         "type": "Text",
         "config": {

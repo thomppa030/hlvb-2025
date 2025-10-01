@@ -271,6 +271,7 @@ export async function fetchContactInfo() {
       const data = contactInfo[0].data;
       return {
         hotelName: data.hotel_name,
+        ownerName: data.owner_name,
         phone: {
           main: data.phone_main,
           display: data.phone_display

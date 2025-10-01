@@ -243,8 +243,11 @@
                 <p class="hours">{contactInfo.hours.emailResponseEn}</p>
               </div>
               <div class="contact-item">
-                <h3><Icon name="address" size={32} /> On-site</h3>
+                <h3><Icon name="address" size={32} /> Address</h3>
                 <p>
+                  {#if contactInfo.ownerName}
+                    Owner: {contactInfo.ownerName}<br />
+                  {/if}
                   {contactInfo.address.street}<br />{contactInfo.address
                     .city}<br />{contactInfo.address.countryEn}
                 </p>

@@ -24,6 +24,9 @@
         {#if contactInfo}
           <p>
             <strong>{contactInfo.hotelName}</strong><br>
+            {#if contactInfo.ownerName}
+              Owner: {contactInfo.ownerName}<br>
+            {/if}
             {contactInfo.address.street}<br>
             {contactInfo.address.city}<br>
             {contactInfo.address.countryEn}

@@ -23,6 +23,9 @@
       <div class="hotel-info">
         {#if contactInfo}
           <h3 class="brand-name">{contactInfo.hotelName}</h3>
+          {#if contactInfo.ownerName}
+            <p class="owner">Inhaber: {contactInfo.ownerName}</p>
+          {/if}
           <p class="address">{contactInfo.address.street}, {contactInfo.address.city}</p>
           <p class="contact">
             <a href="tel:{contactInfo.phone.main}">{contactInfo.phone.display}</a> •
@@ -73,6 +76,7 @@
     margin-bottom: var(--space-xs);
   }
 
+  .owner,
   .address,
   .contact {
     font-size: var(--font-size-sm);
