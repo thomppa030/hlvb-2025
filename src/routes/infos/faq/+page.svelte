@@ -1,6 +1,7 @@
 <!-- src/routes/infos/faq/+page.svelte -->
 <script>
   import { onMount } from "svelte";
+  import SliceZone from "$lib/components/SliceZone.svelte";
   import FAQItem from "$lib/components/ui/FAQItem.svelte";
   import { currentLanguage, t } from "$lib/stores/i18n.js";
   import {
@@ -9,6 +10,8 @@
     fetchContactInfo,
   } from "$lib/utils/content.js";
   import Icon from "$lib/components/ui/Icon.svelte";
+
+  export let data;
 
   let faqItems = [];
   let selectedCategory = "all";
@@ -88,13 +91,16 @@
 </script>
 
 <svelte:head>
-  <title>Häufig gestellte Fragen - Hotel Ludwig van Beethoven</title>
-  <meta
-    name="description"
-    content="Häufig gestellte Fragen zum Hotel Ludwig van Beethoven Berlin. Antworten zu Anreise, Check-in, Ausstattung und Services."
-  />
+  <title>{data.meta.title}</title>
+  {#if data.meta.description}
+    <meta name="description" content={data.meta.description} />
+  {/if}
 </svelte:head>
 
+{#if data.slices && data.slices.length > 0}
+  <SliceZone slices={data.slices} />
+{:else}
+  <!-- Fallback to existing FAQ functionality when no Prismic data -->
 <div class="faq-container">
   <div class="container">
     <header class="faq-header">
@@ -255,6 +261,7 @@
     </div>
   </div>
 </div>
+{/if}
 
 <style>
   .faq-container {

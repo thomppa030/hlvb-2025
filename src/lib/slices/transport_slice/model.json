@@ -1,0 +1,59 @@
+{
+  "type": "SharedSlice",
+  "id": "transport_slice",
+  "name": "TransportSlice",
+  "description": "Transport and arrival information with repeatable options",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Transport options with icons and details",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Transport Section Heading"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Optional description",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {
+        "icon_name": {
+          "type": "Text",
+          "config": {
+            "label": "Icon Name",
+            "placeholder": "metro, bus, airport, etc."
+          }
+        },
+        "transport_title": {
+          "type": "Text",
+          "config": {
+            "label": "Transport Title",
+            "placeholder": "U-Bahn, Bus, etc."
+          }
+        },
+        "transport_content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Transport Content",
+            "placeholder": "Transport details and directions",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        }
+      }
+    }
+  ]
+}

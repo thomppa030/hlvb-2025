@@ -1,0 +1,47 @@
+{
+  "type": "SharedSlice",
+  "id": "map_slice",
+  "name": "MapSlice",
+  "description": "Standalone Google Maps section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Google Maps embed",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Map Section Heading"
+          }
+        },
+        "map_embed_url": {
+          "type": "Text",
+          "config": {
+            "label": "Map Embed URL",
+            "placeholder": "Google Maps embed URL"
+          }
+        },
+        "map_title": {
+          "type": "Text",
+          "config": {
+            "label": "Map Title",
+            "placeholder": "Location"
+          }
+        },
+        "map_height": {
+          "type": "Text",
+          "config": {
+            "label": "Map Height",
+            "placeholder": "600"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -3,6 +3,7 @@
   "label": "Homepage",
   "repeatable": false,
   "status": true,
+  "format": "custom",
   "json": {
     "Main": {
       "slices": {
@@ -29,9 +30,6 @@
               "type": "SharedSlice"
             },
             "carousel_slice": {
-              "type": "SharedSlice"
-            },
-            "rooms_slice": {
               "type": "SharedSlice"
             }
           }

@@ -1,47 +1,62 @@
 <script>
+  import SliceZone from "$lib/components/SliceZone.svelte";
   import GoogleMap from "$lib/components/ui/GoogleMap.svelte";
+
+  export let data;
 
   const hotelEmbedUrl =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.5298860995995!2d13.418470313162233!3d52.487647138506624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fb7f0b53161%3A0xfc1c52db79cab366!2sHotel%20Ludwig%20Van%20Beethoven!5e0!3m2!1sen!2sde!4v1759056233091!5m2!1sen!2sde";
 </script>
 
-<div class="info-container">
-  <div class="container">
-    <div class="content-grid">
-      <div class="text-section">
-        <h1 class="heading-accent-center">Hotel Informationen</h1>
-        <p>
-          Willkommen im Hotel Ludwig van Beethoven, Ihrem charmanten Refugium im
-          Herzen von Berlin-Kreuzberg. Unser familiengeführtes Hotel verbindet
-          traditionelle Gastlichkeit mit modernem Komfort und bietet Ihnen die
-          perfekte Basis, um die vielfältige Hauptstadt zu erkunden.
-        </p>
-        <p>
-          Seit Jahren empfangen wir Gäste aus aller Welt in unserem liebevoll
-          gestalteten Hotel. Jedes unserer Zimmer ist individuell eingerichtet
-          und mit allem ausgestattet, was Sie für einen angenehmen Aufenthalt
-          benötigen. Kostenloses WLAN, komfortable Betten und ein reichhaltiges
-          Frühstück gehören selbstverständlich zu unserem Service.
-        </p>
-        <p>
-          Die einzigartige Lage in Kreuzberg ermöglicht es Ihnen, das
-          authentische Berlin zu erleben. Zahlreiche Restaurants, Cafés,
-          Galerien und kulturelle Einrichtungen befinden sich in unmittelbarer
-          Nähe. Auch die wichtigsten Sehenswürdigkeiten der Stadt sind bequem
-          mit öffentlichen Verkehrsmitteln erreichbar.
-        </p>
-        <p>
-          Unser engagiertes Team steht Ihnen gerne mit Tipps und Empfehlungen
-          zur Verfügung, damit Ihr Berlin-Besuch zu einem unvergesslichen
-          Erlebnis wird. Wir freuen uns darauf, Sie in unserem Haus begrüßen zu
-          dürfen!
-        </p>
-      </div>
+<svelte:head>
+  <title>{data.meta.title}</title>
+  {#if data.meta.description}
+    <meta name="description" content={data.meta.description} />
+  {/if}
+</svelte:head>
 
-      <GoogleMap embedUrl={hotelEmbedUrl} title="Hotel Standort" height="600" />
+{#if data.slices && data.slices.length > 0}
+  <SliceZone slices={data.slices} />
+{:else}
+  <!-- Fallback content when no Prismic data -->
+  <div class="info-container">
+    <div class="container">
+      <div class="content-grid">
+        <div class="text-section">
+          <h1 class="heading-accent-center">Hotel Informationen</h1>
+          <p>
+            Willkommen im Hotel Ludwig van Beethoven, Ihrem charmanten Refugium im
+            Herzen von Berlin-Kreuzberg. Unser familiengeführtes Hotel verbindet
+            traditionelle Gastlichkeit mit modernem Komfort und bietet Ihnen die
+            perfekte Basis, um die vielfältige Hauptstadt zu erkunden.
+          </p>
+          <p>
+            Seit Jahren empfangen wir Gäste aus aller Welt in unserem liebevoll
+            gestalteten Hotel. Jedes unserer Zimmer ist individuell eingerichtet
+            und mit allem ausgestattet, was Sie für einen angenehmen Aufenthalt
+            benötigen. Kostenloses WLAN, komfortable Betten und ein reichhaltiges
+            Frühstück gehören selbstverständlich zu unserem Service.
+          </p>
+          <p>
+            Die einzigartige Lage in Kreuzberg ermöglicht es Ihnen, das
+            authentische Berlin zu erleben. Zahlreiche Restaurants, Cafés,
+            Galerien und kulturelle Einrichtungen befinden sich in unmittelbarer
+            Nähe. Auch die wichtigsten Sehenswürdigkeiten der Stadt sind bequem
+            mit öffentlichen Verkehrsmitteln erreichbar.
+          </p>
+          <p>
+            Unser engagiertes Team steht Ihnen gerne mit Tipps und Empfehlungen
+            zur Verfügung, damit Ihr Berlin-Besuch zu einem unvergesslichen
+            Erlebnis wird. Wir freuen uns darauf, Sie in unserem Haus begrüßen zu
+            dürfen!
+          </p>
+        </div>
+
+        <GoogleMap embedUrl={hotelEmbedUrl} title="Hotel Standort" height="600" />
+      </div>
     </div>
   </div>
-</div>
+{/if}
 
 <style>
   .info-container {

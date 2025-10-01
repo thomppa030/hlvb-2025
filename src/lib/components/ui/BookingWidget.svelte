@@ -145,6 +145,7 @@
           type="select"
           bind:value={children}
           options={childrenOptions}
+          tooltip={$t('booking.children_tooltip')}
         />
       </div>
 

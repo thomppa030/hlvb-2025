@@ -1,0 +1,66 @@
+{
+  "type": "SharedSlice",
+  "id": "contact_slice",
+  "name": "ContactSlice",
+  "description": "Contact information section with multiple contact methods",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Contact information with icons",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Contact Section Heading"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Contact section description",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {
+        "icon_name": {
+          "type": "Text",
+          "config": {
+            "label": "Icon Name",
+            "placeholder": "phone, email, address, etc."
+          }
+        },
+        "contact_title": {
+          "type": "Text",
+          "config": {
+            "label": "Contact Title",
+            "placeholder": "Phone, Email, etc."
+          }
+        },
+        "contact_content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Contact Content",
+            "placeholder": "Contact details",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "additional_info": {
+          "type": "Text",
+          "config": {
+            "label": "Additional Info",
+            "placeholder": "Hours, availability, etc."
+          }
+        }
+      }
+    }
+  ]
+}

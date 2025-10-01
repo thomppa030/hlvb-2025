@@ -1,0 +1,65 @@
+{
+  "type": "SharedSlice",
+  "id": "info_section",
+  "name": "InfoSectionSlice",
+  "description": "General information section with optional Google Map",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Information section with optional map",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Section Heading"
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "Write your content here...",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "show_map": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Map",
+            "placeholder_false": "Hide Map",
+            "placeholder_true": "Show Map",
+            "default_value": false
+          }
+        },
+        "map_embed_url": {
+          "type": "Text",
+          "config": {
+            "label": "Map Embed URL",
+            "placeholder": "Google Maps embed URL"
+          }
+        },
+        "map_title": {
+          "type": "Text",
+          "config": {
+            "label": "Map Title",
+            "placeholder": "Location"
+          }
+        },
+        "map_height": {
+          "type": "Text",
+          "config": {
+            "label": "Map Height",
+            "placeholder": "600"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

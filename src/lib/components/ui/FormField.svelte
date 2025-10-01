@@ -1,6 +1,7 @@
 <!-- src/lib/components/ui/FormField.svelte -->
 <script>
   import { createEventDispatcher } from 'svelte';
+  import Tooltip from './Tooltip.svelte';
 
   export let id;
   export let label;
@@ -12,6 +13,7 @@
   export let max = null;
   export let placeholder = '';
   export let disabled = false;
+  export let tooltip = null; // optional tooltip text
 
   const dispatch = createEventDispatcher();
 
@@ -21,17 +23,28 @@
   }
 
   function handleChange(event) {
-    value = event.target.value;
+    const newValue = event.target.value;
+    // Convert to number if all option values are numbers
+    if (type === 'select' && options && options.length > 0 && typeof options[0].value === 'number') {
+      value = Number(newValue);
+    } else {
+      value = newValue;
+    }
     dispatch('change', { value, id });
   }
 </script>
 
 <div class="form-group">
-  <label for={id}>{label}</label>
+  <label for={id}>
+    {label}
+    {#if tooltip}
+      <Tooltip text={tooltip} />
+    {/if}
+  </label>
   {#if type === 'select'}
     <select
       {id}
-      {value}
+      bind:value
       {required}
       {disabled}
       on:change={handleChange}

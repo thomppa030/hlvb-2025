@@ -6,7 +6,7 @@
   export let embedUrl = "";
   export let title = "Map";
   export let width = "450";
-  export let height = "600";
+  export let height = "400";
   export let showAddress = true;
   export let addressTitle = "";
   export let addressLines = [];

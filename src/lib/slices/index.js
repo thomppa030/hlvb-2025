@@ -10,6 +10,11 @@ import FeatureSlice from './FeatureSlice.svelte';
 import CarouselSlice from './CarouselSlice.svelte';
 import JobSlice from './JobSlice.svelte';
 import FAQSlice from './FAQSlice.svelte';
+import InfoSectionSlice from './InfoSectionSlice.svelte';
+import TransportSlice from './TransportSlice.svelte';
+import CheckInSlice from './CheckInSlice.svelte';
+import MapSlice from './MapSlice.svelte';
+import ContactSlice from './ContactSlice.svelte';
 
 export const components = {
   hero_slice: HeroSlice,
@@ -21,6 +26,11 @@ export const components = {
   carousel_slice: CarouselSlice,
   job_slice: JobSlice,
   faq_slice: FAQSlice,
+  info_section: InfoSectionSlice,
+  transport_slice: TransportSlice,
+  checkin_slice: CheckInSlice,
+  map_slice: MapSlice,
+  contact_slice: ContactSlice,
 };
 
 export { NotFound };

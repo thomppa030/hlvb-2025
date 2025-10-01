@@ -46,6 +46,21 @@
             },
             "carousel_slice": {
               "type": "SharedSlice"
+            },
+            "info_section": {
+              "type": "SharedSlice"
+            },
+            "transport_slice": {
+              "type": "SharedSlice"
+            },
+            "checkin_slice": {
+              "type": "SharedSlice"
+            },
+            "map_slice": {
+              "type": "SharedSlice"
+            },
+            "contact_slice": {
+              "type": "SharedSlice"
             }
           }
         }

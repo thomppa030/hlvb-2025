@@ -1,0 +1,43 @@
+{
+  "type": "SharedSlice",
+  "id": "checkin_slice",
+  "name": "CheckInSlice",
+  "description": "Check-in and check-out information with info boxes",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Check-in information boxes",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Check-in Information"
+          }
+        }
+      },
+      "items": {
+        "box_title": {
+          "type": "Text",
+          "config": {
+            "label": "Box Title",
+            "placeholder": "Info box title"
+          }
+        },
+        "box_content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Box Content",
+            "placeholder": "Information details",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        }
+      }
+    }
+  ]
+}
