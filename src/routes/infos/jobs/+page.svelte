@@ -140,76 +140,6 @@
           </div>
         {/if}
       </div>
-
-      <!-- Contact Section -->
-      <div class="contact-section">
-        <h2 class="heading-accent-center">Initiativbewerbung</h2>
-        <div class="contact-content">
-          <div class="contact-text">
-            <p>
-              Sie haben die passende Stelle nicht gefunden? Wir freuen uns auch
-              über Initiativbewerbungen! Senden Sie uns Ihre vollständigen
-              Bewerbungsunterlagen und wir melden uns bei Ihnen, sobald eine
-              passende Position frei wird.
-            </p>
-            <p>
-              <strong>Was wir bieten:</strong>
-            </p>
-            <ul>
-              <li>
-                Familiäres Arbeitsklima in einem traditionellen Berliner Hotel
-              </li>
-              <li>Flexible Arbeitszeiten und Work-Life-Balance</li>
-              <li>Fortbildungsmöglichkeiten und Karriereentwicklung</li>
-              <li>Attraktive Vergütung nach Tarif</li>
-              <li>Betriebliche Zusatzleistungen</li>
-            </ul>
-          </div>
-          <div class="contact-info">
-            <h3>Kontakt für Bewerbungen</h3>
-            <div class="contact-details">
-              {#if contactInfo}
-                <div class="contact-detail-item">
-                  <div class="contact-icon">
-                    <Icon name="email" size={24} />
-                  </div>
-                  <div class="contact-detail-text">
-                    <strong>E-Mail:</strong><br />
-                    <a href="mailto:{contactInfo.email.jobs}">
-                      {contactInfo.email.jobs}
-                    </a>
-                  </div>
-                </div>
-                <div class="contact-detail-item">
-                  <div class="contact-icon">
-                    <Icon name="phone" size={24} />
-                  </div>
-                  <div class="contact-detail-text">
-                    <strong>Telefon:</strong><br />
-                    <a href="tel:{contactInfo.phone.main}"
-                      >{contactInfo.phone.display}</a
-                    >
-                  </div>
-                </div>
-                <div class="contact-detail-item">
-                  <div class="contact-icon">
-                    <Icon name="address" size={24} />
-                  </div>
-                  <div class="contact-detail-text">
-                    <strong>Post:</strong><br />
-                    {contactInfo.hotelName}<br />
-                    {#if contactInfo.ownerName}
-                      Inhaber: {contactInfo.ownerName}<br />
-                    {/if}
-                    {contactInfo.address.street}<br />
-                    {contactInfo.address.city}
-                  </div>
-                </div>
-              {/if}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -482,4 +412,3 @@
     }
   }
 </style>
-
