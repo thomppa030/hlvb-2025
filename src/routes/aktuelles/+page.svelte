@@ -5,6 +5,7 @@
 
   let scriptLoaded = false;
   let showWidget = false;
+  let widgetRendered = false;
   let debugMode = false;
   let widgetStructure = null;
   let showControls = false;
@@ -13,62 +14,91 @@
   let totalSlides = 0;
 
   onMount(() => {
-    if (browser) {
-      // Check if this is the first visit (not a refresh)
-      const hasRefreshed = sessionStorage.getItem("social-page-refreshed");
+    if (!browser) return;
 
-      if (!hasRefreshed) {
-        // First visit - set flag and refresh
-        sessionStorage.setItem("social-page-refreshed", "true");
-        location.reload();
-        return;
-      }
+    // Check if script already exists
+    const existingScript = document.querySelector(
+      'script[src*="website-widgets.bundle.js"]',
+    );
 
-      // Check if script already exists
-      const existingScript = document.querySelector(
-        'script[src*="aadvanto.com"]',
-      );
-      if (existingScript) {
-        showWidget = true;
-        return;
-      }
-
-      // Load the script
+    if (!existingScript) {
+      // Load the script only if it doesn't exist
       const script = document.createElement("script");
       script.src =
         "https://app.aadvanto.com/widgets-assets/website-widgets.bundle.js";
-      script.async = true;
+      script.type = "text/javascript";
+      script.async = false; // Load synchronously to ensure proper initialization
 
       script.onload = () => {
         scriptLoaded = true;
+        console.log("Widget script loaded successfully");
 
-        // Wait a bit for initialization then show widget regardless
+        // Initialize widget for SPA (SvelteKit)
+        if (window.startWebsitesWidgets) {
+          window.startWebsitesWidgets();
+          console.log("Widgets initialized");
+        }
+
         showWidget = true;
 
-        // Analyze widget structure after it loads
-        setTimeout(() => {
-          analyzeWidgetStructure();
-        }, 3000);
+        // Wait for widget to render before hiding loading indicator
+        checkWidgetRendered();
       };
 
       script.onerror = (error) => {
-        console.error("Failed to load Aadvanto script:", error);
+        console.error("Failed to load widget script:", error);
         showWidget = false;
       };
 
       document.head.appendChild(script);
-    }
-  });
+    } else {
+      // Script already loaded, just initialize
+      scriptLoaded = true;
 
-  // Clean up the flag when navigating away (not on refresh)
-  onMount(() => {
+      // Re-initialize widgets for this component
+      if (window.startWebsitesWidgets) {
+        window.startWebsitesWidgets();
+        console.log("Re-initialized widgets");
+      }
+
+      showWidget = true;
+
+      // Wait for widget to render
+      checkWidgetRendered();
+    }
+
+    // Cleanup function for SPA navigation
     return () => {
-      // This runs when component unmounts (navigating away)
-      if (browser) {
-        sessionStorage.removeItem("social-page-refreshed");
+      if (browser && window.unmountWebsitesWidgets) {
+        window.unmountWebsitesWidgets();
+        console.log("Widgets unmounted");
       }
     };
   });
+
+  function checkWidgetRendered() {
+    let attempts = 0;
+    const maxAttempts = 20;
+    const checkInterval = 200;
+
+    const interval = setInterval(() => {
+      attempts++;
+      const widget = document.querySelector("ub-widget-social-post");
+      const posts = widget?.querySelectorAll(".ubw-social-post-item");
+
+      if (posts && posts.length > 0) {
+        console.log("Widget rendered with content");
+        widgetRendered = true;
+        analyzeWidgetStructure();
+        initializeCarousel();
+        clearInterval(interval);
+      } else if (attempts >= maxAttempts) {
+        console.log("Widget rendering timeout - showing anyway");
+        widgetRendered = true;
+        clearInterval(interval);
+      }
+    }, checkInterval);
+  }
 
   function analyzeWidgetStructure() {
     const widget = document.querySelector("ub-widget-social-post");
@@ -243,10 +273,6 @@
     updateCarousel();
   }
 
-  // Initialize carousel when widget is ready
-  $: if (showWidget) {
-    setTimeout(initializeCarousel, 100);
-  }
 </script>
 
 <svelte:head>
@@ -281,7 +307,7 @@
         </p>
       </div>
       <div class="widget-container" class:debug-active={debugMode}>
-        {#if !showWidget}
+        {#if !widgetRendered}
           <div class="loading">
             <div class="spinner"></div>
             <p>Social Media Feed wird geladen...</p>
@@ -291,7 +317,7 @@
         <!-- Always render the widget HTML, just hide it while loading -->
         <div
           class="widget-wrapper theme-carousel"
-          style="display: {showWidget ? 'flex' : 'none'}"
+          style="display: {widgetRendered ? 'flex' : 'none'}"
         >
           <ub-widget-social-post
             data-key="OlkquTEQk5PlrkXGrs3w8Fq7nXLwyv"
